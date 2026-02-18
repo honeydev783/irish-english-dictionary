@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { HeaderNavigationSimpleDemo, CTAIPhoneMockup01 } from "./word";
 import { Share07 } from "@untitledui/icons";
 import { HiLightBulb } from "react-icons/hi2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Header } from "@/components/marketing/header-navigation/header";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const BreadcrumbWithShare = () => {
-    const [url] = useState("heyrua.com/english-irish/teach");
-
+    const location = useLocation();
+    const url = window.location.origin + location.pathname;
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(url);

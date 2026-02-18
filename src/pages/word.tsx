@@ -28,8 +28,9 @@ export const HeaderNavigationSimpleDemo = () => (
 interface BreadcrumbWithShareProps {
     normalized_ga?: string;
     category?: string;
+    word_ga?: string;
 }
-const BreadcrumbWithShare = ({ normalized_ga, category }: BreadcrumbWithShareProps) => {
+const BreadcrumbWithShare = ({ normalized_ga, category, word_ga }: BreadcrumbWithShareProps) => {
     const location = useLocation();
     const url = window.location.origin + location.pathname;
     const [copied, setCopied] = useState(false);
@@ -78,7 +79,7 @@ const BreadcrumbWithShare = ({ normalized_ga, category }: BreadcrumbWithSharePro
                         <span>{category}</span>
                         <span>&gt;</span>
                         <span className="rounded-md bg-[#FAFAFA] px-2 py-1 text-[#414651]">
-                            {normalized_ga}
+                            {word_ga}
                         </span>
                     </div>
 
@@ -342,9 +343,9 @@ const RelatedWordsTable = ({ category }: RelatedWordsTableProp) => {
 
                                         <a className="flex font-500 text-[#0055FF] text-[14px] items-center" onClick={() => {
                                             navigate(
-                                                `/nouns/${category}/${encodeURIComponent(item.normalized_ga)}-${encodeURIComponent(item.word_en)}`,
+                                                `/nouns/${category}/${encodeURIComponent(item.word_ga)}-${encodeURIComponent(item.word_en)}`,
                                                 {
-                                                    state: { normalized_ga: item.normalized_ga, word_en: item.word_en, category: category },
+                                                    state: { normalized_ga: item.word_ga, word_en: item.word_en, category: category },
                                                 }
                                             );
                                         }}>Learn more <ArrowNarrowUpRight className="w-5 h-5 ml-2" /> </a>
@@ -363,6 +364,7 @@ interface StudySectionProps {
     normalized_ga?: string;
     word_en?: string;
     category?: string;
+    word_ga?: string;
 }
 
 
@@ -377,7 +379,7 @@ interface WordDetailType {
     sentences: SentenceItem[];
 
 }
-const StudySection = ({ normalized_ga, word_en, category }: StudySectionProps) => {
+const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectionProps) => {
     const instantAnswerRef = useRef<HTMLDivElement>(null);
     const sentencesRef = useRef<HTMLDivElement>(null);
     const relatedWordsRef = useRef<HTMLDivElement>(null);
@@ -436,7 +438,7 @@ const StudySection = ({ normalized_ga, word_en, category }: StudySectionProps) =
                     <h1 className="font-inter font-semibold text-2xl md:text-3xl lg:text-[36px] text-[#181D27] leading-snug">
                         <span className="text-[#45341A]">{word_en} </span>
                         in Irish
-                        <span className="text-[#0055FF]"> ({normalized_ga})</span>
+                        <span className="text-[#0055FF]"> ({word_ga})</span>
                         : Meaning, Pronunciation, Usage
                     </h1>
                 </div>
@@ -490,13 +492,13 @@ const StudySection = ({ normalized_ga, word_en, category }: StudySectionProps) =
                                 Explanation
                             </p>
                             <p className="text-[16px] text-[#535862] font-inter font-normal text-base leading-6 tracking-normal">
-                                “{normalized_ga}” is the most common everyday Irish word for a {word_en}.
+                                “{word_ga}” is the most common everyday Irish word for a {word_en}.
                             </p>
 
                             <div className="bg-[#FAFAFA] rounded-[8px] border-[1px] border-[#E9EAEB] mt-8 ">
                                 <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-x-6 gap-y-2 font-inter font-bold text-base leading-6 tracking-normal text-[#414651] text-[16px] p-[16px]">
                                     <span>Irish:</span>
-                                    <span className="text-[#0055FF]">{normalized_ga}</span>
+                                    <span className="text-[#0055FF]">{word_ga}</span>
 
                                     <span className="pt-4">English:</span>
                                     <span className="pt-4">{word_en}</span>
@@ -537,10 +539,10 @@ const StudySection = ({ normalized_ga, word_en, category }: StudySectionProps) =
 
                         <div ref={sentencesRef}>
                             <h3 className="font-semibold text-[30px] text-[#181D27] mb-2">
-                                Irish sentences with “{normalized_ga}”
+                                Irish sentences with “{word_ga}”
                             </h3>
                             <p className="text-[16px] text-[#535862] font-inter font-normal text-base leading-6 tracking-normal mb-3">
-                                Below are common Irish sentences using the word “{normalized_ga}”, the Irish word for house.
+                                Below are common Irish sentences using the word “{word_ga}”, the Irish word for house.
                             </p>
                             <SentencesTable sentences={wordDetail?.sentences ?? []} />
 
@@ -657,18 +659,26 @@ export const CTAIPhoneMockup01 = () => {
     );
 };
 
+export function removeFadas(word: string): string {
+  return word
+    .normalize("NFD")                 // separate accent from letter
+    .replace(/[\u0300-\u036f]/g, ""); // remove diacritical marks
+}
+
 const WordScreen = () => {
     // const location = useLocation();
     // const { normalized_ga, word_en, category } = location.state || {};
     const { slug } = useParams();
     const [category, setCategory] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
+    let word_ga = "";
     let normalized_ga = "";
     let word_en = "";
 
     if (slug) {
         const parts = slug.split("-");
-        normalized_ga = parts[0] || "";
+        word_ga = parts[0];
+        normalized_ga = removeFadas(parts[0]) || "";
         word_en = parts[1] || "";
     }
 
@@ -703,8 +713,8 @@ const WordScreen = () => {
     return (
         <div className="bg-primary">
             <Header />
-            <BreadcrumbWithShare category={category || ""} normalized_ga={normalized_ga} />
-            <StudySection normalized_ga={normalized_ga} word_en={word_en} category={category || ""} />
+            <BreadcrumbWithShare category={category || ""} normalized_ga={normalized_ga} word_ga={word_ga} />
+            <StudySection normalized_ga={normalized_ga } word_ga={word_ga} word_en={word_en} category={category || ""} />
             <CTAIPhoneMockup01 />
         </div>
     );

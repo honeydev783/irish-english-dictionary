@@ -30,8 +30,9 @@ interface BreadcrumbWithShareProps {
     normalized_ga?: string;
     category?: string;
     type: string;
+    word_ga?: string;
 }
-const BreadcrumbWithShare = ({ normalized_ga, category, type }: BreadcrumbWithShareProps) => {
+const BreadcrumbWithShare = ({ normalized_ga, category, type, word_ga }: BreadcrumbWithShareProps) => {
     const location = useLocation();
     const url = window.location.origin + location.pathname;
     const [copied, setCopied] = useState(false);
@@ -80,7 +81,7 @@ const BreadcrumbWithShare = ({ normalized_ga, category, type }: BreadcrumbWithSh
                         <span>{category}</span>
                         {category && <span>&gt;</span>}
                         <span className="rounded-md bg-[#FAFAFA] px-2 py-1 text-[#414651]">
-                            {normalized_ga}
+                            {word_ga}
                         </span>
                     </div>
 
@@ -435,9 +436,9 @@ const RelatedWordsTable = ({ category }: RelatedWordsTableProp) => {
 
                                         <a className="flex font-500 text-[#0055FF] text-[14px] items-center" onClick={() => {
                                             navigate(
-                                                `/nouns/${category}/${encodeURIComponent(item.normalized_ga)}-${encodeURIComponent(item.word_en)}`,
+                                                `/nouns/${category}/${encodeURIComponent(item.word_ga)}-${encodeURIComponent(item.word_en)}`,
                                                 {
-                                                    state: { normalized_ga: item.normalized_ga, word_en: item.word_en, category: category },
+                                                    state: { normalized_ga: item.word_ga, word_en: item.word_en, category: category },
                                                 }
                                             );
                                         }}>Learn more <ArrowNarrowUpRight className="w-5 h-5 ml-2" /> </a>
@@ -457,6 +458,7 @@ interface StudySectionProps {
     word_en?: string;
     category?: string;
     type: string;
+    word_ga?: string;
 }
 
 
@@ -471,7 +473,7 @@ interface WordDetailType {
     sentences: SentenceItem[];
 
 }
-const StudySection = ({ normalized_ga, word_en, category, type }: StudySectionProps) => {
+const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: StudySectionProps) => {
     const instantAnswerRef = useRef<HTMLDivElement>(null);
     const sentencesRef = useRef<HTMLDivElement>(null);
     const relatedWordsRef = useRef<HTMLDivElement>(null);
@@ -530,7 +532,7 @@ const StudySection = ({ normalized_ga, word_en, category, type }: StudySectionPr
                     <h1 className="font-inter font-semibold text-2xl md:text-3xl lg:text-[36px] text-[#181D27] leading-snug">
                         <span className="text-[#45341A]">{word_en} </span>
                         in Irish
-                        <span className="text-[#0055FF]"> ({normalized_ga})</span>
+                        <span className="text-[#0055FF]"> ({word_ga})</span>
                         : Meaning, Pronunciation, Usage
                     </h1>
                 </div>
@@ -584,13 +586,13 @@ const StudySection = ({ normalized_ga, word_en, category, type }: StudySectionPr
                                 Explanation
                             </p>
                             <p className="text-[16px] text-[#535862] font-inter font-normal text-base leading-6 tracking-normal">
-                                “{normalized_ga}” is the most common everyday Irish word for a {word_en}.
+                                “{word_ga}” is the most common everyday Irish word for a {word_en}.
                             </p>
 
                             <div className="bg-[#FAFAFA] rounded-[8px] border-[1px] border-[#E9EAEB] mt-8 ">
                                 <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-x-6 gap-y-2 font-inter font-bold text-base leading-6 tracking-normal text-[#414651] text-[16px] p-[16px]">
                                     <span>Irish:</span>
-                                    <span className="text-[#0055FF]">{normalized_ga}</span>
+                                    <span className="text-[#0055FF]">{word_ga}</span>
 
                                     <span className="pt-4">English:</span>
                                     <span className="pt-4">{word_en}</span>
@@ -632,7 +634,7 @@ const StudySection = ({ normalized_ga, word_en, category, type }: StudySectionPr
 
                         <div ref={sentencesRef}>
                             <h3 className="font-semibold text-[30px] text-[#181D27] mb-2">
-                                Irish sentences with “{normalized_ga}”
+                                Irish sentences with “{word_ga}”
                             </h3>
                             <p className="text-[16px] text-[#535862] font-inter font-normal text-base leading-6 tracking-normal mb-3">
                                 Below are common Irish sentences using the word “{normalized_ga}”, the Irish word for house.
@@ -763,6 +765,7 @@ const WordPageScreen = () => {
     const [category, setCategory] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [word_en, setWordEn] = useState<string>("");
+    const [word_ga, setWordGa] =useState<string>("");
     console.log("normalized ga", normalized_ga);
     console.log("type=>", type);
     useEffect(() => {
@@ -780,8 +783,10 @@ const WordPageScreen = () => {
 
                 const data = await response.json();
                 setCategory(data.category);
-                setWordEn(data.word_en)
+                setWordEn(data.word_en);
+                setWordGa(data.word_ga);
                 setLoading(false);
+                
 
             } catch (error) {
                 console.error("Failed to fetch category:", error);
@@ -799,8 +804,8 @@ const WordPageScreen = () => {
     return (
         <div className="bg-primary">
             <Header />
-            <BreadcrumbWithShare type={type || ""} category={category || ""} normalized_ga={normalized_ga} />
-            <StudySection type={type || ""} normalized_ga={normalized_ga} word_en={word_en} category={category || ""} />
+            <BreadcrumbWithShare type={type || ""} category={category || ""} normalized_ga={normalized_ga} word_ga={word_ga} />
+            <StudySection type={type || ""} normalized_ga={normalized_ga} word_en={word_en} category={category || ""} word_ga={word_ga}/>
             <CTAIPhoneMockup01 />
         </div>
     );

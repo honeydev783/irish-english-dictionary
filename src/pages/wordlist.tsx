@@ -151,7 +151,7 @@ const RelatedWordsTable = () => {
                                     {/* Name */}
                                     <td className="block md:table-cell px-6 py-4">
                                         <span className="font-semibold md:hidden">Irish: </span>
-                                        <span className="font-bold">{item.normalized_ga}</span>
+                                        <span className="font-bold">{item.word_ga}</span>
                                     </td>
 
                                     {/* Email */}
@@ -165,9 +165,9 @@ const RelatedWordsTable = () => {
 
                                         <a className="flex font-500 text-[#0055FF] text-[14px] items-center cursor-pointer" onClick={() => {
                                             navigate(
-                                                `/nouns/${category}/${encodeURIComponent(item.normalized_ga)}-${encodeURIComponent(item.word_en)}`,
+                                                `/nouns/${category}/${encodeURIComponent(item.word_ga)}-${encodeURIComponent(item.word_en)}`,
                                                 {
-                                                    state: { normalized_ga: item.normalized_ga, word_en: item.word_en, category: category },
+                                                    state: { normalized_ga: item.word_ga, word_en: item.word_en, category: category },
                                                 }
                                             );
                                         }}>Learn more <ArrowNarrowUpRight className="w-5 h-5 ml-2" /> </a>
@@ -204,7 +204,7 @@ const ListSection = ({ category }: ListSectionProps) => {
                 <div className="mx-auto max-w-container px-4 md:px-8 py-8 grid grid-cols-1 lg:grid-cols-[8fr_4fr] gap-8">
                     <div className="flex flex-col gap-5">
                         <h3 className="font-semibold text-[30px] text-[#181D27]">
-                            Irish words related to time
+                            Irish words related to {category}
                         </h3>
 
                         <RelatedWordsTable />
