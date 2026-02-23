@@ -109,8 +109,42 @@ const RelatedWordsTable = () => {
 
     if (loading) {
         return (
-            <div className="w-full py-4 text-center">
-                <p>Loading words...</p>
+            <div className="w-full py-1">
+                <div className="max-w-5xl">
+                    <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
+                        <table className="min-w-full divide-y divide-gray-200">
+                            <thead className="bg-[#FAFAFA] hidden md:table-header-group">
+                                <tr>
+                                    <th className="px-6 py-3 text-left text-sm font-semibold text-[#717680]">
+                                        Irish
+                                    </th>
+                                    <th className="px-6 py-3 text-left text-sm font-semibold text-[#717680]">
+                                        English
+                                    </th>
+                                    <th className="px-6 py-3 text-left text-sm font-semibold text-[#717680]">
+                                        Teams
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody className="animate-pulse">
+                                {[...Array(16)].map((_, index) => (
+                                    <tr key={index} className="bg-white">
+                                        <td className="px-6 py-4">
+                                            <div className="h-4 bg-gray-200 rounded w-24" />
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <div className="h-4 bg-gray-200 rounded w-32" />
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <div className="h-4 bg-gray-200 rounded w-20" />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         );
     }

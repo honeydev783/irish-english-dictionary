@@ -46,12 +46,6 @@ const BreadcrumbWithShare = () => {
                         <span>Home</span>
                         <span>&gt;</span>
                         <span>Nouns</span>
-                        {/* <span>&gt;</span>
-                        <span>Household</span>
-                        <span>&gt;</span>
-                        <span className="rounded-md bg-[#FAFAFA] px-2 py-1 text-[#414651]">
-                            Teach
-                        </span> */}
                     </div>
 
                     {/* Actions */}
@@ -96,8 +90,31 @@ const CategorySection = () => {
 
     if (loading) {
         return (
-            <section className="w-full bg-primary py-8 text-center">
-                <p>Loading categories...</p>
+            <section className="w-full bg-primary border-b border-[#E9EAEB]">
+                <div className="mx-auto max-w-container px-4 md:px-8 py-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {[...Array(12)].map((_, index) => (
+                            <div
+                                key={index}
+                                className="bg-white border border-[#E9EAEB] rounded-[12px] p-4 animate-pulse"
+                            >
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 bg-gray-200 rounded-lg" />
+                                    <div className="h-4 bg-gray-200 rounded w-24" />
+                                </div>
+
+                                <div className="h-3 bg-gray-200 rounded w-full mt-4" />
+                                <div className="h-3 bg-gray-200 rounded w-2/3 mt-2" />
+
+                                <div className="h-px bg-[#E9EAEB] my-4" />
+
+                                <div className="flex justify-end">
+                                    <div className="h-8 w-24 bg-gray-200 rounded-md" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </section>
         );
     }
@@ -152,7 +169,7 @@ const CategorySection = () => {
                                     </div>
                                     <div>
                                         <p className="text-[14px] text-[#535862] mt-4">
-                                             A list of nouns related to {category}.
+                                            A list of nouns related to {category}.
                                         </p>
                                     </div>
                                     {/* Divider */}
