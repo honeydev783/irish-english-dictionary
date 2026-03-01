@@ -12,12 +12,14 @@ import { NotFound } from "@/pages/not-found";
 import { RouteProvider } from "@/providers/router-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { ScrollToHash } from "./components/ScrollToHash";
+import ScrollToTop from "./components/ScrollToTop";
 import "@/styles/globals.css";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
         <ThemeProvider>
             <BrowserRouter>
+                <ScrollToTop />
                 <ScrollToHash />
                 <RouteProvider>
                     <Routes>

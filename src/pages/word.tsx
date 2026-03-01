@@ -655,29 +655,39 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                                             }}
                                         />
                                     )}
-                                    <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-x-6 gap-y-2 font-inter font-bold text-base leading-6 tracking-normal text-[#414651] text-[16px] p-[16px]">
-                                        <span>Irish:</span>
-                                        <span className="text-[#0055FF]">{word_ga}</span>
+                                    <div className="flex flex-col gap-x-6  gap-y-2 font-inter font-bold text-base leading-6 tracking-normal text-[#414651] text-[14px] sm:text-[16px] p-4">
+                                        <div className="flex items-center">
+                                            <span className="min-w-[120px]">Irish:</span>
+                                            <span className="text-[#0055FF] ml-2">{word_ga}</span>
+                                        </div>
 
-                                        <span className="pt-4">English:</span>
-                                        <span className="pt-4 font-normal">{word_en}</span>
+                                        <div className="flex items-center pt-4">
+                                            <span className="min-w-[120px]">English:</span>
+                                            <span className="ml-2">{word_en}</span>
+                                        </div>
 
-                                        <span className="pt-4">Word type:</span>
-                                        <span className="pt-4 font-normal">
-                                            <Badge type="color" color={getWordTypeColor(wordDetail?.word_type)}>
-                                                {wordDetail?.word_type}
-                                            </Badge>
-                                        </span>
+                                        <div className="flex items-center pt-4">
+                                            <span className="min-w-[120px]">Word type:</span>
+                                            <span className="ml-2">
+                                                <Badge type="color" color={getWordTypeColor(wordDetail?.word_type)}>
+                                                    {wordDetail?.word_type}
+                                                </Badge>
+                                            </span>
+                                        </div>
 
-                                        <span className="pt-4">Sex:</span>
-                                        <span className="pt-4 font-normal">
-                                            <Badge type="color" color={getSexColor(wordDetail?.sex)}>
-                                                {wordDetail?.sex == "masc" ? "masculine" : "feminine"}
-                                            </Badge>
-                                        </span>
+                                        <div className="flex items-center pt-4">
+                                            <span className="min-w-[120px]">Sex:</span>
+                                            <span className="ml-2 font-normal">
+                                                <Badge type="color" color={getSexColor(wordDetail?.sex)}>
+                                                    {wordDetail?.sex === 'masc' ? 'masculine' : 'feminine'}
+                                                </Badge>
+                                            </span>
+                                        </div>
 
-                                        <span className="pt-4">Pronunciation:</span>
-                                        <span className="pt-4 font-normal">“{wordDetail?.pronunciation}” (approx.)</span>
+                                        <div className="flex items-center pt-4">
+                                            <span className="min-w-[120px]">Pronunciation:</span>
+                                            <span className="ml-2">“{wordDetail?.pronunciation}” (approx.)</span>
+                                        </div>
                                     </div>
 
                                     <div className="flex p-[16px]">
@@ -687,18 +697,23 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                                         )}
                                     </div>
 
-                                    <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-x-6 gap-y-2 font-inter font-bold text-base leading-6 tracking-normal text-[#414651] text-[16px] p-[16px]">
+                                    <div className="flex flex-col gap-x-6 gap-y-2 font-inter font-bold text-base leading-6 tracking-normal text-[#414651] text-[14px] sm:text-[16px] p-4">
                                         <span className="underline">Various Forms</span>
                                         <span className="text-[#0055FF]"></span>
 
-                                        <span className="italic pt-4">Plural: </span>
-                                        <span className="italic font-normal pt-4"> {wordDetail?.plural}</span>
+                                        <div className="flex items-center pt-4 ">
+                                            <span className="italic min-w-[160px]">Plural: </span>
+                                            <span className="italic font-normal ml-2">{wordDetail?.plural}</span>
+                                        </div>
 
-                                        <span className="italic pt-4">Genitive singular: </span>
-                                        <span className="italic font-normal pt-4"> {wordDetail?.gen_sg_example}</span>
-
-                                        <span className="italic pt-4">Genitive plural: </span>
-                                        <span className="italic font-normal pt-4">  {wordDetail?.gen_pl_example}</span>
+                                        <div className="flex items-center pt-4 ">
+                                            <span className="italic  min-w-[160px]">Genitive singular: </span>
+                                            <span className="italic font-normal ml-2">{wordDetail?.gen_sg_example}</span>
+                                        </div>
+                                        <div className="flex items-center pt-4 ">
+                                            <span className="italic min-w-[160px]">Genitive plural: </span>
+                                            <span className="italic font-normal ml-2">{wordDetail?.gen_pl_example}</span>
+                                        </div>
 
                                     </div>
                                 </div>
