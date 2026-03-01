@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { HeaderNavigationSimpleDemo, CTAIPhoneMockup01 } from "./word";
-import { Share07 } from "@untitledui/icons";
+import { Share07, HomeLine } from "@untitledui/icons";
 import { HiLightBulb } from "react-icons/hi2";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Header } from "@/components/marketing/header-navigation/header";
+import { FooterLarge11Brand } from "./home";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const BreadcrumbWithShare = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const url = window.location.origin + location.pathname;
     const handleCopy = async () => {
         try {
@@ -35,15 +37,18 @@ const BreadcrumbWithShare = () => {
             handleCopy(); // fallback
         }
     };
+
+
     return (
-        <section className="w-full bg-primary  border-secondary">
+        <section className="w-full bg-white  border-secondary">
             <div className="mx-auto max-w-container px-4 md:px-8 py-4">
 
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
                     {/* Breadcrumbs */}
                     <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
-                        <span>Home</span>
+
+                        <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
                         <span>&gt;</span>
                         <span>Nouns</span>
                     </div>
@@ -52,8 +57,9 @@ const BreadcrumbWithShare = () => {
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
 
                         {/* Share */}
-                        <button onClick={handleShare} className="flex items-center justify-center gap-2 rounded-md border border-[#D5D7DA] px-4 py-2 text-sm font-semibold cursor-pointer">
-                            <Share07 className="h-4 w-4 text-[#A4A7AE]" />
+                        <button onClick={handleShare} className="flex items-center justify-center gap-2 rounded-md border border-[#D5D7DA] px-4 py-2 text-sm font-semibold cursor-pointer transition hover:bg-gray-50
+        hover:border-gray-300">
+                            <Share07 className="h-4 w-4 text-[#A4A7AE] transition group-hover:text-[#667085]" />
                             Share
                         </button>
 
@@ -178,7 +184,7 @@ const CategorySection = () => {
 
                                 {/* Lower Part */}
                                 <div className="flex justify-end">
-                                    <button onClick={() => navigate(`/list?category=${category}`)} className="px-4 py-2 text-sm font-medium bg-white text-[#414651] rounded-[8px] border-[1px] border-[#D5D7DA] transition cursor-pointer">
+                                    <button onClick={() => navigate(`/list?category=${category}`)} className="px-4 py-2 text-sm font-medium bg-white text-[#414651] rounded-[8px] border-[1px] border-[#D5D7DA] transition cursor-pointer hover:bg-gray-100 hover:border-gray-300 hover:text-[#000000]">
                                         View words
                                     </button>
                                 </div>
@@ -196,9 +202,12 @@ const CategoryScreen = () => {
     return (
         <div className="bg-primary">
             <Header />
-            <BreadcrumbWithShare />
-            <CategorySection />
-            <CTAIPhoneMockup01 />
+            <div className="overflow-hidden">
+                <BreadcrumbWithShare />
+                <CategorySection />
+                <CTAIPhoneMockup01 />
+                <FooterLarge11Brand />
+            </div>
         </div>
     );
 }

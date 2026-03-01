@@ -10,6 +10,7 @@ import { TextArea } from "@/components/base/textarea/textarea";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { Header } from "@/components/marketing/header-navigation/header";
 import countries, { phoneCodeOptions } from "@/utils/countries";
+import { FooterLarge11Brand } from "./home";
 
 const ContactFormAndImage01 = () => {
     const [selectedCountryPhone, setSelectedCountryPhone] = useState("US");
@@ -20,7 +21,7 @@ const ContactFormAndImage01 = () => {
                 <div className="grid gap-16 lg:grid-cols-2">
                     <div className="flex w-full flex-col gap-12 sm:w-120 sm:justify-self-center lg:py-11">
                         <div className="flex flex-col">
-                            <h2 className="text-display-md font-semibold text-primary">Get in touch</h2>
+                            <h4 className="text-display-md font-semibold text-primary">Get in touch</h4>
                             <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">Our friendly team would love to hear from you.</p>
                         </div>
                         <Form
@@ -76,7 +77,7 @@ const ContactFormAndImage01 = () => {
                                 />
                             </div>
 
-                            <Button type="submit" size="xl">
+                            <Button type="submit" size="xl" className="bg-[#FF8D28] hover:bg-[#E6761F]">
                                 Send message
                             </Button>
                         </Form>
@@ -205,8 +206,8 @@ const ContactScreen = () => {
             <Header />
 
             <ContactFormAndImage01 />
-
-            <FooterLarge01 />
+            <FooterLarge11Brand />
+            {/* <FooterLarge01 /> */}
         </div>
     );
 };

@@ -125,7 +125,7 @@
     --color-brand-400: rgb(182 146 246);
     --color-brand-500: rgb(158 119 237);
     --color-brand-600: rgb(127 86 217);
-    --color-brand-700: rgb(105 65 198);
+    --color-brand-700: #FF8D28;
     --color-brand-800: rgb(83 56 158);
     --color-brand-900: rgb(66 48 125);
     --color-brand-950: rgb(44 28 95);
@@ -758,7 +758,7 @@
     --color-bg-brand-secondary: var(--color-brand-100);
     --color-bg-brand-solid: var(--color-brand-600);
     --color-bg-brand-solid_hover: var(--color-brand-700);
-    --color-bg-brand-section: var(--color-brand-800);
+    --color-bg-brand-section: #FF8D28;
     --color-bg-brand-section_subtle: var(--color-brand-700);
 
     /* COMPONENT COLORS */
@@ -771,7 +771,7 @@
     --color-button-destructive-primary-icon_hover: var(--color-error-200);
     --color-button-primary-icon: var(--color-brand-300);
     --color-button-primary-icon_hover: var(--color-brand-200);
-    --color-featured-icon-light-fg-brand: var(--color-brand-600);
+    --color-featured-icon-light-fg-brand: #FF8D28;
     --color-featured-icon-light-fg-error: var(--color-error-600);
     --color-featured-icon-light-fg-gray: var(--color-gray-500);
     --color-featured-icon-light-fg-success: var(--color-success-600);

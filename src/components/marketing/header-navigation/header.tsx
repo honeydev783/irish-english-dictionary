@@ -6,20 +6,26 @@ import { Button } from "@/components/base/buttons/button";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { UntitledLogoMinimal } from "@/components/foundations/logo/untitledui-logo-minimal";
 import { cx } from "@/utils/cx";
+import { Link, useNavigate } from "react-router-dom";
 
-type HeaderNavItem = {
-    label: string;
-    href?: string;
-    menu?: ReactNode;
-};
+type HeaderNavItem =
+    | {
+        label: string
+        href: string
+        menu?: never
+    }
+    | {
+        label: string
+        menu: React.ReactNode
+        href?: never
+    }
 
 const headerNavItems: HeaderNavItem[] = [
     { label: "Home", href: "/" },
-    { label: "How it works", href: "/" },
-
-    { label: "Contact", href: "/contact" },
+    { label: "How it works", href: "/#how-it-works" },
     { label: "About", href: "/about" },
     { label: "Word Bank", href: "/category" },
+    { label: "Contact", href: "/contact" },
 ];
 
 const footerNavItems = [
@@ -96,12 +102,12 @@ interface HeaderProps {
 
 export const Header = ({ items = headerNavItems, isFullWidth, isFloating, className }: HeaderProps) => {
     const headerRef = useRef<HTMLElement>(null);
-
+    const navigate = useNavigate();
     return (
         <header
             ref={headerRef}
             className={cx(
-                "relative flex h-18 w-full items-center justify-center md:h-20",
+                "sticky top-0 left-0 right-0 z-50 bg-white  flex h-18 w-full items-center justify-center md:h-20",
                 isFloating && "h-16 md:h-19 md:pt-3",
                 isFullWidth && !isFloating ? "has-aria-expanded:bg-primary" : "max-md:has-aria-expanded:bg-primary",
                 className,
@@ -115,8 +121,15 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                     )}
                 >
                     <div className="flex flex-1 items-center gap-5">
-                        <UntitledLogo className="h-8 md:max-lg:hidden" />
-                        <UntitledLogoMinimal className="hidden h-8 md:inline-block lg:hidden" />
+                        <UntitledLogo
+                            className="h-8 md:max-lg:hidden cursor-pointer text-[#101828] hover:text-[#0055FF] transition duration-200 hover:opacity-80"
+                            onClick={() => navigate('/')}
+                        />
+
+                        <UntitledLogoMinimal
+                            className="hidden h-8 md:inline-block lg:hidden cursor-pointer text-[#101828] hover:text-[#0055FF] transition duration-200 hover:opacity-80"
+                            onClick={() => navigate('/')}
+                        />
 
                         {/* Desktop navigation */}
                         <nav className="max-md:hidden">
@@ -161,12 +174,12 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                                 </AriaPopover>
                                             </AriaDialogTrigger>
                                         ) : (
-                                            <a
-                                                href={navItem.href}
+                                            <Link
+                                                to={navItem.href!}
                                                 className="flex cursor-pointer items-center gap-0.5 rounded-lg px-1.5 py-1 text-md font-semibold text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-secondary_hover focus:outline-offset-2 focus-visible:outline-2"
                                             >
                                                 <span className="px-0.5">{navItem.label}</span>
-                                            </a>
+                                            </Link>
                                         )}
                                     </li>
                                 ))}
@@ -175,11 +188,11 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                     </div>
 
                     <div className="hidden items-center gap-3 md:flex">
-                        <Button color="secondary" size={isFloating ? "md" : "lg"}>
+                        {/* <Button color="secondary" size={isFloating ? "md" : "lg"}>
                             Log in
-                        </Button>
-                        <Button color="primary" size={isFloating ? "md" : "lg"}>
-                            Sign up
+                        </Button> */}
+                        <Button className="bg-[#FF8D28] hover:bg-[#E6761F]" size={isFloating ? "md" : "lg"}>
+                            Get Started
                         </Button>
                     </div>
 

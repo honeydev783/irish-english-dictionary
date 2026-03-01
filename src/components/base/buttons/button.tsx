@@ -261,7 +261,7 @@ export const Button = ({
 
             {/* Trailing icon */}
             {isValidElement(IconTrailing) && IconTrailing}
-            {isReactComponent(IconTrailing) && <IconTrailing data-icon="trailing" className={styles.common.icon} />}
+            {isReactComponent(IconTrailing) && <IconTrailing data-icon="trailing" className={styles.common.icon} color="#FF8D28" />}
         </Component>
     );
 };

@@ -1,7 +1,7 @@
 import type { FC, ReactNode, SVGProps } from "react";
 import { useState } from "react";
 import { Avatar } from "@/components/base/avatar/avatar";
-import { ArrowRight, ChartBreakoutSquare, CheckCircle, MessageChatCircle, PlayCircle, ZapFast  } from "@untitledui/icons";
+import { ArrowRight, ChartBreakoutSquare, CheckCircle, MessageChatCircle, PlayCircle, ZapFast } from "@untitledui/icons";
 import { BadgeGroup } from "@/components/base/badges/badge-groups";
 import { AppStoreButton, GooglePlayButton } from "@/components/base/buttons/app-store-buttons";
 import { AppStoreButton as AppStoreButtonOutline, GooglePlayButton as GooglePlayButtonOutline } from "@/components/base/buttons/app-store-buttons-outline";
@@ -48,25 +48,28 @@ const HeroIPhoneMockup01 = () => {
                 className="pointer-events-none absolute top-0 left-1/2 z-0 max-w-none -translate-x-1/2 md:hidden dark:brightness-[0.2]"
             />
 
-            <Header />
+
 
             <section className="relative overflow-hidden pt-16 md:py-24">
                 <div className="mx-auto flex max-w-container flex-col gap-16 px-4 md:px-8 lg:flex-row lg:items-center lg:gap-16">
                     <div className="flex w-full max-w-3xl flex-1 flex-col items-start">
                         <a href="#" className="rounded-[10px] outline-focus-ring focus-visible:outline-2 focus-visible:outline-offset-2">
-                            <BadgeGroup className="hidden md:flex" size="lg" addonText="New feature" iconTrailing={ArrowRight} theme="modern" color="brand">
+                            <BadgeGroup className="hidden md:flex" size="lg" addonText="Now Live" iconTrailing={ArrowRight} theme="modern" color="brand">
                                 Personalized coaching in-app
                             </BadgeGroup>
-                            <BadgeGroup className="md:hidden" size="md" addonText="New feature" iconTrailing={ArrowRight} theme="modern" color="brand">
+                            <BadgeGroup className="md:hidden" size="md" addonText="Now Live" iconTrailing={ArrowRight} theme="modern" color="brand">
                                 Personalized coaching in-app
                             </BadgeGroup>
                         </a>
 
                         <h1 className="mt-4 text-display-md font-semibold text-primary md:text-display-lg lg:text-display-xl">
-                            Portfolio performance tracking made easy
+                            Learn Irish, by actually speaking.
                         </h1>
-                        <p className="mt-4 text-lg text-balance text-tertiary md:mt-6 md:text-xl">
-                            Designed by marketers. Untitled gives you the guidance, data and innovation you need to become a better marketer.
+                        <p className="mt-6 text-lg text-balance font-semibold text-tertiary md:mt-6 md:text-xl">
+                            Meet Rua, your new Irish language teacher.
+                        </p>
+                        <p className="mt-2 text-lg text-balance text-tertiary md:mt-2 md:text-xl">
+                            Chat about real-life topics, learn phrases with flashcards, and track your progress as your Gaeilge grows.
                         </p>
                         <div className="mt-8 flex gap-3 md:mt-12">
                             <AppStoreButton size="lg" />
@@ -78,7 +81,7 @@ const HeroIPhoneMockup01 = () => {
                         <div className="absolute top-24 w-133 lg:top-auto">
                             <BlobPattern />
                         </div>
-                        
+
                         <IPhoneMockup
                             image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
                             imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
@@ -118,12 +121,13 @@ const FeatureTextFeaturedIconTopLeft = ({ icon, title, subtitle, footer }: Featu
 
 const CTAIPhoneMockup04 = () => {
     return (
-        <section className="bg-primary py-16 md:py-24">
+        <section className="bg-primary py-16 md:py-24 font-inter">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl bg-brand-section md:rounded-3xl md:shadow-xl lg:min-h-120 lg:grid-cols-2 lg:items-center">
                     <div className="flex flex-1 flex-col px-6 pt-10 pb-12 sm:p-12 lg:p-16">
-                        <h2 className="text-display-sm font-semibold text-white xl:text-display-md">Start your free trial</h2>
-                        <p className="mt-4 text-lg text-tertiary_on-brand md:mt-5 lg:text-xl">Personal performance tracking made easy.</p>
+                        <h4 className="text-display-sm font-semibold text-white xl:text-display-md">Designed by Irish teachers.</h4>
+                        <p className="mt-4 text-lg text-tertiary_on-brand md:mt-5 lg:text-xl">HeyRua isn’t random exercises.</p>
+                        <p className="mt-4 text-lg text-tertiary_on-brand md:mt-5 lg:text-xl">It’s built by experienced Irish teachers who understand real-world mistakes and how confidence is built step by step.</p>
                         <div className="mt-8 flex w-full gap-3 md:mt-12">
                             <AppStoreButtonOutline size="lg" className="dark-mode" />
                             <GooglePlayButtonOutline size="lg" className="dark-mode" />
@@ -267,7 +271,7 @@ const CheckItemText = (props: {
                 <CheckCircle
                     className={cx(
                         "shrink-0",
-                        color === "success" ? "text-fg-success-primary" : "text-fg-brand-primary",
+                        color === "success" ? "text-[#FF8D28]" : "text-[#FF8D28]",
                         size === "lg" ? "size-7 md:h-8 md:w-8" : size === "md" ? "size-7" : "size-6",
                     )}
                 />
@@ -314,7 +318,7 @@ const PricingTierCardCallout = (props: {
             )}
 
             <div className="flex flex-col items-center px-6 pt-10 text-center md:px-8">
-                <h2 className="text-display-md font-semibold text-primary md:text-display-lg">{props.subtitle}</h2>
+                <h4 className="text-display-md font-semibold text-primary md:text-display-lg">{props.subtitle}</h4>
                 <p className="mt-4 text-xl font-semibold text-primary md:text-xl">{props.title}</p>
                 <p className="mt-1 text-md text-tertiary">{props.description}</p>
             </div>
@@ -348,18 +352,18 @@ const footerSocials = [
     { label: "Layers", icon: Layers, href: "https://layers.com/" },
 ];
 
-const FooterLarge11Brand = () => {
+export const FooterLarge11Brand = () => {
     return (
-        <footer className="bg-brand-section py-12 md:pt-16">
+        <footer className="bg-white py-12 md:pt-16 text-black">
             <div className="mx-auto max-w-container px-4 md:px-8">
-                <div className="flex flex-col items-center border-b border-brand_alt pb-8 text-center md:pb-16">
-                    <h2 className="text-display-xs font-semibold text-primary_on-brand md:text-display-sm">No long-term contracts. No catches. Simple.</h2>
-                    <p className="mt-2 text-md text-tertiary_on-brand md:mt-4 md:text-xl">Start your 30-day free trial. Cancel anytime.</p>
+                <div className="flex flex-col items-center border-b border-gray-600 pb-8 text-center md:pb-16">
+                    <h4 className="text-display-xs font-semibold  md:text-display-sm">No long-term contracts. No catches. Simple.</h4>
+                    <p className="mt-2 text-md  md:mt-4 md:text-xl">Start your 30-day free trial. Cancel anytime.</p>
                     <div className="mt-8 flex flex-col-reverse gap-3 self-stretch md:mt-12 md:flex-row md:self-center">
-                        <Button color="secondary" size="xl" iconLeading={PlayCircle} className="shadow-xs! ring-0">
+                        <Button color="primary" size="xl" iconLeading={PlayCircle} className="shadow-xs! ring-0 bg-black text-white hover:bg-gray-800">
                             View demo
                         </Button>
-                        <Button size="xl">Get started</Button>
+                        <Button size="xl" className="bg-[#FF8D28]  hover:bg-[#E6761F] text-white  hover:text-white">Get started</Button>
                     </div>
                 </div>
 
@@ -367,7 +371,7 @@ const FooterLarge11Brand = () => {
                     <div className="flex flex-col gap-8 md:items-start">
                         <div className="flex w-full flex-col gap-6 md:max-w-xs md:gap-8">
                             <UntitledLogo className="dark-mode" />
-                            <p className="text-md text-tertiary_on-brand">Design amazing digital experiences that create more happy in the world.</p>
+                            <p className="text-md text-black">Design amazing digital experiences that create more happy in the world.</p>
                         </div>
                         <nav>
                             <ul className="grid grid-cols-2 gap-x-8 gap-y-3 sm:grid-cols-[repeat(6,max-content)]">
@@ -381,7 +385,7 @@ const FooterLarge11Brand = () => {
                                 ].map((item) => (
                                     <li key={item.label}>
                                         <Button
-                                            className="text-footer-button-fg hover:text-footer-button-fg_hover"
+                                            className="text-black hover:text-[#7F56D9]"
                                             color="link-color"
                                             size="lg"
                                             href={item.href}
@@ -395,16 +399,16 @@ const FooterLarge11Brand = () => {
                     </div>
 
                     <div>
-                        <h4 className="text-md font-medium text-primary_on-brand">Get the app</h4>
+                        <h4 className="text-md font-medium text-black">Get the app</h4>
                         <div className="mt-4 flex w-max flex-row gap-4 lg:flex-col">
-                            <AppStoreButtonOutline href="#" className="dark-mode w-[135px]" />
-                            <GooglePlayButtonOutline href="#" className="dark-mode w-[135px]" />
+                            <AppStoreButtonOutline href="#" className="dark-mode w-[135px] bg-black hover:bg-gray-800" />
+                            <GooglePlayButtonOutline href="#" className="dark-mode w-[135px] bg-black hover:bg-gray-800" />
                         </div>
                     </div>
                 </div>
 
-                <div className="mt-12 flex flex-col-reverse justify-between gap-6 border-t border-brand_alt pt-8 md:mt-16 md:flex-row">
-                    <p className="text-md text-quaternary_on-brand">© 2077 Untitled UI. All rights reserved.</p>
+                <div className="mt-12 flex flex-col-reverse justify-between gap-6 border-t border-gray-600 pt-8 md:mt-16 md:flex-row">
+                    <p className="text-md text-black">© 2077 Untitled UI. All rights reserved.</p>
                     <ul className="flex gap-6">
                         {footerSocials.map(({ label, icon: Icon, href }) => (
                             <li key={label}>
@@ -412,7 +416,7 @@ const FooterLarge11Brand = () => {
                                     href={href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex rounded-xs text-icon-fg-brand_on-brand outline-focus-ring transition duration-100 ease-linear hover:text-fg-quaternary_hover focus-visible:outline-2 focus-visible:outline-offset-2"
+                                    className="flex rounded-xs text-black outline-focus-ring transition duration-100 ease-linear hover:text-fg-quaternary_hover focus-visible:outline-2 focus-visible:outline-offset-2"
                                 >
                                     <Icon size={24} aria-label={label} />
                                 </a>
@@ -450,37 +454,48 @@ const FeatureTabHorizontal = ({ title, subtitle, footer, isCurrent }: FeatureTab
 
 const FeaturesAlternatingLayout03 = () => {
     return (
-        <section className="flex flex-col gap-12 overflow-hidden bg-primary pb-16 sm:gap-16 md:gap-20 md:pb-24 lg:gap-24">
+        <section className="flex flex-col gap-12 overflow-hidden bg-primary pb-16 sm:gap-16 md:gap-20 md:pb-24 lg:gap-24 pt-8 mt-8">
             <div className="mx-auto w-full max-w-container px-4 md:px-8">
                 <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
-                    <span className="text-sm font-semibold text-brand-secondary md:text-md">Features</span>
-                    <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Beautiful analytics to grow smarter</h2>
+                    <span className="text-sm font-semibold text-[#FF8D28] md:text-md">You don’t learn a language by playing memory games</span>
+                    <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">You learn a language by speaking</h4>
                     <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
-                        Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups.
+                        That’s why everything inside HeyRua is designed around conversation, confidence, and actually speaking.
+                    </p>
+
+                    <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
+                        Because Gaeilge isn’t meant to stay in a book.
                     </p>
                 </div>
             </div>
- 
+
             <div className="mx-auto flex w-full max-w-container flex-col gap-12 px-4 sm:gap-16 md:gap-20 md:px-8 lg:gap-24">
                 <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
                     <div className="max-w-xl flex-1 self-center">
-                        <FeaturedIcon icon={MessageChatCircle} color="brand" size="lg" theme="light" />
- 
-                        <h2 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Share team inboxes</h2>
+                        <FeaturedIcon icon={ChartBreakoutSquare} className="text-[#FF8D28]" color="brand" size="lg" theme="light" />
+
+                        <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Learn by chatting</h4>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
-                            Whether you have a team of 2 or 200, our shared team inboxes keep everyone on the same page and in the loop.
+                            The fastest way to improve your Irish? Use it.
                         </p>
-                        <ul className="mt-8 flex flex-col gap-4 pl-2 md:gap-5 md:pl-4">
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            With HeyRua, you learn through conversation on everyday topics, the kind you’d actually have in real life.
+                        </p>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            No pressure. No embarrassment. Just steady progress.
+                        </p>
+
+                        <ul className="mt-8 flex flex-col gap-4 pl-2 md:gap-5 md:pl-4 ">
                             {[
-                                "Leverage automation to move fast",
-                                "Always give customers a human to chat to",
-                                "Automate customer support and close leads faster",
+                                "Practice everyday Irish",
+                                "Get clear corrections that make sense",
+                                "Prepare for exams or just chat for fun",
                             ].map((feat) => (
                                 <CheckItemText key={feat} size="md" iconStyle="outlined" color="primary" text={feat} />
                             ))}
                         </ul>
                     </div>
- 
+
                     <div className="relative -ml-4 w-screen flex-1 bg-tertiary px-4 py-6 md:ml-0 md:min-h-128 md:w-full md:overflow-hidden md:p-0 lg:overflow-visible">
                         <div className="top-0 left-0 bg-tertiary md:absolute md:h-full md:w-screen lg:overflow-hidden">
                             {/* Light mode image (hidden in dark mode) */}
@@ -498,29 +513,29 @@ const FeaturesAlternatingLayout03 = () => {
                         </div>
                     </div>
                 </div>
- 
+
                 <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
                     <div className="max-w-xl flex-1 self-center lg:order-last">
-                        <FeaturedIcon icon={ZapFast} color="brand" size="lg" theme="light" />
- 
-                        <h2 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Deliver instant answers</h2>
+                        <FeaturedIcon icon={ZapFast} className="text-[#FF8D28]" color="brand" size="lg" theme="light" />
+
+                        <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Flashcards for everyday phrases</h4>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
                             An all-in-one customer service platform that helps you balance everything your customers need to be happy.
                         </p>
                         <ul className="mt-8 flex flex-col gap-4 pl-2 md:gap-5 md:pl-4">
                             {[
-                                "Keep your customers in the loop with live chat",
-                                "Embed help articles right on your website",
-                                "Customers never have to leave the page to find an answer",
+                                "Real-life example sentences",
+                                "Audio pronunciation",
+                                "Irish and English translations",
                             ].map((feat) => (
                                 <CheckItemText key={feat} size="md" iconStyle="outlined" color="primary" text={feat} />
                             ))}
                         </ul>
                     </div>
- 
+
                     <div className="relative -ml-4 h-90 w-screen overflow-hidden bg-tertiary px-4 pt-6 md:ml-0 md:min-h-128 md:w-full md:flex-1 md:overflow-hidden md:p-0 md:px-12 lg:overflow-visible">
                         <div className="top-0 right-0 h-full bg-tertiary md:absolute md:w-screen lg:overflow-hidden">
-                            
+
                             <IPhoneMockup
                                 image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
                                 imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
@@ -534,26 +549,27 @@ const FeaturesAlternatingLayout03 = () => {
                         </div>
                     </div>
                 </div>
- 
+
                 <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
                     <div className="max-w-xl flex-1 self-center">
                         <FeaturedIcon icon={ChartBreakoutSquare} color="brand" size="lg" theme="light" />
- 
-                        <h2 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Manage your team with reports</h2>
+
+                        <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Track your progress </h4>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
-                            Measure what matters with Untitled's easy-to-use reports. You can filter, export, and drilldown on the data in a couple clicks.
-                        </p>
+                            Confidence builds when you can see improvement.                        </p>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            Track your streaks, vocabulary growth, and conversation time as you build real Gaeilge week by week.                      </p>
                         <ul className="mt-8 flex flex-col gap-4 pl-2 md:gap-5 md:pl-4">
                             {[
-                                "Filter, export, and drilldown on the data quickly",
-                                "Save, schedule, and automate reports to your inbox",
-                                "Connect the tools you already use with 100+ integrations",
+                                "Daily streak tracking",
+                                "Earn badges",
+                                "Follow a curriculum",
                             ].map((feat) => (
                                 <CheckItemText key={feat} size="md" iconStyle="outlined" color="primary" text={feat} />
                             ))}
                         </ul>
                     </div>
- 
+
                     <div className="relative -ml-4 h-90 w-screen overflow-hidden bg-tertiary px-4 pt-6 md:ml-0 md:min-h-128 md:w-full md:flex-1 md:overflow-hidden md:p-0 md:px-12 lg:overflow-visible">
                         <div className="top-0 left-0 bg-tertiary md:absolute md:h-full md:w-screen lg:overflow-hidden">
                             {/* Light mode image (hidden in dark mode) */}
@@ -569,8 +585,84 @@ const FeaturesAlternatingLayout03 = () => {
                                 className="absolute top-12 left-50 w-full rounded object-contain object-left-top ring-4 ring-screen-mockup-border not-dark:hidden max-md:hidden md:h-[120%] md:w-auto md:max-w-3xl md:rounded-[10px]"
                             />
 
-                            
- 
+
+
+                            <IPhoneMockup
+                                image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
+                                imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                                className="top-28 left-12 mx-auto w-71 object-contain shadow-2xl drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
+                    <div className="max-w-xl flex-1 self-center lg:order-last">
+                        <FeaturedIcon icon={ZapFast} color="brand" size="lg" theme="light" />
+
+                        <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Earn your Gaeilge badges</h4>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            Consistency deserves recognition.                        </p>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            Earn badges for showing up, completing conversations, mastering vocabulary, and hitting new milestones.                        </p>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            Learning should feel rewarding.                       </p>
+
+                    </div>
+
+                    <div className="relative -ml-4 h-90 w-screen overflow-hidden bg-tertiary px-4 pt-6 md:ml-0 md:min-h-128 md:w-full md:flex-1 md:overflow-hidden md:p-0 md:px-12 lg:overflow-visible">
+                        <div className="top-0 right-0 h-full bg-tertiary md:absolute md:w-screen lg:overflow-hidden">
+
+                            <IPhoneMockup
+                                image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
+                                imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                                className="absolute top-28 right-1/2 hidden w-full translate-x-[30%] md:block md:w-78.5 md:max-w-none lg:right-62 lg:translate-x-0"
+                            />
+                            <IPhoneMockup
+                                image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
+                                imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                                className="top-12 right-1/2 mx-auto w-71 drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
+                    <div className="max-w-xl flex-1 self-center">
+                        <FeaturedIcon icon={ChartBreakoutSquare} color="brand" size="lg" theme="light" />
+
+                        <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Learn With Friends (Leaderboards)</h4>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            Irish thrives in community.                   </p>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            Join leaderboards, compete with friends, and keep each other accountable as you climb the ranks.                   </p>
+                        <ul className="mt-8 flex flex-col gap-4 pl-2 md:gap-5 md:pl-4">
+                            {[
+                                "Weekly leaderboards",
+                                "Monthly leaderboards",
+                                "Friendly competition",
+                            ].map((feat) => (
+                                <CheckItemText key={feat} size="md" iconStyle="outlined" color="primary" text={feat} />
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="relative -ml-4 h-90 w-screen overflow-hidden bg-tertiary px-4 pt-6 md:ml-0 md:min-h-128 md:w-full md:flex-1 md:overflow-hidden md:p-0 md:px-12 lg:overflow-visible">
+                        <div className="top-0 left-0 bg-tertiary md:absolute md:h-full md:w-screen lg:overflow-hidden">
+                            {/* Light mode image (hidden in dark mode) */}
+                            <img
+                                alt="Dashboard mockup showing application interface"
+                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp"
+                                className="absolute top-12 left-50 w-full rounded object-contain object-left-top ring-4 ring-screen-mockup-border max-md:hidden md:h-[120%] md:w-auto md:max-w-3xl md:rounded-[10px] dark:hidden"
+                            />
+                            {/* Dark mode image (hidden in light mode) */}
+                            <img
+                                alt="Dashboard mockup showing application interface"
+                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp"
+                                className="absolute top-12 left-50 w-full rounded object-contain object-left-top ring-4 ring-screen-mockup-border not-dark:hidden max-md:hidden md:h-[120%] md:w-auto md:max-w-3xl md:rounded-[10px]"
+                            />
+
+
                             <IPhoneMockup
                                 image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
                                 imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
@@ -593,7 +685,7 @@ const FeaturesTabsMockup09 = () => {
                 <div className="flex w-full flex-col lg:max-w-3xl">
                     <span className="text-sm font-semibold text-brand-secondary md:text-md">Features</span>
 
-                    <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Overflowing with useful features</h2>
+                    <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Overflowing with useful features</h4>
                     <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
                         Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups.
                     </p>
@@ -656,8 +748,8 @@ const FeaturesLargeScreenMockup02 = () => {
                 <div className="mx-auto w-full max-w-container px-4 md:px-8">
                     <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
                         <span className="text-sm font-semibold text-brand-secondary md:text-md">Features</span>
- 
-                        <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Cutting-edge features for advanced analytics</h2>
+
+                        <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Cutting-edge features for advanced analytics</h4>
                         <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
                             Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000
                             startups.
@@ -665,7 +757,7 @@ const FeaturesLargeScreenMockup02 = () => {
                     </div>
                 </div>
             </div>
- 
+
             <div className="mx-auto -mt-17 w-full max-w-container px-4 pt-1 md:-mt-26 md:overflow-hidden md:px-8 md:pt-2">
                 <div className="flex flex-col md:items-start">
                     <div className="flex h-full w-full items-center justify-center md:max-h-105 md:w-full md:items-start lg:max-h-140">
@@ -694,29 +786,16 @@ const TestimonialSimpleCentered02 = () => {
         <section className="bg-secondary py-16 md:py-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <figure className="flex w-full shrink-0 snap-start flex-col gap-8 text-center">
-                    {/* Light mode image (hidden in dark mode) */}
-                    <img
-                        alt="Wildcrafted"
-                        src="https://www.untitledui.com/logos/logotype/color/wildcrafted.svg"
-                        className="h-10 dark:hidden"
-                        aria-hidden="true"
-                    />
-                    {/* Dark mode image (hidden in light mode) */}
-                    <img
-                        alt="Wildcrafted"
-                        src="https://www.untitledui.com/logos/logotype/white/wildcrafted.svg"
-                        className="h-10 opacity-85 not-dark:hidden"
-                        aria-hidden="true"
-                    />
+
                     <blockquote className="text-display-sm font-medium text-primary md:text-display-lg">
-                        We've been using Untitled to kick start every new project and can't imagine working without it.
+                        “This feels completely different to school Irish. It actually makes sense.”
                     </blockquote>
                     <figcaption className="flex justify-center">
                         <div className="flex flex-col items-center gap-4">
                             <Avatar src="https://www.untitledui.com/images/avatars/amelie-laurent?fm=webp&q=80" alt="Amelie Laurent" size="2xl" />
                             <div className="flex flex-col gap-1">
                                 <p className="text-lg font-semibold text-primary">Amélie Laurent</p>
-                                <cite className="text-md text-tertiary not-italic">Product Manager, Wildcrafted</cite>
+                                <cite className="text-md text-tertiary not-italic">Finance Manager, Sisyphus</cite>
                             </div>
                         </div>
                     </figcaption>
@@ -728,30 +807,30 @@ const TestimonialSimpleCentered02 = () => {
 
 
 const faqsExtended = [
-    {question: "Is there a free trial available?", answer: "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible."},
-    {question: "Can I change my plan later?", answer: ""},
-    {question: "What is your cancellation policy?", answer: ""},
-    {question: "Can other info be added to an invoice?", answer: ""},
-    {question: "How does billing work?", answer: ""},
-    {question: "How do I change my account email?", answer: ""},
+    { question: "Is there a free trial available?", answer: "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible." },
+    { question: "Can I change my plan later?", answer: "" },
+    { question: "What is your cancellation policy?", answer: "" },
+    { question: "Can other info be added to an invoice?", answer: "" },
+    { question: "How does billing work?", answer: "" },
+    { question: "How do I change my account email?", answer: "" },
 ];
- 
+
 const FAQAccordion01 = () => {
     const [openQuestions, setOpenQuestions] = useState(new Set([0]));
- 
+
     const handleToggle = (index: number) => {
         openQuestions.has(index) ? openQuestions.delete(index) : openQuestions.add(index);
         setOpenQuestions(new Set(openQuestions));
     };
- 
+
     return (
         <section className="bg-primary pb-16 md:pb-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
-                    <h2 className="text-display-sm font-semibold text-primary md:text-display-md">Frequently asked questions</h2>
+                    <h4 className="text-display-sm font-semibold text-primary md:text-display-md">Frequently asked questions</h4>
                     <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">Everything you need to know about the product and billing.</p>
                 </div>
- 
+
                 <div className="mx-auto mt-12 max-w-3xl md:mt-16">
                     <div className="flex flex-col gap-8">
                         {faqsExtended.map((faq, index) => (
@@ -762,7 +841,7 @@ const FAQAccordion01 = () => {
                                         className="flex w-full cursor-pointer items-start justify-between gap-2 rounded-md text-left outline-focus-ring select-none focus-visible:outline-2 focus-visible:outline-offset-2 md:gap-6"
                                     >
                                         <span className="text-lg font-medium text-primary">{faq.question}</span>
- 
+
                                         <span aria-hidden="true" className="mt-0.5 flex size-6 items-center text-fg-quaternary">
                                             <svg
                                                 width="24"
@@ -790,7 +869,7 @@ const FAQAccordion01 = () => {
                                         </span>
                                     </button>
                                 </h3>
- 
+
                                 <motion.div
                                     className="overflow-hidden"
                                     initial={false}
@@ -805,27 +884,27 @@ const FAQAccordion01 = () => {
                         ))}
                     </div>
                 </div>
- 
+
             </div>
         </section>
     );
 };
- 
+
 const CTAIPhoneMockup01 = () => {
     return (
         <section className="overflow-hidden bg-primary md:pb-24">
             <div className="relative mx-auto grid w-full max-w-container grid-cols-1 gap-16 px-4 md:px-8 lg:grid-cols-2 lg:items-center">
                 <div className="z-20 flex max-w-3xl flex-col items-start">
-                    <h2 className="text-display-sm font-semibold text-primary md:text-display-md lg:text-display-lg">
-                        All-in-one finance for any creative business
-                    </h2>
-                    <p className="mt-4 text-lg text-tertiary md:mt-6 md:text-xl">Start your 30-day free trial today.</p>
+                    <h4 className="text-display-sm font-semibold text-primary md:text-display-md lg:text-display-lg">
+                        Start Your 7-Day Free Trial
+                    </h4>
+                    <p className="mt-4 text-lg text-tertiary md:mt-6 md:text-xl">Built by Irish teachers. Designed for real progress.</p>
                     <div className="mt-8 flex w-full gap-3 md:mt-12">
                         <AppStoreButton size="lg" />
                         <GooglePlayButton size="lg" />
                     </div>
                 </div>
- 
+
                 <div className="relative min-h-90 md:min-h-100 md:w-full">
                     <svg className="absolute -bottom-24 left-1/2 -translate-x-1/2" width="532" height="416" viewBox="0 0 532 416" fill="none">
                         <path
@@ -836,7 +915,7 @@ const CTAIPhoneMockup01 = () => {
                             className="text-bg-secondary"
                         />
                     </svg>
- 
+
                     <IPhoneMockup
                         image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
                         imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
@@ -852,19 +931,18 @@ const CTACardHorizontal = () => {
     return (
         <section className="bg-primary pb-16 md:pb-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
-                <div className="flex flex-col gap-x-8 gap-y-8 rounded-2xl bg-secondary px-6 py-10 lg:flex-row lg:p-16">
+                <div className="flex flex-col justify-between gap-x-8 gap-y-8 rounded-2xl bg-secondary px-6 py-10 lg:flex-row lg:p-16">
                     <div className="flex max-w-3xl flex-1 flex-col">
-                        <h2 className="text-display-sm font-semibold text-primary">
-                            <span className="hidden md:inline">Start your 30-day free trial</span>
+                        <h4 className="text-display-sm font-semibold text-primary">
+                            <span className="hidden md:inline">Start your 7-day free trial</span>
                             <span className="md:hidden">Start your free trial</span>
-                        </h2>
-                        <p className="mt-4 text-lg text-tertiary lg:text-xl">Join over 4,000+ startups already growing with Untitled.</p>
+                        </h4>
+                        <p className="mt-4 text-lg text-tertiary lg:text-xl">Join the movement building confidence in Gaeilge — one conversation at a time.</p>
                     </div>
                     <div className="flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-start">
-                        <Button color="secondary" size="xl">
-                            Learn more
-                        </Button>
-                        <Button size="xl">Get started</Button>
+
+                        <Button size="xl" className="bg-[#FF8D28] hover:bg-[#E6761F]"
+                        >Get started</Button>
                     </div>
                 </div>
             </div>
@@ -875,17 +953,15 @@ const CTACardHorizontal = () => {
 const HomeScreen = () => {
     return (
         <div className="bg-primary">
+            <Header />
             <HeroIPhoneMockup01 />
-
-            {/* <SocialProofFullWidth /> */}
-
-            {/* <IconsAndMockup01 /> */}
-
-            <FeaturesAlternatingLayout03 />
+            <section id="how-it-works">
+                <FeaturesAlternatingLayout03 />
+            </section>
 
             <CTAIPhoneMockup04 />
 
-            <FeaturesTabsMockup09 />
+            {/* <FeaturesTabsMockup09 /> */}
 
             <FeaturesLargeScreenMockup02 />
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { HeaderNavigationBase } from "@/components/application/app-navigation/header-navigation";
-import { Copy01, Share07, ArrowNarrowUpRight } from "@untitledui/icons";
+import { Copy01, Share07, ArrowNarrowUpRight, HomeLine, AlertCircle } from "@untitledui/icons";
 import WaveSurfer from "wavesurfer.js";
 import { Play, Pause } from "lucide-react";
 import { AppStoreButton, GooglePlayButton } from "@/components/base/buttons/app-store-buttons";
@@ -9,6 +9,13 @@ import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { useParams, useLocation, useSearchParams, useNavigate } from "react-router-dom";
 import { WordItem } from "./wordlist";
 import { Header } from "@/components/marketing/header-navigation/header";
+import { Table, TableCard, TableRowActionsDropdown } from "@/components/application/table/table";
+import { PaginationPageMinimalCenter } from "@/components/application/pagination/pagination";
+import { Badge } from "@/components/base/badges/badges";
+import ReportModal from "@/components/ReportModal";
+import { Helmet } from "react-helmet";
+import { FooterLarge11Brand } from "./home";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const HeaderNavigationSimpleDemo = () => (
@@ -34,7 +41,7 @@ const BreadcrumbWithShare = ({ normalized_ga, category, word_ga }: BreadcrumbWit
     const location = useLocation();
     const url = window.location.origin + location.pathname;
     const [copied, setCopied] = useState(false);
-
+    const navigate = useNavigate();
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(url);
@@ -65,18 +72,30 @@ const BreadcrumbWithShare = ({ normalized_ga, category, word_ga }: BreadcrumbWit
     };
 
     return (
-        <section className="w-full bg-primary border-b border-secondary">
+        <section className="w-full bg-white  border-secondary">
             <div className="mx-auto max-w-container px-4 md:px-8 py-4">
 
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
                     {/* Breadcrumbs */}
                     <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
-                        <span>Home</span>
+                        <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
                         <span>&gt;</span>
                         <span>Nouns</span>
                         <span>&gt;</span>
-                        <span>{category}</span>
+                        <span
+                            onClick={() => navigate(`/list?category=${category}`)}
+                            className="
+                                px-2 py-1
+                                rounded-md
+                                cursor-pointer
+                                transition
+                                hover:bg-[#F2F4F7]
+                                hover:text-[#344054]
+                            "
+                        >
+                            {category}
+                        </span>
                         <span>&gt;</span>
                         <span className="rounded-md bg-[#FAFAFA] px-2 py-1 text-[#414651]">
                             {word_ga}
@@ -118,8 +137,9 @@ const BreadcrumbWithShare = ({ normalized_ga, category, word_ga }: BreadcrumbWit
                         </div>
 
                         {/* Share */}
-                        <button onClick={handleShare} className="flex items-center justify-center gap-2 rounded-md border border-[#D5D7DA] px-4 py-2 text-sm font-semibold cursor-pointer">
-                            <Share07 className="h-4 w-4 text-[#A4A7AE]" />
+                        <button onClick={handleShare} className="flex items-center justify-center gap-2 rounded-md border border-[#D5D7DA] px-4 py-2 text-sm font-semibold cursor-pointer transition hover:bg-gray-50
+        hover:border-gray-300">
+                            <Share07 className="h-4 w-4 text-[#A4A7AE] transition group-hover:text-[#667085]" />
                             Share
                         </button>
 
@@ -278,117 +298,78 @@ const SentencesTable = ({ sentences, loading }: SentencesTableProps) => {
         <div className="w-full  py-1">
             <div className="max-w-5xl">
                 <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
-                    <table className="min-w-full divide-y divide-gray-200">
-                        {/* Desktop Header */}
-                        <thead className="bg-[#FAFAFA] hidden md:table-header-group">
-                            <tr className="font-inter font-semibold text[12px] leading-[18px] tracking-normal text-[#717680] text-left">
-                                <th className="px-6 py-3">
-                                    Irish
-                                </th>
-                                <th className="px-6 py-3">
-                                    Pronunciation
-                                </th>
-                                <th className="px-6 py-3">
-                                    English
-                                </th>
-                            </tr>
-                        </thead>
+                    <TableCard.Root>
 
-                        <tbody className="divide-y divide-gray-200 font-700 font-normal text-[16px] text-[#535862]">
+                        <Table className="min-w-full divide-y divide-gray-200">
+                            {/* Desktop Header */}
+                            <Table.Header className="font-inter font-semibold text-[12px] leading-[18px] tracking-normal text-[#717680]">
+                                <Table.Head id="irish" label="Irish" isRowHeader className="w-full max-w-1/3"></Table.Head>
+                                <Table.Head id="pronoun" label="Pronunciation" className="w-full max-w-1/3"></Table.Head>
+                                <Table.Head id="english" label="English" className="w-full max-w-1/3"></Table.Head>
+                            </Table.Header>
 
-                            {/* {sentences.length > 0 ? (
-                                sentences.map((item, index) => (
-                                    <tr
-                                        key={index}
-                                        className="block md:table-row bg-white md:bg-transparent mb-4 md:mb-0 rounded-xl md:rounded-none shadow md:shadow-none p-4 md:p-0"
-                                    >
-                                        <td className="block md:table-cell px-6 py-2">
-                                            <span className="font-semibold md:hidden">Irish: </span>
-                                            <span className="font-bold">{item.ga}</span>
-                                        </td>
+                            <Table.Body className="divide-y divide-gray-200 font-700 font-normal text-[16px] text-[#535862]" items={sentences}>
 
-                                        <td className="block md:table-cell px-6 py-2">
-                                            <span className="font-semibold md:hidden">Pronunciation: </span>
-                                            {item.path && (
-                                                <NoWaveAudioPlayer audioUrl={`/${item.path}`} />
-                                            )}
-                                        </td>
+                                {/* 🔥 Loading Skeleton */}
+                                {loading && (
+                                    <>
+                                        {[...Array(16)].map((_, index) => (
+                                            <Table.Row id={index} className="animate-pulse">
+                                                <Table.Cell className="px-4 py-4">
+                                                    <div className="h-4 bg-gray-200 rounded w-28" />
+                                                </Table.Cell>
+                                                <Table.Cell className="px-4 py-4">
+                                                    <div className="h-4 bg-gray-200 rounded w-20" />
+                                                </Table.Cell>
+                                                <Table.Cell className="px-4 py-4">
+                                                    <div className="h-4 bg-gray-200 rounded w-32" />
+                                                </Table.Cell>
+                                            </Table.Row>
+                                        ))}
+                                    </>
+                                )}
 
-                                        <td className="block md:table-cell px-6 py-2">
-                                            <span className="font-semibold md:hidden">English: </span>
-                                            {item.en}
-                                        </td>
-                                    </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan={3} className="text-center py-6 text-gray-400">
-                                        No sentences available
-                                    </td>
-                                </tr>
-                            )} */}
-                            {/* 🔥 Loading Skeleton */}
-                            {loading && (
-                                <>
-                                    {[...Array(16)].map((_, index) => (
-                                        <tr key={index} className="animate-pulse">
-                                            <td className="px-6 py-4">
-                                                <div className="h-4 bg-gray-200 rounded w-28" />
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <div className="h-4 bg-gray-200 rounded w-20" />
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <div className="h-4 bg-gray-200 rounded w-32" />
-                                            </td>
-                                        </tr>
+                                {/* ✅ Real Data */}
+                                {!loading && sentences.length > 0 &&
+                                    sentences.map((item, index) => (
+                                        <Table.Row
+                                            id={index}
+
+                                        >
+                                            <Table.Cell className="px-4 py-2 font-semibold text-[14px]">
+                                                {item.ga}
+                                            </Table.Cell>
+
+                                            <Table.Cell className="px-4 py-2">
+                                                {item.path && (
+                                                    <NoWaveAudioPlayer audioUrl={`/${item.path}`} />
+                                                )}
+                                            </Table.Cell>
+
+                                            <Table.Cell className="px-4 py-2">
+                                                {item.en}
+                                            </Table.Cell>
+                                        </Table.Row>
                                     ))}
-                                </>
-                            )}
 
-                            {/* ✅ Real Data */}
-                            {!loading && sentences.length > 0 &&
-                                sentences.map((item, index) => (
-                                    <tr
-                                        key={index}
-                                        className="block md:table-row bg-white md:bg-transparent mb-4 md:mb-0 rounded-xl md:rounded-none shadow md:shadow-none p-4 md:p-0 transition-opacity duration-300"
-                                    >
-                                        <td className="block md:table-cell px-6 py-2">
-                                            <span className="font-semibold md:hidden">Irish: </span>
-                                            <span className="font-bold">{item.ga}</span>
-                                        </td>
-
-                                        <td className="block md:table-cell px-6 py-2">
-                                            <span className="font-semibold md:hidden">Pronunciation: </span>
-                                            {item.path && (
-                                                <NoWaveAudioPlayer audioUrl={`/${item.path}`} />
-                                            )}
-                                        </td>
-
-                                        <td className="block md:table-cell px-6 py-2">
-                                            <span className="font-semibold md:hidden">English: </span>
-                                            {item.en}
-                                        </td>
-                                    </tr>
-                                ))}
-
-                            {/* 💎 Empty State */}
-                            {!loading && sentences.length === 0 && (
-                                <tr>
-                                    <td colSpan={3} className="text-center py-12">
-                                        <div className="flex flex-col items-center gap-2">
-                                            <p className="text-lg font-semibold text-[#181D27]">
-                                                No sentences available
-                                            </p>
-                                            <p className="text-sm text-[#667085]">
-                                                We don’t have example sentences for this word yet.
-                                            </p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
+                                {/* 💎 Empty State */}
+                                {!loading && sentences.length === 0 && (
+                                    <Table.Row>
+                                        <Table.Cell colSpan={3} className="text-center py-12">
+                                            <div className="flex flex-col items-center gap-2">
+                                                <p className="text-lg font-semibold text-[#181D27]">
+                                                    No sentences available
+                                                </p>
+                                                <p className="text-sm text-[#667085]">
+                                                    We don’t have example sentences for this word yet.
+                                                </p>
+                                            </div>
+                                        </Table.Cell>
+                                    </Table.Row>
+                                )}
+                            </Table.Body>
+                        </Table>
+                    </TableCard.Root>
                 </div>
             </div>
         </div>
@@ -402,6 +383,7 @@ const RelatedWordsTable = ({ category }: RelatedWordsTableProp) => {
     const [words, setWords] = useState<WordItem[]>([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const [visibleCount, setVisibleCount] = useState(15); // Show first 15 words
 
     useEffect(() => {
         const fetchWords = async () => {
@@ -423,93 +405,90 @@ const RelatedWordsTable = ({ category }: RelatedWordsTableProp) => {
         fetchWords();
     }, [category]);
 
-
+    const handleLoadMore = () => {
+        setVisibleCount((prev) => prev + 10);
+    }
     return (
-        <div className="w-full  py-1">
+        <div className="w-full  py-1 mb-[60px]">
             <div className="max-w-5xl">
                 <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
-                    <table className="min-w-full divide-y divide-gray-200">
-                        {/* Desktop Header */}
-                        <thead className="bg-[#FAFAFA] hidden md:table-header-group">
-                            <tr className="font-inter font-semibold text[12px] leading-[18px] tracking-normal text-[#717680] text-left">
-                                <th className="px-6 py-3">
-                                    Irish
-                                </th>
-                                <th className="px-6 py-3">
-                                    English
-                                </th>
-                                <th className="px-6 py-3">
-                                    Teams
-                                </th>
-                            </tr>
-                        </thead>
+                    <TableCard.Root>
+                        <Table>
+                            <Table.Header className="font-inter font-semibold text-[12px] leading-[18px] tracking-normal text-[#717680]">
+                                <Table.Head id="irish" label="Irish" isRowHeader className="w-full max-w-1/3"></Table.Head>
+                                <Table.Head id="english" label="English"></Table.Head>
+                                <Table.Head id="teams" label="Teams"></Table.Head>
+                            </Table.Header>
 
-                        <tbody className="divide-y divide-gray-200 font-700 font-normal text-[16px] text-[#535862]">
-                            {loading ? (
-                                [...Array(4)].map((_, index) => (
-                                    <tr
-                                        key={index}
-                                        className="block md:table-row bg-white md:bg-transparent mb-4 md:mb-0 rounded-xl md:rounded-none shadow md:shadow-none p-4 md:p-0 animate-pulse"
-                                    >
-                                        <td className="block md:table-cell px-6 py-5">
-                                            <div className="h-4 bg-gray-200 rounded w-24" />
-                                        </td>
-                                        <td className="block md:table-cell px-6 py-5">
-                                            <div className="h-4 bg-gray-200 rounded w-32" />
-                                        </td>
-                                        <td className="block md:table-cell px-6 py-5">
-                                            <div className="h-4 bg-gray-200 rounded w-20" />
-                                        </td>
-                                    </tr>
-                                ))
-                            ) : words.length > 0 ? (
-                                words.map((item) => (
-                                    <tr
-                                        key={item.word_ga}
-                                        className="block md:table-row bg-white md:bg-transparent mb-4 md:mb-0 rounded-xl md:rounded-none shadow md:shadow-none p-4 md:p-0"
-                                    >
-                                        <td className="block md:table-cell px-6 py-5">
-                                            <span className="font-semibold md:hidden">Irish: </span>
-                                            <span className="font-bold">{item.word_ga}</span>
-                                        </td>
+                            <Table.Body items={words}>
+                                {loading ? (
+                                    [...Array(4)].map((_, index) => (
+                                        <Table.Row
+                                            id={index}
+                                        >
+                                            <Table.Cell className="px-4 py-5">
+                                                <div className="h-4 bg-gray-200 rounded w-24" />
+                                            </Table.Cell>
+                                            <Table.Cell className="px-4 py-5">
+                                                <div className="h-4 bg-gray-200 rounded w-32" />
+                                            </Table.Cell>
+                                            <Table.Cell className="px-4 py-5">
+                                                <div className="h-4 bg-gray-200 rounded w-20" />
+                                            </Table.Cell>
+                                        </Table.Row>
+                                    ))
+                                ) : words.length > 0 ? (
+                                    words.slice(0, visibleCount).map((item, index) => (
+                                        <Table.Row
+                                            id={index}
+                                        >
+                                            <Table.Cell className="px-4 py-5">
+                                                <span className="font-bold">{item.word_ga}</span>
+                                            </Table.Cell>
 
-                                        <td className="block md:table-cell px-6 py-5">
-                                            <span className="font-semibold md:hidden">English: </span>
-                                            {item.word_en}
-                                        </td>
+                                            <Table.Cell className="px-4 py-5">
+                                                {item.word_en}
+                                            </Table.Cell>
 
-                                        <td className="block md:table-cell px-6 py-5">
-                                            <button
-                                                className="flex text-[#0055FF] text-[14px] items-center cursor-pointer"
-                                                onClick={() => {
-                                                    navigate(
-                                                        `/nouns/${category}/${encodeURIComponent(item.word_ga)}-${encodeURIComponent(item.word_en)}`,
-                                                        {
-                                                            state: {
-                                                                normalized_ga: item.word_ga,
-                                                                word_en: item.word_en,
-                                                                category,
-                                                            },
-                                                        }
-                                                    );
-                                                }}
-                                            >
-                                                Learn more
-                                                <ArrowNarrowUpRight className="w-5 h-5 ml-2" />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan={3} className="text-center py-6 text-gray-400">
-                                        No related words found
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
+                                            <Table.Cell className="px-4 py-5">
+                                                <button
+                                                    className="group flex text-[#0055FF] text-[14px] items-center cursor-pointer transition  hover:text-blue-700"
+                                                    onClick={() => {
+                                                        navigate(
+                                                            `/nouns/${category}/${encodeURIComponent(item.word_ga)}-${encodeURIComponent(item.word_en)}`
+                                                        );
+                                                    }}
+                                                >
+                                                    <span className="transition group-hover:underline">
+                                                        Learn more
+                                                    </span> <ArrowNarrowUpRight className="w-5 h-5 ml-2 transition  group-hover:translate-x-1  group-hover:-translate-y-1" />
+                                                </button>
+                                            </Table.Cell>
+                                        </Table.Row>
+                                    ))
+                                ) : (
+                                    <Table.Row>
+                                        <Table.Cell colSpan={3} className="text-center py-6 text-gray-400">
+                                            No related words found
+                                        </Table.Cell>
+                                    </Table.Row>
+                                )}
+
+                            </Table.Body>
+                        </Table>
+                    </TableCard.Root>
                 </div>
+                {/* Load More Button */}
+                {visibleCount < words.length && (
+                    <div className="mt-4 flex justify-center">
+                        <button
+                            onClick={handleLoadMore}
+                            className="px-6 py-2  text-white rounded-md bg-[#FF8D28] hover:bg-[#E6761F] transition cursor-pointer"
+                        >
+                            Load More
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -542,6 +521,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
     const [activeSection, setActiveSection] = useState<SectionKey>("instant");
     const [wordDetail, setWordDetail] = useState<WordDetailType | null>(null);
     const [loading, setLoading] = useState(true);
+    const [isReportOpen, setIsReportOpen] = useState(false);
     useEffect(() => {
         const fetchDetails = async () => {
             if (!normalized_ga) return;
@@ -569,8 +549,41 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
         });
     };
 
+    const getWordTypeColor = (type?: string) => {
+        if (!type) return "gray";
+
+        switch (type.toLowerCase()) {
+            case "noun":
+                return "blue";
+            case "verb":
+                return "brand";
+            case "adjective":
+                return "error";
+            case "adverb":
+                return "warning";
+            case "preposition":
+                return "success";
+            case "pronoun":
+                return "indigo";
+            default:
+                return "gray";
+        }
+    };
+
+    const getSexColor = (sex?: string) => {
+        if (!sex) return "gray";
+
+        switch (sex.toLowerCase()) {
+            case "masc":
+                return "blue-light";
+            case "fem":
+                return "pink";
+            default:
+                return "gray";
+        }
+    };
     const navItemClasses = (section: SectionKey) =>
-        `text-left w-full text-[14px] rounded-md px-3 py-2 font-inter font-semibold transition
+        `text-left w-full text-[14px] rounded-md px-3 py-2 font-inter font-semibold transition cursor-pointer
      ${activeSection === section
             ? "bg-[#FAFAFA] text-[#414651]"
             : "text-[#717680] bg-white hover:bg-[#F9FAFB]"
@@ -578,17 +591,17 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
 
 
     return (
-        <div>
+        <div className="mb-8">
 
             {/* Title */}
-            <section className="w-full bg-primary border-b border-[#E9EAEB]">
+            <section className="w-full bg-primary border-b border-[#E9EAEB] mb-8">
                 <div className="mx-auto max-w-container px-4 md:px-8 py-6">
-                    <h1 className="font-inter font-semibold text-2xl md:text-3xl lg:text-[36px] text-[#181D27] leading-snug">
-                        <span className="text-[#45341A]">{word_en} </span>
+                    <h2 className="font-inter font-semibold text-2xl md:text-3xl lg:text-[36px] text-[#181D27] leading-snug">
+                        <span className="text-[#45341A]">'{word_en}' </span>
                         in Irish
                         <span className="text-[#0055FF]"> ({word_ga})</span>
                         : Meaning, Pronunciation, Usage
-                    </h1>
+                    </h2>
                 </div>
             </section>
 
@@ -604,38 +617,15 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                         grid-cols-1
                         gap-6
                         md:grid-cols-2
-                        lg:grid-cols-[2fr_6fr_4fr]
+                        lg:grid-cols-[8fr_4fr]
                     "
                 >
 
-                    <div className="flex flex-col gap-3">
-                        <button
-                            onClick={() => scrollTo(instantAnswerRef, "instant")}
-                            className={navItemClasses("instant")}
-                        >
-                            Instant Answer
-                        </button>
-
-                        <button
-                            onClick={() => scrollTo(sentencesRef, "sentences")}
-                            className={navItemClasses("sentences")}
-                        >
-                            Sentences
-                        </button>
-
-                        <button
-                            onClick={() => scrollTo(relatedWordsRef, "related")}
-                            className={navItemClasses("related")}
-                        >
-                            Related Words
-                        </button>
-                    </div>
-
                     <div className="flex flex-col gap-10">
                         <div ref={instantAnswerRef}>
-                            <h3 className="font-semibold text-[30px] text-[#181D27] mb-2">
+                            <h1 className="font-semibold text-[30px] text-[#181D27] mb-2">
                                 How to say <span className="text-[#0055FF]">“{word_en}”</span> in Irish
-                            </h3>
+                            </h1>
                             {loading ? (
                                 <div className="animate-pulse space-y-4 mt-6">
                                     <div className="h-4 bg-gray-200 rounded w-3/4" />
@@ -650,22 +640,44 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                                     “{word_ga}” is the most common everyday Irish word for a {word_en}.
                                 </p>
 
-                                <div className="bg-[#FAFAFA] rounded-[8px] border-[1px] border-[#E9EAEB] mt-8 ">
+                                <div className="relative bg-[#FAFAFA] rounded-[8px] border-[1px] border-[#E9EAEB] mt-8 ">
+                                    <AlertCircle onClick={() => setIsReportOpen(true)}
+                                        className="absolute top-4 right-4 w-5 h-5 text-[#A4A7AE] cursor-pointer hover:text-[#667085] transition" />
+
+                                    {isReportOpen && normalized_ga && word_ga && (
+                                        <ReportModal
+                                            onClose={() => setIsReportOpen(false)}
+                                            entry={{
+                                                entry_id: 10,
+                                                entry_slug: normalized_ga,
+                                                headword: word_ga,
+                                                sense_id: null,
+                                            }}
+                                        />
+                                    )}
                                     <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-x-6 gap-y-2 font-inter font-bold text-base leading-6 tracking-normal text-[#414651] text-[16px] p-[16px]">
                                         <span>Irish:</span>
                                         <span className="text-[#0055FF]">{word_ga}</span>
 
                                         <span className="pt-4">English:</span>
-                                        <span className="pt-4">{word_en}</span>
+                                        <span className="pt-4 font-normal">{word_en}</span>
 
                                         <span className="pt-4">Word type:</span>
-                                        <span className="pt-4">{wordDetail?.word_type}</span>
+                                        <span className="pt-4 font-normal">
+                                            <Badge type="color" color={getWordTypeColor(wordDetail?.word_type)}>
+                                                {wordDetail?.word_type}
+                                            </Badge>
+                                        </span>
 
                                         <span className="pt-4">Sex:</span>
-                                        <span className="pt-4">{wordDetail?.sex}</span>
+                                        <span className="pt-4 font-normal">
+                                            <Badge type="color" color={getSexColor(wordDetail?.sex)}>
+                                                {wordDetail?.sex == "masc" ? "masculine" : "feminine"}
+                                            </Badge>
+                                        </span>
 
                                         <span className="pt-4">Pronunciation:</span>
-                                        <span className="pt-4">“{wordDetail?.pronunciation}” (approx.)</span>
+                                        <span className="pt-4 font-normal">“{wordDetail?.pronunciation}” (approx.)</span>
                                     </div>
 
                                     <div className="flex p-[16px]">
@@ -698,7 +710,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                                 Irish sentences with “{word_ga}”
                             </h3>
                             <p className="text-[16px] text-[#535862] font-inter font-normal text-base leading-6 tracking-normal mb-3">
-                                Below are common Irish sentences using the word “{word_ga}”, the Irish word for house.
+                                Below are common Irish sentences using the word “{word_ga}”, the Irish word for {word_en}.
                             </p>
                             <SentencesTable sentences={wordDetail?.sentences ?? []} loading={loading} />
 
@@ -715,7 +727,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                         </div>
                     </div>
 
-                    <div className="w-full max-w-[320px] mx-auto text-sm text-[#475467] font-inter font-semibold">
+                    <div className="w-full max-w-[320px] mx-auto text-sm text-[#475467] font-inter font-semibold sticky top-50 self-start mt-8">
 
                         {/* Top Divider */}
                         <SectionDivider className="bg-[#E9EAEB] w-full" />
@@ -754,12 +766,13 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                                     h-[44px]
                                     w-full
                                     rounded-lg
-                                    bg-[#0055FF]
+                                    bg-[#FF8D28] hover:bg-[#E6761F]
                                     text-white
                                     text-[16px]
                                     font-semibold
-                                    hover:bg-blue-700
+                                    
                                     transition
+                                    cursor-pointer
                                 "
                             >
                                 Join the newsletter
@@ -768,6 +781,29 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
 
                         {/* Bottom Divider */}
                         <SectionDivider className="bg-[#E9EAEB] mt-8 w-full" />
+
+                        <div className="mt-8 flex flex-col gap-3">
+                            <button
+                                onClick={() => scrollTo(instantAnswerRef, "instant")}
+                                className={navItemClasses("instant")}
+                            >
+                                Instant Answer
+                            </button>
+
+                            <button
+                                onClick={() => scrollTo(sentencesRef, "sentences")}
+                                className={navItemClasses("sentences")}
+                            >
+                                Sentences
+                            </button>
+
+                            <button
+                                onClick={() => scrollTo(relatedWordsRef, "related")}
+                                className={navItemClasses("related")}
+                            >
+                                Related Words
+                            </button>
+                        </div>
                     </div>
 
                 </div>
@@ -778,12 +814,12 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
 
 export const CTAIPhoneMockup01 = () => {
     return (
-        <section className="overflow-hidden bg-primary md:pb-24">
+        <section className="overflow-hidden bg-primary md:pb-24 mt-8">
             <div className="relative mx-auto grid w-full max-w-container grid-cols-1 gap-16 px-4 md:px-8 lg:grid-cols-2 lg:items-center">
                 <div className="z-20 flex max-w-3xl flex-col items-start">
-                    <h2 className="font-inter font-semibold text-5xl leading-[60px] tracking-[-0.02em] text-[#181D27]">
+                    <h4 className="font-inter font-semibold text-5xl leading-[60px] tracking-[-0.02em] text-[#181D27]">
                         Learn Irish by actually speaking it
-                    </h2>
+                    </h4>
                     <p className="mt-4 font-inter font-normal font-700 text-[20px] leading-[30px] tracking-normal text-[#535862]">Learn everyday Irish words through guided <br /> conversation</p>
                     <p className="mt-4 font-inter font-bold font-700 text-[20px] leading-[30px] tracking-normal text-[#535862]">1-week free trial. Cancel anytime.</p>
 
@@ -827,16 +863,12 @@ const WordScreen = () => {
     const { slug } = useParams();
     const [category, setCategory] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
-    let word_ga = "";
-    let normalized_ga = "";
-    let word_en = "";
 
-    if (slug) {
-        const parts = slug.split("-");
-        word_ga = parts[0];
-        normalized_ga = removeFadas(parts[0]) || "";
-        word_en = parts[1] || "";
-    }
+    // Update reactive variables whenever slug changes
+    const word_ga = slug?.split("-")[0] || "";
+    const word_en = slug?.split("-")[1] || "";
+    const normalized_ga = removeFadas(word_ga);
+
 
     useEffect(() => {
         if (!normalized_ga) return;
@@ -875,15 +907,9 @@ const WordScreen = () => {
                     </section>
 
                     <section className="w-full">
-                        <div className="mx-auto max-w-container px-4 md:px-8 py-6 grid grid-cols-1 lg:grid-cols-[2fr_6fr_4fr] gap-6">
-                            <div className="space-y-3">
-                                <div className="h-10 bg-gray-200 rounded" />
-                                <div className="h-10 bg-gray-200 rounded" />
-                                <div className="h-10 bg-gray-200 rounded" />
-                            </div>
+                        <div className="mx-auto max-w-container px-4 md:px-8 py-6 grid grid-cols-1 lg:grid-cols-[8fr_4fr] gap-6">
 
                             <div className="space-y-6">
-                                <div className="h-6 bg-gray-200 rounded w-1/2" />
                                 <div className="h-32 bg-gray-200 rounded" />
                                 <div className="h-40 bg-gray-200 rounded" />
                             </div>
@@ -897,10 +923,24 @@ const WordScreen = () => {
     }
     return (
         <div className="bg-primary">
+            <Helmet key={slug}>
+                <title>How to Say "{word_en}" in Irish ({word_ga})</title>
+                <meta
+                    name="description"
+                    content={`Learn how to say “${word_en}” in Irish. See the pronunciation for ${word_ga} and how it’s used in everyday conversation.`}
+                />
+                <meta property="og:title" content={`How to Say "${word_en}" in Irish (${word_ga})`} />
+                <meta
+                    property="og:description"
+                    content={`Learn how to say “${word_en}” in Irish. See the pronunciation for ${word_ga} and how it’s used in everyday conversation.`}
+                />
+                <link rel="canonical" href={window.location.href} />
+            </Helmet>
             <Header />
             <BreadcrumbWithShare category={category || ""} normalized_ga={normalized_ga} word_ga={word_ga} />
             <StudySection normalized_ga={normalized_ga} word_ga={word_ga} word_en={word_en} category={category || ""} />
             <CTAIPhoneMockup01 />
+            <FooterLarge11Brand />
         </div>
     );
 };

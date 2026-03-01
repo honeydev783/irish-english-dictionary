@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { HeaderNavigationSimpleDemo, CTAIPhoneMockup01 } from "./word";
-import { Share07, ArrowNarrowUpRight } from "@untitledui/icons";
+import { Share07, ArrowNarrowUpRight, HomeLine } from "@untitledui/icons";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { Header } from "@/components/marketing/header-navigation/header";
+import { Table, TableCard, TableRowActionsDropdown } from "@/components/application/table/table";
+import { FooterLarge11Brand } from "./home";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 interface BreadcrumbWithShareProps {
@@ -11,7 +14,7 @@ interface BreadcrumbWithShareProps {
 }
 const BreadcrumbWithShare = ({ category }: BreadcrumbWithShareProps) => {
     const [url] = useState("heyrua.com/english-irish/teach");
-
+    const navigate = useNavigate();
 
     const handleCopy = async () => {
         try {
@@ -41,14 +44,14 @@ const BreadcrumbWithShare = ({ category }: BreadcrumbWithShareProps) => {
 
 
     return (
-        <section className="w-full bg-primary  border-secondary">
+        <section className="w-full bg-white  border-secondary">
             <div className="mx-auto max-w-container px-4 md:px-8 py-4">
 
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
                     {/* Breadcrumbs */}
                     <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
-                        <span>Home</span>
+                        <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
                         <span>&gt;</span>
                         <span>Nouns</span>
                         <span>&gt;</span>
@@ -63,8 +66,9 @@ const BreadcrumbWithShare = ({ category }: BreadcrumbWithShareProps) => {
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
 
                         {/* Share */}
-                        <button onClick={handleShare} className="flex items-center justify-center gap-2 rounded-md border border-[#D5D7DA] px-4 py-2 text-sm font-semibold  cursor-pointer">
-                            <Share07 className="h-4 w-4 text-[#A4A7AE]" />
+                        <button onClick={handleShare} className="flex items-center justify-center gap-2 rounded-md border border-[#D5D7DA] px-4 py-2 text-sm font-semibold  cursor-pointer transition hover:bg-gray-50
+        hover:border-gray-300">
+                            <Share07 className="h-4 w-4 text-[#A4A7AE] transition group-hover:text-[#667085]" />
                             Share
                         </button>
 
@@ -83,6 +87,7 @@ export interface WordItem {
 
 const RelatedWordsTable = () => {
     const [words, setWords] = useState<WordItem[]>([]);
+    const [visibleCount, setVisibleCount] = useState(15); // Show first 15 words
     const [loading, setLoading] = useState(true);
     const [searchParams] = useSearchParams();
     const category = searchParams.get("category");
@@ -107,45 +112,43 @@ const RelatedWordsTable = () => {
         fetchWords();
     }, [category]);
 
+    const handleLoadMore = () => {
+        setVisibleCount((prev) => prev + 10);
+    }
+
     if (loading) {
         return (
             <div className="w-full py-1">
                 <div className="max-w-5xl">
                     <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
-                        <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-[#FAFAFA] hidden md:table-header-group">
-                                <tr>
-                                    <th className="px-6 py-3 text-left text-sm font-semibold text-[#717680]">
-                                        Irish
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-sm font-semibold text-[#717680]">
-                                        English
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-sm font-semibold text-[#717680]">
-                                        Teams
-                                    </th>
-                                </tr>
-                            </thead>
+                        <TableCard.Root>
+                            <Table className="min-w-full divide-y divide-gray-200">
+                                <Table.Header className="bg-[#FAFAFA] hidden md:table-header-group">
+                                    <Table.Head id="irish" label="Irish" className="w-full max-w-1/3 px-6 py-3 text-left text-sm font-semibold text-[#717680]"></Table.Head>
+                                    <Table.Head id="english" label="English" className="w-full max-w-1/3 px-6 py-3 text-left text-sm font-semibold text-[#717680]"></Table.Head>
+                                    <Table.Head id="teams" label="Teams" className="w-full max-w-1/3 px-6 py-3 text-left text-sm font-semibold text-[#717680]"></Table.Head>
+                                </Table.Header>
 
-                            <tbody className="animate-pulse">
-                                {[...Array(16)].map((_, index) => (
-                                    <tr key={index} className="bg-white">
-                                        <td className="px-6 py-4">
-                                            <div className="h-4 bg-gray-200 rounded w-24" />
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <div className="h-4 bg-gray-200 rounded w-32" />
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <div className="h-4 bg-gray-200 rounded w-20" />
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                <Table.Body className="animate-pulse">
+                                    {[...Array(16)].map((_, index) => (
+                                        <Table.Row id={index} className="bg-white">
+                                            <Table.Cell className="px-6 py-4">
+                                                <div className="h-4 bg-gray-200 rounded w-24" />
+                                            </Table.Cell>
+                                            <Table.Cell className="px-6 py-4">
+                                                <div className="h-4 bg-gray-200 rounded w-32" />
+                                            </Table.Cell>
+                                            <Table.Cell className="px-6 py-4">
+                                                <div className="h-4 bg-gray-200 rounded w-20" />
+                                            </Table.Cell>
+                                        </Table.Row>
+                                    ))}
+                                </Table.Body>
+                            </Table>
+                        </TableCard.Root>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 
@@ -160,57 +163,61 @@ const RelatedWordsTable = () => {
         <div className="w-full  py-1">
             <div className="max-w-5xl">
                 <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
-                    <table className="min-w-full divide-y divide-gray-200">
-                        {/* Desktop Header */}
-                        <thead className="bg-[#FAFAFA] hidden md:table-header-group">
-                            <tr className="font-inter font-semibold text[12px] leading-[18px] tracking-normal text-[#717680] text-left">
-                                <th className="px-6 py-3">
-                                    Irish
-                                </th>
-                                <th className="px-6 py-3">
-                                    English
-                                </th>
-                                <th className="px-6 py-3">
-                                    Teams
-                                </th>
-                            </tr>
-                        </thead>
+                    <TableCard.Root>
+                        <Table className="min-w-full divide-y divide-gray-200">
+                            {/* Desktop Header */}
+                            <Table.Header className="bg-[#FAFAFA]  md:table-header-group">
+                                <Table.Head id="irish" label="Irish" className="w-full max-w-1/3 px-6 py-3 text-left text-sm font-semibold text-[#717680]"></Table.Head>
+                                <Table.Head id="english" label="English" className="w-full max-w-1/3 px-6 py-3 text-left text-sm font-semibold text-[#717680]"></Table.Head>
+                                <Table.Head id="teams" label="Teams" className="w-full max-w-1/3 px-6 py-3 text-left text-sm font-semibold text-[#717680]"></Table.Head>
+                            </Table.Header>
 
-                        <tbody className="divide-y divide-gray-200 font-700 font-normal text-[16px] text-[#535862]">
-                            {words.map((item, index) => (
-                                <tr
-                                    key={index}
-                                    className="block md:table-row bg-white md:bg-transparent mb-4 md:mb-0 rounded-xl md:rounded-none shadow md:shadow-none p-4 md:p-0"
-                                >
-                                    {/* Name */}
-                                    <td className="block md:table-cell px-6 py-4">
-                                        <span className="font-semibold md:hidden">Irish: </span>
-                                        <span className="font-bold">{item.word_ga}</span>
-                                    </td>
+                            <Table.Body className="divide-y divide-gray-200 font-700 font-normal text-[16px] text-[#535862]" items={words}>
+                                {words.slice(0, visibleCount).map((item, index) => (
+                                    <Table.Row
+                                        key={index}
+                                    >
+                                        {/* Name */}
+                                        <Table.Cell className="px-4 py-4">
+                                            <span className="font-bold">{item.word_ga}</span>
+                                        </Table.Cell>
 
-                                    {/* Email */}
-                                    <td className="block md:table-cell px-6 py-4">
-                                        <span className="font-semibold md:hidden">English: </span>
-                                        {item.word_en}
-                                    </td>
+                                        {/* Email */}
+                                        <Table.Cell className="px-4 py-4">
+                                            {item.word_en}
+                                        </Table.Cell>
 
-                                    {/* Role */}
-                                    <td className="block md:table-cell px-6 py-4">
+                                        {/* Role */}
+                                        <Table.Cell className="px-4 py-4">
 
-                                        <a className="flex font-500 text-[#0055FF] text-[14px] items-center cursor-pointer" onClick={() => {
-                                            navigate(
-                                                `/nouns/${category}/${encodeURIComponent(item.word_ga)}-${encodeURIComponent(item.word_en)}`,
-                                                {
-                                                    state: { normalized_ga: item.word_ga, word_en: item.word_en, category: category },
-                                                }
-                                            );
-                                        }}>Learn more <ArrowNarrowUpRight className="w-5 h-5 ml-2" /> </a>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                                            <button className="group flex font-500 text-[#0055FF] text-[14px] items-center cursor-pointer transition  hover:text-blue-700" onClick={() => {
+                                                navigate(
+                                                    `/nouns/${category}/${encodeURIComponent(item.word_ga)}-${encodeURIComponent(item.word_en)}`,
+                                                    {
+                                                        state: { normalized_ga: item.word_ga, word_en: item.word_en, category: category },
+                                                    }
+                                                );
+                                            }}><span className="transition group-hover:underline">
+                                                    Learn more
+                                                </span> <ArrowNarrowUpRight className="w-5 h-5 ml-2 transition  group-hover:translate-x-1  group-hover:-translate-y-1" /> </button>
+                                        </Table.Cell>
+                                    </Table.Row>
+                                ))}
+                            </Table.Body>
+                        </Table>
+                    </TableCard.Root>
                 </div>
+                {/* Load More Button */}
+                {visibleCount < words.length && (
+                    <div className="mt-4 flex justify-center">
+                        <button
+                            onClick={handleLoadMore}
+                            className="px-6 py-2  text-white rounded-md bg-[#FF8D28] hover:bg-[#E6761F] transition cursor-pointer"
+                        >
+                            Load More
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -244,7 +251,7 @@ const ListSection = ({ category }: ListSectionProps) => {
                         <RelatedWordsTable />
                     </div>
 
-                    <div className="w-full max-w-[320px] mx-auto text-sm text-[#475467] font-inter font-semibold">
+                    <div className="w-full max-w-[320px] mx-auto text-sm text-[#475467] font-inter font-semibold sticky top-50 self-start">
 
                         {/* Top Divider */}
                         <SectionDivider className="bg-[#E9EAEB] w-full" />
@@ -283,12 +290,13 @@ const ListSection = ({ category }: ListSectionProps) => {
                                     h-[44px]
                                     w-full
                                     rounded-lg
-                                    bg-[#0055FF]
+                                    bg-[#FF8D28] hover:bg-[#E6761F]
                                     text-white
                                     text-[16px]
                                     font-semibold
-                                    hover:bg-blue-700
+                                    
                                     transition
+                                    cursor-pointer
                                 "
                             >
                                 Join the newsletter
@@ -314,6 +322,7 @@ const WordListScreen = () => {
             <BreadcrumbWithShare category={category} />
             <ListSection category={category} />
             <CTAIPhoneMockup01 />
+            <FooterLarge11Brand />
         </div>
     );
 }

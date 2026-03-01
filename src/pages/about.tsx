@@ -11,6 +11,7 @@ import { cx } from "@/utils/cx";
 import { useState } from "react";
 import { AppStoreButton as AppStoreButtonOutline, GooglePlayButton as GooglePlayButtonOutline } from "@/components/base/buttons/app-store-buttons-outline";
 import { IPhoneMockup } from "@/components/shared-assets/iphone-mockup";
+import { FooterLarge11Brand } from "./home";
 
 
 const HeaderCenteredButtons = () => {
@@ -80,7 +81,7 @@ const CheckItemText = (props: {
                 <CheckCircle
                     className={cx(
                         "shrink-0",
-                        color === "success" ? "text-fg-success-primary" : "text-fg-brand-primary",
+                        color === "success" ? "bg-[#FF8D28]" : "bg-[#FF8D28]",
                         size === "lg" ? "size-7 md:h-8 md:w-8" : size === "md" ? "size-7" : "size-6",
                     )}
                 />
@@ -105,7 +106,7 @@ const FeaturesAlternatingLayout04 = () => {
         <section className="flex flex-col gap-12 bg-primary py-16 sm:gap-16 md:gap-20 md:py-24 lg:gap-24">
             <div className="mx-auto w-full max-w-container px-4 md:px-8">
                 <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
-                    <h2 className="text-display-sm font-semibold text-primary md:text-display-md">We're a mission driven company</h2>
+                    <h4 className="text-display-sm font-semibold text-primary md:text-display-md">We're a mission driven company</h4>
                     <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
                         Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups.
                     </p>
@@ -117,7 +118,7 @@ const FeaturesAlternatingLayout04 = () => {
                     <div className="flex-1 self-center lg:py-24 lg:pr-24 lg:pl-12">
                         <FeaturedIcon icon={MessageChatCircle} color="brand" size="lg" theme="light" />
 
-                        <h2 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Share team inboxes</h2>
+                        <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Share team inboxes</h4>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
                             Whether you have a team of 2 or 200, our shared team inboxes keep everyone on the same page and in the loop.
                         </p>
@@ -127,7 +128,7 @@ const FeaturesAlternatingLayout04 = () => {
                                 "Always give customers a human to chat to",
                                 "Automate customer support and close leads faster",
                             ].map((feat) => (
-                                <CheckItemText key={feat} size="md" iconStyle="contained" color="primary" text={feat} />
+                                <CheckItemText key={feat} size="md" iconStyle="contained" color="primary" text={feat}  />
                             ))}
                         </ul>
                     </div>
@@ -145,7 +146,7 @@ const FeaturesAlternatingLayout04 = () => {
                     <div className="flex-1 self-center lg:order-last lg:py-24 lg:pr-8 lg:pl-24">
                         <FeaturedIcon icon={ZapFast} color="brand" size="lg" theme="light" />
 
-                        <h2 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Deliver instant answers</h2>
+                        <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Deliver instant answers</h4>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
                             An all-in-one customer service platform that helps you balance everything your customers need to be happy.
                         </p>
@@ -173,7 +174,7 @@ const FeaturesAlternatingLayout04 = () => {
                     <div className="flex-1 self-center lg:py-24 lg:pr-24 lg:pl-12">
                         <FeaturedIcon icon={ChartBreakoutSquare} color="brand" size="lg" theme="light" />
 
-                        <h2 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Manage your team with reports</h2>
+                        <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Manage your team with reports</h4>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
                             Measure what matters with Untitled's easy-to-use reports. You can filter, export, and drilldown on the data in a couple clicks.
                         </p>
@@ -274,9 +275,9 @@ const FeaturesSimpleIcons02 = () => {
             <div className="mx-auto w-full max-w-container px-4 md:px-8">
                 <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
                     <span className="text-sm font-semibold text-brand-secondary md:text-md">Our values</span>
-                    <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">
+                    <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">
                         What do we value? All sorts of things! But we particularly pride ourselves on:
-                    </h2>
+                    </h4>
                 </div>
 
                 <div className="mt-12 md:mt-16">
@@ -299,7 +300,7 @@ const TeamSectionImageCollage02 = () => {
             <div className="mx-auto grid max-w-container grid-cols-1 gap-16 overflow-hidden px-4 md:px-8 lg:grid-cols-2 lg:items-center">
                 <div className="flex max-w-3xl flex-col items-start">
                     <span className="text-sm font-semibold text-brand-secondary md:text-md">Join our team</span>
-                    <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">We're just getting started</h2>
+                    <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">We're just getting started</h4>
                     <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
                         Our philosophy is simple—hire a team of diverse, passionate people and foster a culture that empowers you to do your best work.
                     </p>
@@ -308,7 +309,7 @@ const TeamSectionImageCollage02 = () => {
                         <Button color="secondary" size="xl">
                             Read our principles
                         </Button>
-                        <Button size="xl">We're hiring!</Button>
+                        <Button size="xl" className="bg-[#FF8D28] hover:bg-[#E6761F]">We're hiring!</Button>
                     </div>
                 </div>
 
@@ -558,7 +559,7 @@ const FeaturesTabsMockup09 = () => {
                 <div className="flex w-full flex-col lg:max-w-3xl">
                     <span className="text-sm font-semibold text-brand-secondary md:text-md">Features</span>
 
-                    <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Overflowing with useful features</h2>
+                    <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Overflowing with useful features</h4>
                     <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
                         Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups.
                     </p>
@@ -620,7 +621,7 @@ const CTAIPhoneMockup04 = () => {
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl bg-brand-section md:rounded-3xl md:shadow-xl lg:min-h-120 lg:grid-cols-2 lg:items-center">
                     <div className="flex flex-1 flex-col px-6 pt-10 pb-12 sm:p-12 lg:p-16">
-                        <h2 className="text-display-sm font-semibold text-white xl:text-display-md">Start your free trial</h2>
+                        <h4 className="text-display-sm font-semibold text-white xl:text-display-md">Start your free trial</h4>
                         <p className="mt-4 text-lg text-tertiary_on-brand md:mt-5 lg:text-xl">Personal performance tracking made easy.</p>
                         <div className="mt-8 flex w-full gap-3 md:mt-12">
                             <AppStoreButtonOutline size="lg" className="dark-mode" />
@@ -703,7 +704,7 @@ const FeaturesLargeScreenMockup02 = () => {
                     <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
                         <span className="text-sm font-semibold text-brand-secondary md:text-md">Features</span>
  
-                        <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Cutting-edge features for advanced analytics</h2>
+                        <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Cutting-edge features for advanced analytics</h4>
                         <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
                             Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000
                             startups.
@@ -740,17 +741,17 @@ const CTACardHorizontal = () => {
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <div className="flex flex-col gap-x-8 gap-y-8 rounded-2xl bg-secondary px-6 py-10 lg:flex-row lg:p-16">
                     <div className="flex max-w-3xl flex-1 flex-col">
-                        <h2 className="text-display-sm font-semibold text-primary">
+                        <h4 className="text-display-sm font-semibold text-primary">
                             <span className="hidden md:inline">Start your 30-day free trial</span>
                             <span className="md:hidden">Start your free trial</span>
-                        </h2>
+                        </h4>
                         <p className="mt-4 text-lg text-tertiary lg:text-xl">Join over 4,000+ startups already growing with Untitled.</p>
                     </div>
                     <div className="flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-start">
                         <Button color="secondary" size="xl">
                             Learn more
                         </Button>
-                        <Button size="xl">Get started</Button>
+                        <Button size="xl" className="bg-[#FF8D28] hover:bg-[#E6761F]">Get started</Button>
                     </div>
                 </div>
             </div>
@@ -762,7 +763,7 @@ const CTACardHorizontal = () => {
 const AboutScreen = () => {
     return (
         <div className="bg-primary">
-            <Header className="bg-secondary" />
+            <Header />
 
             <HeaderSpaceBetween />
 
@@ -780,7 +781,8 @@ const AboutScreen = () => {
             
             {/* <SimpleCentered /> */}
 
-            <FooterLarge04 />
+            {/* <FooterLarge04 /> */}
+            <FooterLarge11Brand />
         </div>
     );
 };

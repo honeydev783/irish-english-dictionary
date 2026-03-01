@@ -11,12 +11,14 @@ import WordPageScreen from "./pages/wordpage";
 import { NotFound } from "@/pages/not-found";
 import { RouteProvider } from "@/providers/router-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { ScrollToHash } from "./components/ScrollToHash";
 import "@/styles/globals.css";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
         <ThemeProvider>
             <BrowserRouter>
+                <ScrollToHash />
                 <RouteProvider>
                     <Routes>
                         <Route path="/" element={<HomeScreen />} />
