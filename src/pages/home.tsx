@@ -955,7 +955,7 @@ const HomeScreen = () => {
         <div className="bg-primary">
             <Header />
             <HeroIPhoneMockup01 />
-            <section id="how-it-works">
+            <section id="how-it-works" className="scroll-mt-24">
                 <FeaturesAlternatingLayout03 />
             </section>
 

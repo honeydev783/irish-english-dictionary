@@ -253,7 +253,7 @@ const NoWaveAudioPlayer: React.FC<AudioWaveformPlayerProps> = ({ audioUrl }) => 
 
 
     return (
-        <div className="h-[56px] max-w-xl rounded-tr  bg-white p-3 rounded-tr-lg rounded-br-lg rounded-bl-lg flex items-center gap-4 ml-4">
+        <div className="h-[56px] max-w-xl rounded-tr  bg-white p-3 rounded-tr-lg rounded-br-lg rounded-bl-lg flex items-center gap-4">
             {/* Play / Pause Button */}
             <button
                 type="button"
@@ -302,10 +302,10 @@ const SentencesTable = ({ sentences, loading }: SentencesTableProps) => {
 
                         <Table className="min-w-full divide-y divide-gray-200">
                             {/* Desktop Header */}
-                            <Table.Header className="font-inter font-semibold text-[12px] leading-[18px] tracking-normal text-[#717680]">
-                                <Table.Head id="irish" label="Irish" isRowHeader className="w-full max-w-1/3"></Table.Head>
-                                <Table.Head id="pronoun" label="Pronunciation" className="w-full max-w-1/3"></Table.Head>
-                                <Table.Head id="english" label="English" className="w-full max-w-1/3"></Table.Head>
+                            <Table.Header className="text-center font-inter font-semibold text-[12px] leading-[18px] tracking-normal text-[#717680]">
+                                <Table.Head id="irish" label="Irish" isRowHeader className="pl-2"></Table.Head>
+                                <Table.Head id="pronoun" label="Pronunciation" ></Table.Head>
+                                <Table.Head id="english" label="English" className="pl-2"></Table.Head>
                             </Table.Header>
 
                             <Table.Body className="divide-y divide-gray-200 font-700 font-normal text-[16px] text-[#535862]" items={sentences}>
@@ -336,17 +336,17 @@ const SentencesTable = ({ sentences, loading }: SentencesTableProps) => {
                                             id={index}
 
                                         >
-                                            <Table.Cell className="px-4 py-2 font-semibold text-[14px]">
+                                            <Table.Cell className=" py-2 font-semibold text-[14px]">
                                                 {item.ga}
                                             </Table.Cell>
 
-                                            <Table.Cell className="px-4 py-2">
+                                            <Table.Cell className=" py-2">
                                                 {item.path && (
                                                     <NoWaveAudioPlayer audioUrl={`/${item.path}`} />
                                                 )}
                                             </Table.Cell>
 
-                                            <Table.Cell className="px-4 py-2">
+                                            <Table.Cell className="py-2">
                                                 {item.en}
                                             </Table.Cell>
                                         </Table.Row>
@@ -510,6 +510,7 @@ interface WordDetailType {
     gen_sg_example?: string;
     gen_pl_example?: string;
     pronunciation_path?: string | null;
+    meanings: string[];
     sentences: SentenceItem[];
 
 }
@@ -622,7 +623,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                 >
 
                     <div className="flex flex-col gap-10">
-                        <div ref={instantAnswerRef}>
+                        <div ref={instantAnswerRef} className="scroll-mt-24">
                             <h1 className="font-semibold text-[30px] text-[#181D27] mb-2">
                                 How to say <span className="text-[#0055FF]">“{word_en}”</span> in Irish
                             </h1>
@@ -663,7 +664,12 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
 
                                         <div className="flex items-center pt-4">
                                             <span className="min-w-[120px]">English:</span>
-                                            <span className="ml-2">{word_en}</span>
+                                            <span className="ml-2 font-normal">
+                                                {word_en}
+                                                {wordDetail?.meanings?.length
+                                                    ? `, ${wordDetail.meanings.join(", ")}`
+                                                    : ""}
+                                            </span>
                                         </div>
 
                                         <div className="flex items-center pt-4">
@@ -686,7 +692,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
 
                                         <div className="flex items-center pt-4">
                                             <span className="min-w-[120px]">Pronunciation:</span>
-                                            <span className="ml-2">“{wordDetail?.pronunciation}” (approx.)</span>
+                                            <span className="ml-2 font-normal">“{wordDetail?.pronunciation}” (approx.)</span>
                                         </div>
                                     </div>
 
@@ -720,7 +726,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                             </>)}
                         </div>
 
-                        <div ref={sentencesRef}>
+                        <div ref={sentencesRef} className="scroll-mt-24">
                             <h3 className="font-semibold text-[30px] text-[#181D27] mb-2">
                                 Irish sentences with “{word_ga}”
                             </h3>
@@ -731,7 +737,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
 
                         </div>
 
-                        <div ref={relatedWordsRef}>
+                        <div ref={relatedWordsRef} className="scroll-mt-24">
                             <h3 className="font-semibold text-[30px] text-[#181D27] mb-2">
                                 Related Irish words
                             </h3>

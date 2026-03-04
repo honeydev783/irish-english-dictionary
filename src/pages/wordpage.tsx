@@ -15,6 +15,7 @@ import { TableHeader } from "react-aria-components";
 import { Helmet } from "react-helmet";
 import { FooterLarge11Brand } from "./home";
 import ReportModal from "@/components/ReportModal";
+import { removeFadas } from "./word";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const HeaderNavigationSimpleDemo = () => (
@@ -193,7 +194,7 @@ const AudioWaveformPlayer: React.FC<AudioWaveformPlayerProps> = ({ audioUrl }) =
 
 
     return (
-        <div className="w-[260px] h-[56px] max-w-xl rounded-tr border border-[#E9EAEB] bg-white p-3 rounded-tr-lg rounded-br-lg rounded-bl-lg flex items-center gap-4 ml-4">
+        <div className="w-[260px] h-[56px] max-w-xl rounded-tr border border-[#E9EAEB] bg-white p-3 rounded-tr-lg rounded-br-lg rounded-bl-lg flex items-center gap-4">
             {/* Play / Pause Button */}
             <button
                 type="button"
@@ -252,7 +253,7 @@ const NoWaveAudioPlayer: React.FC<AudioWaveformPlayerProps> = ({ audioUrl }) => 
 
 
     return (
-        <div className="h-[56px] max-w-xl rounded-tr  bg-white p-3 rounded-tr-lg rounded-br-lg rounded-bl-lg flex items-center gap-4 ml-4">
+        <div className="h-[56px] max-w-xl rounded-tr  bg-white p-3 rounded-tr-lg rounded-br-lg rounded-bl-lg flex items-center gap-4">
             {/* Play / Pause Button */}
             <button
                 type="button"
@@ -302,9 +303,9 @@ const SentencesTable = ({ sentences, loading }: SentencesTableProps) => {
                         <Table className="min-w-full divide-y divide-gray-200">
                             {/* Desktop Header */}
                             <Table.Header className="bg-[#FAFAFA]  md:table-header-group">
-                                <Table.Head id="irish" label="Irish" isRowHeader className="w-full max-w-1/3"></Table.Head>
-                                <Table.Head id="pronunciation" label="Pronunciation" className="w-full max-w-1/3"></Table.Head>
-                                <Table.Head id="english" label="English" className="w-full max-w-1/3"></Table.Head>
+                                <Table.Head id="irish" label="Irish" isRowHeader className="pl-2"></Table.Head>
+                                <Table.Head id="pronunciation" label="Pronunciation" className=""></Table.Head>
+                                <Table.Head id="english" label="English" className="pl-2"></Table.Head>
 
                             </Table.Header>
 
@@ -603,6 +604,7 @@ interface WordDetailType {
     gen_sg_example?: string;
     gen_pl_example?: string;
     pronunciation_path?: string | null;
+    meanings: string[];
     sentences: SentenceItem[];
 
 }
@@ -692,7 +694,7 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
             <section className="w-full bg-primary border-b border-[#E9EAEB] mb-12">
                 <div className="mx-auto max-w-container px-4 md:px-8 py-6">
                     <h2 className="font-inter font-semibold text-2xl md:text-3xl lg:text-[36px] text-[#181D27] leading-snug">
-                        <span className="text-[#45341A]">{word_en} </span>
+                        <span className="text-[#45341A]">'{word_en}' </span>
                         in Irish
                         <span className="text-[#0055FF]"> ({word_ga})</span>
                         : Meaning, Pronunciation, Usage
@@ -762,7 +764,12 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
 
                                         <div className="flex items-center pt-4">
                                             <span className="min-w-[120px]">English:</span>
-                                            <span className="ml-2">{word_en}</span>
+                                            <span className="ml-2 font-normal">
+                                                {word_en}
+                                                {wordDetail?.meanings?.length
+                                                    ? `, ${wordDetail.meanings.join(", ")}`
+                                                    : ""}
+                                            </span>
                                         </div>
 
                                         <div className="flex items-center pt-4">
@@ -785,7 +792,7 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
 
                                         <div className="flex items-center pt-4">
                                             <span className="min-w-[120px]">Pronunciation:</span>
-                                            <span className="ml-2">“{wordDetail?.pronunciation}” (approx.)</span>
+                                            <span className="ml-2 font-normal">“{wordDetail?.pronunciation}” (approx.)</span>
                                         </div>
                                     </div>
 
@@ -1039,13 +1046,13 @@ export const CTAIPhoneMockup01 = () => {
 };
 
 const WordPageScreen = () => {
-    // const location = useLocation();
-    // const { normalized_ga, word_en, category } = location.state || {};
-    const { type, normalized_ga } = useParams();
+
+    const { type, ga } = useParams();
     const [category, setCategory] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [word_en, setWordEn] = useState<string>("");
     const [word_ga, setWordGa] = useState<string>("");
+    const normalized_ga = removeFadas(ga || "")
     console.log("normalized ga", normalized_ga);
     console.log("type=>", type);
     useEffect(() => {
@@ -1107,28 +1114,30 @@ const WordPageScreen = () => {
     }
     return (
         <div className="bg-primary">
-            <Helmet>
-                <title>
-                    How to Say "{word_en}" in Irish ({word_ga})
-                </title>
+            {!loading && word_en && word_ga && (
+                <Helmet>
+                    <title>
+                        How to Say "{word_en}" in Irish ({word_ga})
+                    </title>
 
-                <meta
-                    name="description"
-                    content={`Learn how to say “${word_en}” in Irish. See the pronunciation for ${word_ga} and how it’s used in everyday conversation.`}
-                />
+                    <meta
+                        name="description"
+                        content={`Learn how to say “${word_en}” in Irish. See the pronunciation for ${word_ga} and how it’s used in everyday conversation.`}
+                    />
 
-                <meta
-                    property="og:title"
-                    content={`How to Say "${word_en}" in Irish (${word_ga})`}
-                />
+                    <meta
+                        property="og:title"
+                        content={`How to Say "${word_en}" in Irish (${word_ga})`}
+                    />
 
-                <meta
-                    property="og:description"
-                    content={`Learn how to say “${word_en}” in Irish. See the pronunciation for ${word_ga} and how it’s used in everyday conversation.`}
-                />
+                    <meta
+                        property="og:description"
+                        content={`Learn how to say “${word_en}” in Irish. See the pronunciation for ${word_ga} and how it’s used in everyday conversation.`}
+                    />
 
-                <link rel="canonical" href={window.location.href} />
-            </Helmet>
+                    <link rel="canonical" href={window.location.href} />
+                </Helmet>
+            )}
             <Header />
             <BreadcrumbWithShare type={type || ""} category={category || ""} normalized_ga={normalized_ga} word_ga={word_ga} />
             <StudySection type={type || ""} normalized_ga={normalized_ga} word_en={word_en} category={category || ""} word_ga={word_ga} />

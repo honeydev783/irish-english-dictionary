@@ -1,12 +1,16 @@
 import type { ReactNode } from "react";
 import { useRef, useState } from "react";
-import { ChevronDown } from "@untitledui/icons";
+import { ChevronDown, SearchLg } from "@untitledui/icons";
 import { Button as AriaButton, Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { UntitledLogoMinimal } from "@/components/foundations/logo/untitledui-logo-minimal";
 import { cx } from "@/utils/cx";
 import { Link, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Input } from "@/components/base/input/input";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 type HeaderNavItem =
     | {
@@ -29,14 +33,13 @@ const headerNavItems: HeaderNavItem[] = [
 ];
 
 const footerNavItems = [
-    { label: "About us", href: "/" },
-    { label: "Press", href: "/products" },
-    { label: "Careers", href: "/resources" },
-    { label: "Legal", href: "/pricing" },
-    { label: "Support", href: "/pricing" },
-    { label: "Contact", href: "/pricing" },
-    { label: "Sitemap", href: "/pricing" },
-    { label: "Cookie settings", href: "/pricing" },
+    { label: "Overview", href: "/" },
+    { label: "Features", href: "/features" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Careers", href: "/careers" },
+    { label: "Help", href: "/help" },
+    { label: "Privacy", href: "/privacy" },
+
 ];
 
 const MobileNavItem = (props: { className?: string; label: string; href?: string; children?: ReactNode }) => {
@@ -69,11 +72,17 @@ const MobileNavItem = (props: { className?: string; label: string; href?: string
     );
 };
 
-const MobileFooter = () => {
+interface mobileFooterProp {
+    showCTA: boolean;
+    onSearch: (query: string) => void;
+}
+const MobileFooter = ({ showCTA, onSearch }: mobileFooterProp) => {
+    const [mobileQuery, setMobileQuery] = useState("");
+
     return (
         <div className="flex flex-col gap-8 border-t border-secondary px-4 py-6">
             <div>
-                <ul className="grid grid-flow-col grid-cols-2 grid-rows-4 gap-x-6 gap-y-3">
+                <ul className="grid grid-flow-col grid-cols-2 grid-rows-3 gap-x-6 gap-y-3">
                     {footerNavItems.map((navItem) => (
                         <li key={navItem.label}>
                             <Button color="link-gray" size="lg" href={navItem.href}>
@@ -84,10 +93,26 @@ const MobileFooter = () => {
                 </ul>
             </div>
             <div className="flex flex-col gap-3">
-                <Button size="lg">Sign up</Button>
-                <Button color="secondary" size="lg">
-                    Log in
-                </Button>
+                {showCTA ? (
+                    <Button className="bg-[#FF8D28] hover:bg-[#E6761F]" size="lg">
+                        Get Started
+                    </Button>
+                ) : (
+                    <Input
+                        shortcut
+                        size="sm"
+                        aria-label="Search"
+                        placeholder="Search"
+                        icon={SearchLg}
+                        value={mobileQuery}
+                        onChange={(e) => setMobileQuery(e)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                onSearch(mobileQuery);
+                            }
+                        }}
+                    />
+                )}
             </div>
         </div>
     );
@@ -103,6 +128,37 @@ interface HeaderProps {
 export const Header = ({ items = headerNavItems, isFullWidth, isFloating, className }: HeaderProps) => {
     const headerRef = useRef<HTMLElement>(null);
     const navigate = useNavigate();
+    const location = useLocation();
+    const pathname = location.pathname;
+    const showCTA =
+        pathname === "/" ||
+        pathname === "/about" ||
+        pathname === "/contact";
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSearch = async (query: string) => {
+        const cleanQuery = query.trim().toLowerCase();
+        if (!cleanQuery) return;
+        try {
+            const response = await fetch(`${API_BASE_URL}/words/${cleanQuery}/search`);
+
+            if (!response.ok) return;
+
+            const data = await response.json();
+
+            const { word_type, normalized_ga } = data;
+
+            if (!word_type || !normalized_ga) return;
+
+            const pluralType = word_type.toLowerCase() + "s";
+
+            navigate(`/${pluralType}/${normalized_ga}`);
+
+        } catch (error) {
+            console.error("Search failed:", error);
+        }
+    }
+
     return (
         <header
             ref={headerRef}
@@ -188,12 +244,31 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                     </div>
 
                     <div className="hidden items-center gap-3 md:flex">
-                        {/* <Button color="secondary" size={isFloating ? "md" : "lg"}>
-                            Log in
-                        </Button> */}
-                        <Button className="bg-[#FF8D28] hover:bg-[#E6761F]" size={isFloating ? "md" : "lg"}>
-                            Get Started
-                        </Button>
+
+                        {showCTA ? (
+                            <Button
+                                className="bg-[#FF8D28] hover:bg-[#E6761F]"
+                                size={isFloating ? "md" : "lg"}
+                            >
+                                Get Started
+                            </Button>
+                        ) : (
+                            <Input
+                                shortcut
+                                className="max-w-80 min-w-50 flex-1"
+                                size="sm"
+                                aria-label="Search"
+                                placeholder="Search"
+                                icon={SearchLg}
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e)}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter") {
+                                        handleSearch(searchQuery);
+                                    }
+                                }}
+                            />
+                        )}
                     </div>
 
                     {/* Mobile menu and menu trigger */}
@@ -249,7 +324,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                         )}
                                     </ul>
 
-                                    <MobileFooter />
+                                    <MobileFooter showCTA={showCTA} onSearch={handleSearch} />
                                 </nav>
                             </AriaDialog>
                         </AriaPopover>

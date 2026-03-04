@@ -29,7 +29,7 @@ createRoot(document.getElementById("root")!).render(
                         <Route path="/category" element={<CategoryScreen />} />
                         <Route path="/list" element={<WordListScreen />} />
                         <Route path="/:category/:group/:slug" element={<WordScreen />} />
-                        <Route path="/:type/:normalized_ga" element={<WordPageScreen />} />
+                        <Route path="/:type/:ga" element={<WordPageScreen />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </RouteProvider>
