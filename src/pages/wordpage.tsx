@@ -721,7 +721,7 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
 
 
                     <div className="flex flex-col gap-10">
-                        <div ref={instantAnswerRef}>
+                        <div ref={instantAnswerRef} className="scroll-mt-24">
                             <h2 className="font-semibold text-[30px] text-[#181D27] mb-2">
                                 How to say <span className="text-[#0055FF]">“{word_en}”</span> in Irish
                             </h2>
@@ -895,7 +895,7 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
                             }
                         </div>
 
-                        <div ref={sentencesRef}>
+                        <div ref={sentencesRef} className="scroll-mt-24">
                             <h3 className="font-semibold text-[30px] text-[#181D27] mb-2">
                                 Irish sentences with “{word_ga}”
                             </h3>
@@ -906,7 +906,7 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
 
                         </div>
 
-                        <div ref={relatedWordsRef}>
+                        <div ref={relatedWordsRef} className="scroll-mt-24">
                             <h3 className="font-semibold text-[30px] text-[#181D27] mb-2">
                                 Other Irish {type}
                             </h3>
