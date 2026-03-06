@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, forwardRef } from "react";
 import { HeaderNavigationBase } from "@/components/application/app-navigation/header-navigation";
 import { Copy01, Share07, ArrowNarrowUpRight, HomeLine, AlertCircle } from "@untitledui/icons";
 import WaveSurfer from "wavesurfer.js";
@@ -15,6 +15,7 @@ import { Badge } from "@/components/base/badges/badges";
 import ReportModal from "@/components/ReportModal";
 import { Helmet } from "react-helmet";
 import { FooterLarge11Brand } from "./home";
+import { request } from "http";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -81,7 +82,15 @@ const BreadcrumbWithShare = ({ normalized_ga, category, word_ga }: BreadcrumbWit
                     <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
                         <span>&gt;</span>
-                        <span>Nouns</span>
+                        <span onClick={() => navigate(`/category`)}
+                            className="
+                                px-2 py-1
+                                rounded-md
+                                cursor-pointer
+                                transition
+                                hover:bg-[#F2F4F7]
+                                hover:text-[#344054]
+                            ">Nouns</span>
                         <span>&gt;</span>
                         <span
                             onClick={() => navigate(`/list?category=${category}`)}
@@ -253,7 +262,7 @@ const NoWaveAudioPlayer: React.FC<AudioWaveformPlayerProps> = ({ audioUrl }) => 
 
 
     return (
-        <div className="h-[56px] max-w-xl rounded-tr  bg-white p-3 rounded-tr-lg rounded-br-lg rounded-bl-lg flex items-center gap-4">
+        <div className="h-[56px] max-w-xl rounded-tr justify-center  p-1 rounded-tr-lg rounded-br-lg rounded-bl-lg flex items-center gap-4">
             {/* Play / Pause Button */}
             <button
                 type="button"
@@ -303,25 +312,25 @@ const SentencesTable = ({ sentences, loading }: SentencesTableProps) => {
                         <Table className="min-w-full divide-y divide-gray-200">
                             {/* Desktop Header */}
                             <Table.Header className="text-center font-inter font-semibold text-[12px] leading-[18px] tracking-normal text-[#717680]">
-                                <Table.Head id="irish" label="Irish" isRowHeader className="pl-2"></Table.Head>
-                                <Table.Head id="pronoun" label="Pronunciation" ></Table.Head>
-                                <Table.Head id="english" label="English" className="pl-2"></Table.Head>
+                                <Table.Head id="irish" label="Irish" isRowHeader className=""></Table.Head>
+                                <Table.Head id="pronoun" label="" className="px-1" ></Table.Head>
+                                <Table.Head id="english" label="English" className=""></Table.Head>
                             </Table.Header>
 
-                            <Table.Body className="divide-y divide-gray-200 font-700 font-normal text-[16px] text-[#535862]" items={sentences}>
+                            <Table.Body className="divide-y divide-gray-200 font-700 font-normal text-[16px] text-[#535862] [&>tr:hover]:bg-gray-100" items={sentences}>
 
                                 {/* 🔥 Loading Skeleton */}
                                 {loading && (
                                     <>
                                         {[...Array(16)].map((_, index) => (
                                             <Table.Row id={index} className="animate-pulse">
-                                                <Table.Cell className="px-4 py-4">
+                                                <Table.Cell className="py-4">
                                                     <div className="h-4 bg-gray-200 rounded w-28" />
                                                 </Table.Cell>
-                                                <Table.Cell className="px-4 py-4">
+                                                <Table.Cell className="py-4">
                                                     <div className="h-4 bg-gray-200 rounded w-20" />
                                                 </Table.Cell>
-                                                <Table.Cell className="px-4 py-4">
+                                                <Table.Cell className="py-4">
                                                     <div className="h-4 bg-gray-200 rounded w-32" />
                                                 </Table.Cell>
                                             </Table.Row>
@@ -334,13 +343,13 @@ const SentencesTable = ({ sentences, loading }: SentencesTableProps) => {
                                     sentences.map((item, index) => (
                                         <Table.Row
                                             id={index}
-
+                                            className="transition-colors"
                                         >
                                             <Table.Cell className=" py-2 font-semibold text-[14px]">
                                                 {item.ga}
                                             </Table.Cell>
 
-                                            <Table.Cell className=" py-2">
+                                            <Table.Cell className="px-0 py-2">
                                                 {item.path && (
                                                     <NoWaveAudioPlayer audioUrl={`/${item.path}`} />
                                                 )}
@@ -378,12 +387,14 @@ const SentencesTable = ({ sentences, loading }: SentencesTableProps) => {
 
 interface RelatedWordsTableProp {
     category?: string | null;
+    scrollRef?: React.RefObject<HTMLDivElement | null>;
 }
-const RelatedWordsTable = ({ category }: RelatedWordsTableProp) => {
+const RelatedWordsTable = ({ category, scrollRef }: RelatedWordsTableProp) => {
     const [words, setWords] = useState<WordItem[]>([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-    const [visibleCount, setVisibleCount] = useState(15); // Show first 15 words
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 15;
 
     useEffect(() => {
         const fetchWords = async () => {
@@ -405,11 +416,29 @@ const RelatedWordsTable = ({ category }: RelatedWordsTableProp) => {
         fetchWords();
     }, [category]);
 
-    const handleLoadMore = () => {
-        setVisibleCount((prev) => prev + 10);
-    }
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+        requestAnimationFrame(() => {
+            scrollRef?.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        });
+
+    };
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [category]);
+
+    const totalPages = Math.ceil(words.length / itemsPerPage);
+
+    const paginatedWords = words.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
     return (
-        <div className="w-full  py-1 mb-[60px]">
+        <div className="w-full  py-1 mb-[60px] scroll-mt-24">
             <div className="max-w-5xl">
                 <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
                     <TableCard.Root>
@@ -420,37 +449,37 @@ const RelatedWordsTable = ({ category }: RelatedWordsTableProp) => {
                                 <Table.Head id="teams" label="Teams"></Table.Head>
                             </Table.Header>
 
-                            <Table.Body items={words}>
+                            <Table.Body items={words} className="[&>tr:hover]:bg-gray-100" >
                                 {loading ? (
                                     [...Array(4)].map((_, index) => (
                                         <Table.Row
                                             id={index}
                                         >
-                                            <Table.Cell className="px-4 py-5">
+                                            <Table.Cell className="py-5">
                                                 <div className="h-4 bg-gray-200 rounded w-24" />
                                             </Table.Cell>
-                                            <Table.Cell className="px-4 py-5">
+                                            <Table.Cell className="py-5">
                                                 <div className="h-4 bg-gray-200 rounded w-32" />
                                             </Table.Cell>
-                                            <Table.Cell className="px-4 py-5">
+                                            <Table.Cell className="py-5">
                                                 <div className="h-4 bg-gray-200 rounded w-20" />
                                             </Table.Cell>
                                         </Table.Row>
                                     ))
                                 ) : words.length > 0 ? (
-                                    words.slice(0, visibleCount).map((item, index) => (
+                                    paginatedWords.map((item, index) => (
                                         <Table.Row
-                                            id={index}
+                                            id={index} className="odd:bg-secondary_subtle"
                                         >
-                                            <Table.Cell className="px-4 py-5">
+                                            <Table.Cell className="py-5">
                                                 <span className="font-bold">{item.word_ga}</span>
                                             </Table.Cell>
 
-                                            <Table.Cell className="px-4 py-5">
+                                            <Table.Cell className="py-5">
                                                 {item.word_en}
                                             </Table.Cell>
 
-                                            <Table.Cell className="px-4 py-5">
+                                            <Table.Cell className="py-5">
                                                 <button
                                                     className="group flex text-[#0055FF] text-[14px] items-center cursor-pointer transition  hover:text-blue-700"
                                                     onClick={() => {
@@ -478,15 +507,14 @@ const RelatedWordsTable = ({ category }: RelatedWordsTableProp) => {
                         </Table>
                     </TableCard.Root>
                 </div>
-                {/* Load More Button */}
-                {visibleCount < words.length && (
-                    <div className="mt-4 flex justify-center">
-                        <button
-                            onClick={handleLoadMore}
-                            className="px-6 py-2  text-white rounded-md bg-[#FF8D28] hover:bg-[#E6761F] transition cursor-pointer"
-                        >
-                            Load More
-                        </button>
+                {/* Pagination */}
+                {!loading && totalPages > 1 && (
+                    <div className="mt-6 flex justify-center">
+                        <PaginationPageMinimalCenter
+                            page={currentPage}
+                            total={totalPages}
+                            onPageChange={handlePageChange}
+                        />
                     </div>
                 )}
             </div>
@@ -744,7 +772,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                             <p className="text-[16px] text-[#535862] font-inter font-normal text-base leading-6 tracking-normal mb-3">
                                 Here are other Irish nouns with the primary category of {category}
                             </p>
-                            <RelatedWordsTable category={category} />
+                            <RelatedWordsTable category={category} scrollRef={relatedWordsRef} />
                         </div>
                     </div>
 

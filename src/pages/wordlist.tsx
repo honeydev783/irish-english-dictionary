@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { HeaderNavigationSimpleDemo, CTAIPhoneMockup01 } from "./word";
 import { Share07, ArrowNarrowUpRight, HomeLine } from "@untitledui/icons";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
@@ -6,6 +6,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { Header } from "@/components/marketing/header-navigation/header";
 import { Table, TableCard, TableRowActionsDropdown } from "@/components/application/table/table";
 import { FooterLarge11Brand } from "./home";
+import { PaginationPageMinimalCenter } from "@/components/application/pagination/pagination";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -53,9 +54,26 @@ const BreadcrumbWithShare = ({ category }: BreadcrumbWithShareProps) => {
                     <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
                         <span>&gt;</span>
-                        <span>Nouns</span>
+                        <span onClick={() => navigate(`/category`)}
+                            className="
+                                px-2 py-1
+                                rounded-md
+                                cursor-pointer
+                                transition
+                                hover:bg-[#F2F4F7]
+                                hover:text-[#344054]
+                            "
+                        >Nouns</span>
                         <span>&gt;</span>
-                        <span>{category}</span>
+                        <span onClick={() => navigate(`/list?category=${category}`)}
+                            className="
+                                px-2 py-1
+                                rounded-md
+                                cursor-pointer
+                                transition
+                                hover:bg-[#F2F4F7]
+                                hover:text-[#344054]
+                            ">{category}</span>
                         {/* <span>&gt;</span> */}
                         {/* <span className="rounded-md bg-[#FAFAFA] px-2 py-1 text-[#414651]">
                             Teach
@@ -85,12 +103,18 @@ export interface WordItem {
     normalized_ga: string;
 }
 
-const RelatedWordsTable = () => {
+interface RelatedWordsTableProp {
+    scrollRef?: React.RefObject<HTMLDivElement | null>;
+}
+
+const RelatedWordsTable = ({scrollRef}: RelatedWordsTableProp) => {
+
     const [words, setWords] = useState<WordItem[]>([]);
-    const [visibleCount, setVisibleCount] = useState(15); // Show first 15 words
     const [loading, setLoading] = useState(true);
     const [searchParams] = useSearchParams();
     const category = searchParams.get("category");
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 15;
     const navigate = useNavigate();
     useEffect(() => {
         const fetchWords = async () => {
@@ -112,9 +136,26 @@ const RelatedWordsTable = () => {
         fetchWords();
     }, [category]);
 
-    const handleLoadMore = () => {
-        setVisibleCount((prev) => prev + 10);
-    }
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+        requestAnimationFrame(() => {
+            scrollRef?.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        });
+    };
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [category]);
+
+    const totalPages = Math.ceil(words.length / itemsPerPage);
+
+    const paginatedWords = words.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
 
     if (loading) {
         return (
@@ -129,7 +170,7 @@ const RelatedWordsTable = () => {
                                     <Table.Head id="teams" label="Teams" className="w-full max-w-1/3 px-6 py-3 text-left text-sm font-semibold text-[#717680]"></Table.Head>
                                 </Table.Header>
 
-                                <Table.Body className="animate-pulse">
+                                <Table.Body className="animate-pulse [&>tr:hover]:bg-gray-100">
                                     {[...Array(16)].map((_, index) => (
                                         <Table.Row id={index} className="bg-white">
                                             <Table.Cell className="px-6 py-4">
@@ -172,23 +213,23 @@ const RelatedWordsTable = () => {
                                 <Table.Head id="teams" label="Teams" className="w-full max-w-1/3 px-6 py-3 text-left text-sm font-semibold text-[#717680]"></Table.Head>
                             </Table.Header>
 
-                            <Table.Body className="divide-y divide-gray-200 font-700 font-normal text-[16px] text-[#535862]" items={words}>
-                                {words.slice(0, visibleCount).map((item, index) => (
+                            <Table.Body className="divide-y divide-gray-200 font-700 font-normal text-[16px] text-[#535862] [&>tr:hover]:bg-gray-100" items={words}>
+                                {paginatedWords.map((item, index) => (
                                     <Table.Row
                                         key={index}
                                     >
                                         {/* Name */}
-                                        <Table.Cell className="px-4 py-4">
+                                        <Table.Cell className="py-4">
                                             <span className="font-bold">{item.word_ga}</span>
                                         </Table.Cell>
 
                                         {/* Email */}
-                                        <Table.Cell className="px-4 py-4">
+                                        <Table.Cell className="py-4">
                                             {item.word_en}
                                         </Table.Cell>
 
                                         {/* Role */}
-                                        <Table.Cell className="px-4 py-4">
+                                        <Table.Cell className="py-4">
 
                                             <button className="group flex font-500 text-[#0055FF] text-[14px] items-center cursor-pointer transition  hover:text-blue-700" onClick={() => {
                                                 navigate(
@@ -207,15 +248,14 @@ const RelatedWordsTable = () => {
                         </Table>
                     </TableCard.Root>
                 </div>
-                {/* Load More Button */}
-                {visibleCount < words.length && (
-                    <div className="mt-4 flex justify-center">
-                        <button
-                            onClick={handleLoadMore}
-                            className="px-6 py-2  text-white rounded-md bg-[#FF8D28] hover:bg-[#E6761F] transition cursor-pointer"
-                        >
-                            Load More
-                        </button>
+                {/* Pagination */}
+                {!loading && totalPages > 1 && (
+                    <div className="mt-6 flex justify-center">
+                        <PaginationPageMinimalCenter
+                            page={currentPage}
+                            total={totalPages}
+                            onPageChange={handlePageChange}
+                        />
                     </div>
                 )}
             </div>
@@ -228,6 +268,8 @@ interface ListSectionProps {
 }
 
 const ListSection = ({ category }: ListSectionProps) => {
+    const relatedRef = useRef<HTMLDivElement | null>(null);
+
     return (
         <div className="mb-[40px]">
 
@@ -243,12 +285,12 @@ const ListSection = ({ category }: ListSectionProps) => {
             {/* Content */}
             <section className="w-full bg-primary">
                 <div className="mx-auto max-w-container px-4 md:px-8 py-8 grid grid-cols-1 lg:grid-cols-[8fr_4fr] gap-8">
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-5 scroll-mt-24" ref={relatedRef}>
                         <h3 className="font-semibold text-[30px] text-[#181D27]">
                             Irish words related to {category}
                         </h3>
 
-                        <RelatedWordsTable />
+                        <RelatedWordsTable scrollRef={relatedRef} />
                     </div>
 
                     <div className="w-full max-w-[320px] mx-auto text-sm text-[#475467] font-inter font-semibold sticky top-50 self-start">

@@ -50,7 +50,17 @@ const BreadcrumbWithShare = () => {
 
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
                         <span>&gt;</span>
-                        <span>Nouns</span>
+                        <span onClick={() => navigate(`/category`)}
+                            className="
+                                px-2 py-1
+                                rounded-md
+                                cursor-pointer
+                                transition
+                                hover:bg-[#F2F4F7]
+                                hover:text-[#344054]
+                            "
+                        
+                        >Nouns</span>
                     </div>
 
                     {/* Actions */}

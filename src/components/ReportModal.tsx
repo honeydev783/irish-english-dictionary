@@ -1,4 +1,8 @@
+import { stringify } from "querystring";
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 interface Props {
     onClose: () => void;
@@ -28,7 +32,7 @@ export default function ReportModal({ onClose, entry }: Props) {
         created_at: new Date().toISOString(),
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!issueType) {
             setError("Please select what’s wrong.");
             return;
@@ -48,9 +52,26 @@ export default function ReportModal({ onClose, entry }: Props) {
             ...hiddenFields,
         };
 
-        console.log(payload); // replace with API call
+        try {
+            const res = await fetch(`${API_BASE_URL}/report`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
 
-        onClose();
+            if (!res.ok) {
+                throw new Error("Failed to send report");
+            }
+
+            toast.success("Report sent successfully 👍");
+
+            onClose();
+
+        } catch (error) {
+            toast.error("Failed to send report. Please try again.");
+        }
     };
 
     return (
@@ -88,6 +109,7 @@ export default function ReportModal({ onClose, entry }: Props) {
                                 onChange={(e) => setIssueType(e.target.value)}
                                 className="w-full appearance-none border border-[#D0D5DD] rounded-md p-2 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#0055FF] cursor-pointer"
                             >
+                                <option value="">Select an issue</option>
                                 <option className="cursor-pointer">Meaning / translation</option>
                                 <option className="cursor-pointer">Spelling / grammar</option>
                                 <option className="cursor-pointer">Example sentence</option>

@@ -14,6 +14,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { ScrollToHash } from "./components/ScrollToHash";
 import ScrollToTop from "./components/ScrollToTop";
 import "@/styles/globals.css";
+import { Toaster } from "react-hot-toast";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
@@ -33,6 +34,7 @@ createRoot(document.getElementById("root")!).render(
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </RouteProvider>
+                <Toaster position="top-right" reverseOrder={false} />
             </BrowserRouter>
         </ThemeProvider>
     </StrictMode>,

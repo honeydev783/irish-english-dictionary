@@ -9,10 +9,8 @@ import { cx } from "@/utils/cx";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Input } from "@/components/base/input/input";
-import SearchModal from "@/components/SearchModal";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 
 type HeaderNavItem =
     | {
@@ -76,8 +74,10 @@ const MobileNavItem = (props: { className?: string; label: string; href?: string
 
 interface mobileFooterProp {
     showCTA: boolean;
+    onSearch: (query: string) => void;
 }
-const MobileFooter = ({ showCTA }: mobileFooterProp) => {
+const MobileFooter = ({ showCTA, onSearch }: mobileFooterProp) => {
+    const [mobileQuery, setMobileQuery] = useState("");
 
     return (
         <div className="flex flex-col gap-8 border-t border-secondary px-4 py-6">
@@ -93,10 +93,25 @@ const MobileFooter = ({ showCTA }: mobileFooterProp) => {
                 </ul>
             </div>
             <div className="flex flex-col gap-3">
-                {showCTA && (
+                {showCTA ? (
                     <Button className="bg-[#FF8D28] hover:bg-[#E6761F]" size="lg">
                         Get Started
                     </Button>
+                ) : (
+                    <Input
+                        shortcut
+                        size="sm"
+                        aria-label="Search"
+                        placeholder="Search"
+                        icon={SearchLg}
+                        value={mobileQuery}
+                        onChange={(e) => setMobileQuery(e)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                onSearch(mobileQuery);
+                            }
+                        }}
+                    />
                 )}
             </div>
         </div>
@@ -119,8 +134,30 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
         pathname === "/" ||
         pathname === "/about" ||
         pathname === "/contact";
-    const [searchOpen, setSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
+    const handleSearch = async (query: string) => {
+        const cleanQuery = query.trim().toLowerCase();
+        if (!cleanQuery) return;
+        try {
+            const response = await fetch(`${API_BASE_URL}/words/${cleanQuery}/search`);
+
+            if (!response.ok) return;
+
+            const data = await response.json();
+
+            const { word_type, normalized_ga } = data;
+
+            if (!word_type || !normalized_ga) return;
+
+            const pluralType = word_type.toLowerCase() + "s";
+
+            navigate(`/${pluralType}/${normalized_ga}`);
+
+        } catch (error) {
+            console.error("Search failed:", error);
+        }
+    }
 
     return (
         <header
@@ -206,31 +243,18 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                         </nav>
                     </div>
 
-                    <div className="flex  items-center gap-2">
+                    <div className="hidden items-center gap-3 md:flex">
 
-                        {/* Desktop CTA */}
-                        {showCTA && (
-                            <>
-                                <SearchLg
-                                    className="size-8 cursor-pointer text-fg-quaternary hover:bg-primary_hover hover:text-fg-quaternary_hover p-2"
-                                    onClick={() => setSearchOpen(true)}
-                                />
-                                <Button
-                                    className="hidden md:flex bg-[#FF8D28] hover:bg-[#E6761F]"
-                                    size={isFloating ? "md" : "lg"}
-                                >
-                                    Get Started
-                                </Button>
-                            </>
-
-                        )}
-
-                        {/* Search icon (desktop + mobile) */}
-                        {!showCTA && (
-                            <SearchLg
-                                className="size-8 cursor-pointer text-fg-quaternary hover:bg-primary_hover hover:text-fg-quaternary_hover p-1.5"
-                                onClick={() => setSearchOpen(true)}
-                            />
+                        {showCTA ? (
+                            <Button
+                                className="bg-[#FF8D28] hover:bg-[#E6761F]"
+                                size={isFloating ? "md" : "lg"}
+                            >
+                                Get Started
+                            </Button>
+                        ) : (
+                            
+                            < SearchLg  className="size-8 cursor-pointer text-fg-quaternary hover:bg-primary_hover hover:text-fg-quaternary_hover p-1.5"  />
                         )}
                     </div>
 
@@ -287,14 +311,13 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                         )}
                                     </ul>
 
-                                    <MobileFooter showCTA={showCTA} />
+                                    <MobileFooter showCTA={showCTA} onSearch={handleSearch} />
                                 </nav>
                             </AriaDialog>
                         </AriaPopover>
                     </AriaDialogTrigger>
                 </div>
             </div>
-            <SearchModal open={searchOpen} setOpen={setSearchOpen} />
         </header>
     );
 };
