@@ -84,7 +84,22 @@ const BreadcrumbWithShare = ({ normalized_ga, category, type, word_ga }: Breadcr
                     <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
                         <span>&gt;</span>
-                        <span>{type}</span>
+                        {
+                            type == "nouns" ? (
+                                <span onClick={() => navigate(`/category`)}
+                                    className="
+                                px-2 py-1
+                                rounded-md
+                                cursor-pointer
+                                transition
+                                hover:bg-[#F2F4F7]
+                                hover:text-[#344054]
+                            ">Nouns</span>
+                            ) : (
+                                <span>{type}</span>
+                            )
+                        }
+
                         <span>&gt;</span>
                         {category && <span
                             onClick={() => navigate(`/list?category=${category}`)}
