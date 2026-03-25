@@ -10,18 +10,7 @@ interface WordItem {
     english: string
 }
 
-// export const fakeWords: WordItem[] = [
-//     { title: "abair", url: "/word/abair" },
-//     { title: "ábhar", url: "/word/abhar" },
-//     { title: "abhairt", url: "/word/abhairt" },
-//     { title: "abhlann", url: "/word/abhlann" },
-//     { title: "aclaí", url: "/word/aclai" },
-//     { title: "adarca", url: "/word/adarca" },
-//     { title: "aer", url: "/word/aer" },
-//     { title: "aisling", url: "/word/aisling" },
-//     { title: "amhrán", url: "/word/amhran" },
-//     { title: "anáil", url: "/word/anail" }
-// ]
+
 
 interface Props {
     open: boolean
@@ -70,17 +59,6 @@ export default function SearchModal({ open, setOpen }: Props) {
                 word.english?.toLowerCase().includes(query.toLowerCase()))
         }
 
-        // if (query.toLowerCase().includes("404")) {
-        //     filtered = [
-        //         ...filtered,
-        //         {
-        //             title: "404 page",
-        //             url: "/404",
-        //             english: "404 page"
-        //         }
-        //     ]
-        // }
-
         setResults(filtered)
 
     }, [query, allWords])
@@ -114,7 +92,7 @@ export default function SearchModal({ open, setOpen }: Props) {
 
             <div className="w-full max-w-xl rounded-2xl bg-white shadow-2xl border border-gray-200" onClick={(e) => e.stopPropagation()}>
 
-                <Command className="w-full">
+                <Command className="w-full" shouldFilter={false}>
 
                     {/* Search input */}
 
