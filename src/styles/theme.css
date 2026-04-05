@@ -519,8 +519,8 @@
     --color-utility-brand-300_alt: var(--color-brand-300);
     --color-utility-brand-400: var(--color-brand-400);
     --color-utility-brand-400_alt: var(--color-brand-400);
-    --color-utility-brand-500: var(--color-brand-500);
-    --color-utility-brand-500_alt: var(--color-brand-500);
+    --color-utility-brand-500: var(--color-orange-500);
+    --color-utility-brand-500_alt: var(--color-orange-500);
     --color-utility-brand-600: var(--color-brand-600);
     --color-utility-brand-600_alt: var(--color-brand-600);
     --color-utility-brand-700: var(--color-brand-700);
@@ -940,8 +940,8 @@
         --color-utility-brand-300_alt: var(--color-utility-gray-300);
         --color-utility-brand-400: var(--color-brand-600);
         --color-utility-brand-400_alt: var(--color-utility-gray-400);
-        --color-utility-brand-500: var(--color-brand-500);
-        --color-utility-brand-500_alt: var(--color-utility-gray-500);
+        --color-utility-brand-500: var(--color-orange-500);
+        --color-utility-brand-500_alt: var(--color-orange-gray-500);
         --color-utility-brand-600: var(--color-brand-400);
         --color-utility-brand-600_alt: var(--color-utility-gray-600);
         --color-utility-brand-700: var(--color-brand-300);

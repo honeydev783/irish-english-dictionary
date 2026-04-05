@@ -515,11 +515,11 @@ const HeaderSpaceBetween = () => {
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <div className="mb-3 text-sm font-semibold text-brand-secondary md:text-md">Nice to meet you</div>
                 <div className="flex flex-col gap-x-16 lg:flex-row">
-                    <h1 className="flex-1 text-display-md font-semibold text-primary md:text-display-lg">Our mission is to increase the GDP of your startup</h1>
+                    <h1 className="flex-1 text-display-md font-semibold text-primary md:text-display-lg">Our mission is to help you actually speak Irish</h1>
 
                     <p className="w-ful mt-4 text-lg text-tertiary md:mt-6 md:text-xl lg:mt-3 lg:max-w-120">
-                        Untitled is a technology company that builds infrastructure for your startup, so you don't have to. Businesses of every size—from new
-                        startups to public companies—use our software to manage their businesses.
+                        We believe the only way to truly learn Irish is by speaking it. <br/>
+                        HeyRua is built to get you talking from day one, no fluff, no games, just real conversations you’ll actually use.
                     </p>
                 </div>
             </div>
@@ -622,7 +622,7 @@ const CTAIPhoneMockup04 = () => {
                 <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl bg-brand-section md:rounded-3xl md:shadow-xl lg:min-h-120 lg:grid-cols-2 lg:items-center">
                     <div className="flex flex-1 flex-col px-6 pt-10 pb-12 sm:p-12 lg:p-16">
                         <h4 className="text-display-sm font-semibold text-white xl:text-display-md">Start your free trial</h4>
-                        <p className="mt-4 text-lg text-tertiary_on-brand md:mt-5 lg:text-xl">Personal performance tracking made easy.</p>
+                        <p className="mt-4 text-lg text-white md:mt-5 lg:text-xl">Personal performance tracking made easy.</p>
                         <div className="mt-8 flex w-full gap-3 md:mt-12">
                             <AppStoreButtonOutline size="lg" className="dark-mode" />
                             <GooglePlayButtonOutline size="lg" className="dark-mode" />

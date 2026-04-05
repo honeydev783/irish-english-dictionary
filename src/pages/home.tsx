@@ -9,7 +9,7 @@ import { Button } from "@/components/base/buttons/button";
 
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
-import { AngelList, Dribbble, Facebook, GitHub, Layers, LinkedIn, X } from "@/components/foundations/social-icons";
+import { AngelList, Dribbble, Facebook, GitHub, Layers, LinkedIn, X, Instagram, TikTok, YouTube } from "@/components/foundations/social-icons";
 import { Header } from "@/components/marketing/header-navigation/header";
 import { IPhoneMockup } from "@/components/shared-assets/iphone-mockup";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
@@ -54,16 +54,16 @@ const HeroIPhoneMockup01 = () => {
                 <div className="mx-auto flex max-w-container flex-col gap-16 px-4 md:px-8 lg:flex-row lg:items-center lg:gap-16">
                     <div className="flex w-full max-w-3xl flex-1 flex-col items-start">
                         <a href="#" className="rounded-[10px] outline-focus-ring focus-visible:outline-2 focus-visible:outline-offset-2">
-                            <BadgeGroup className="hidden md:flex" size="lg" addonText="Now Live" iconTrailing={ArrowRight} theme="modern" color="brand">
-                                Personalized coaching in-app
+                            <BadgeGroup className="hidden md:flex" size="lg" addonText="App Now Live" iconTrailing={ArrowRight} theme="modern" color="brand">
+                                Start actually speaking today
                             </BadgeGroup>
-                            <BadgeGroup className="md:hidden" size="md" addonText="Now Live" iconTrailing={ArrowRight} theme="modern" color="brand">
-                                Personalized coaching in-app
+                            <BadgeGroup className="md:hidden" size="md" addonText="App Now Live" iconTrailing={ArrowRight} theme="modern" color="brand">
+                                Start actually speaking today
                             </BadgeGroup>
                         </a>
 
                         <h1 className="mt-4 text-display-md font-semibold text-primary md:text-display-lg lg:text-display-xl">
-                            Learn Irish, by actually speaking.
+                            Learn Irish, <br />by actually speaking it.
                         </h1>
                         <p className="mt-6 text-lg text-balance font-semibold text-tertiary md:mt-6 md:text-xl">
                             Meet Rua, your new Irish language teacher.
@@ -126,8 +126,8 @@ const CTAIPhoneMockup04 = () => {
                 <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl bg-brand-section md:rounded-3xl md:shadow-xl lg:min-h-120 lg:grid-cols-2 lg:items-center">
                     <div className="flex flex-1 flex-col px-6 pt-10 pb-12 sm:p-12 lg:p-16">
                         <h4 className="text-display-sm font-semibold text-white xl:text-display-md">Designed by Irish teachers.</h4>
-                        <p className="mt-4 text-lg text-tertiary_on-brand md:mt-5 lg:text-xl">HeyRua isn’t random exercises.</p>
-                        <p className="mt-4 text-lg text-tertiary_on-brand md:mt-5 lg:text-xl">It’s built by experienced Irish teachers who understand real-world mistakes and how confidence is built step by step.</p>
+                        <p className="mt-4 text-lg text-white md:mt-5 lg:text-xl">HeyRua isn’t random exercises.</p>
+                        <p className="mt-4 text-lg text-white md:mt-5 lg:text-xl">It’s built by experienced Irish teachers who understand real-world mistakes and how confidence is built step by step.</p>
                         <div className="mt-8 flex w-full gap-3 md:mt-12">
                             <AppStoreButtonOutline size="lg" className="dark-mode" />
                             <GooglePlayButtonOutline size="lg" className="dark-mode" />
@@ -135,13 +135,13 @@ const CTAIPhoneMockup04 = () => {
                     </div>
 
                     <IPhoneMockup
-                        image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
+                        image="https://cdn.feedbucket.app/attachments/2026-03-25/fxlGy7MLVcEALKDw9wLrUoXuka5heNMRBXmRMrKXyp1SiR7i.PNG"
                         imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
                         className="top-10 right-16 max-h-70 w-full max-w-67 justify-self-center drop-shadow-iphone-mockup lg:absolute lg:max-h-none lg:max-w-78.5"
                     />
 
                     {/*  Notifications List */}
-                    <ul className="absolute bottom-10 left-1/2 hidden -translate-x-2 flex-col gap-3 lg:flex" aria-hidden="true">
+                    {/* <ul className="absolute bottom-10 left-1/2 hidden -translate-x-2 flex-col gap-3 lg:flex" aria-hidden="true">
                         <li className="flex w-full max-w-xs gap-3 rounded-lg bg-alpha-white/90 p-4 backdrop-blur-lg">
                             <img
                                 alt="Olivia Rhye"
@@ -194,7 +194,7 @@ const CTAIPhoneMockup04 = () => {
                                 </p>
                             </div>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
         </section>
@@ -345,20 +345,19 @@ const PricingTierCardCallout = (props: {
 const footerSocials = [
     { label: "X (formerly Twitter)", icon: X, href: "https://x.com/" },
     { label: "LinkedIn", icon: LinkedIn, href: "https://www.linkedin.com/" },
-    { label: "Facebook", icon: Facebook, href: "https://www.facebook.com/" },
-    { label: "GitHub", icon: GitHub, href: "https://github.com/" },
-    { label: "AngelList", icon: AngelList, href: "https://angel.co/" },
-    { label: "Dribbble", icon: Dribbble, href: "https://dribbble.com/" },
-    { label: "Layers", icon: Layers, href: "https://layers.com/" },
+    { label: "Instagram", icon: Instagram, href: "https://www.instagram.com/" },
+    { label: "TikTok", icon: TikTok, href: "https://www.tiktok.com/" },
+    { label: "YouTube", icon: YouTube, href: "https://www.youtube.com/" },
+
 ];
 
 export const FooterLarge11Brand = () => {
     return (
         <footer className="bg-white py-12 md:pt-16 text-black">
             <div className="mx-auto max-w-container px-4 md:px-8">
-                <div className="flex flex-col items-center border-b border-gray-600 pb-8 text-center md:pb-16">
+                <div className="flex flex-col items-center  border-gray-600 pb-8 text-center md:pb-16">
                     <h4 className="text-display-xs font-semibold  md:text-display-sm">No long-term contracts. No catches. Simple.</h4>
-                    <p className="mt-2 text-md  md:mt-4 md:text-xl">Start your 30-day free trial. Cancel anytime.</p>
+                    {/* <p className="mt-2 text-md  md:mt-4 md:text-xl">Start your 30-day free trial. Cancel anytime.</p> */}
                     <div className="mt-8 flex flex-col-reverse gap-3 self-stretch md:mt-12 md:flex-row md:self-center">
                         <Button color="primary" size="xl" iconLeading={PlayCircle} className="shadow-xs! ring-0 bg-black text-white hover:bg-gray-800">
                             View demo
@@ -371,17 +370,19 @@ export const FooterLarge11Brand = () => {
                     <div className="flex flex-col gap-8 md:items-start">
                         <div className="flex w-full flex-col gap-6 md:max-w-xs md:gap-8">
                             <UntitledLogo className="dark-mode" />
-                            <p className="text-md text-black">Design amazing digital experiences that create more happy in the world.</p>
+                            <p className="text-md text-black">We believe you learn Irish by speaking it, our mission is to help you to learn Irish.</p>
                         </div>
                         <nav>
                             <ul className="grid grid-cols-2 gap-x-8 gap-y-3 sm:grid-cols-[repeat(6,max-content)]">
                                 {[
-                                    { label: "Overview", href: "#" },
-                                    { label: "Features", href: "#" },
-                                    { label: "Pricing", href: "#" },
-                                    { label: "Careers", href: "#" },
-                                    { label: "Help", href: "#" },
+                                    { label: "Home", href: "/" },
+                                    { label: "How it works", href: "/#how-it-works" },
+                                    { label: "About", href: "/about" },
+                                    { label: "Word Bank", href: "/category" },
+                                    { label: "Contact", href: "/contact" },
                                     { label: "Privacy", href: "#" },
+                                    { label: "Terms of Service", href: "#" },
+                                    { label: "Cookie Policy", href: "#" },
                                 ].map((item) => (
                                     <li key={item.label}>
                                         <Button
@@ -408,7 +409,8 @@ export const FooterLarge11Brand = () => {
                 </div>
 
                 <div className="mt-12 flex flex-col-reverse justify-between gap-6 border-t border-gray-600 pt-8 md:mt-16 md:flex-row">
-                    <p className="text-md text-black">© 2077 Untitled UI. All rights reserved.</p>
+                    <p className="text-md text-black">© 2026 HeyRua. All rights reserved.</p>
+
                     <ul className="flex gap-6">
                         {footerSocials.map(({ label, icon: Icon, href }) => (
                             <li key={label}>
@@ -424,6 +426,8 @@ export const FooterLarge11Brand = () => {
                         ))}
                     </ul>
                 </div>
+               
+                <p className="text-md text-black mt-3">© Beim Digital Limited</p>
             </div>
         </footer>
     );
@@ -472,7 +476,7 @@ const FeaturesAlternatingLayout03 = () => {
             <div className="mx-auto flex w-full max-w-container flex-col gap-12 px-4 sm:gap-16 md:gap-20 md:px-8 lg:gap-24">
                 <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
                     <div className="max-w-xl flex-1 self-center">
-                        <FeaturedIcon icon={ChartBreakoutSquare} className="text-[#FF8D28]" color="brand" size="lg" theme="light" />
+                        {/* <FeaturedIcon icon={ChartBreakoutSquare} className="text-[#FF8D28]" color="brand" size="lg" theme="light" /> */}
 
                         <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Learn by chatting</h4>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
@@ -498,29 +502,36 @@ const FeaturesAlternatingLayout03 = () => {
 
                     <div className="relative -ml-4 w-screen flex-1 bg-tertiary px-4 py-6 md:ml-0 md:min-h-128 md:w-full md:overflow-hidden md:p-0 lg:overflow-visible">
                         <div className="top-0 left-0 bg-tertiary md:absolute md:h-full md:w-screen lg:overflow-hidden">
-                            {/* Light mode image (hidden in dark mode) */}
-                            <img
+                            <IPhoneMockup
+                                image="https://cdn.feedbucket.app/attachments/2026-03-25/0wBpPK6qVEdOr9QY81jDOgOG8gUk7JLEpkOnkTjjhm8l4pED.PNG"
+                                imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/0wBpPK6qVEdOr9QY81jDOgOG8gUk7JLEpkOnkTjjhm8l4pED.PNG"
+                                className="absolute top-28 left-12 w-full  object-contain object-left-top  max-md:hidden md:h-[120%] md:w-auto md:max-w-3xl dark:hidden" />
+                            <IPhoneMockup
+                                image="https://cdn.feedbucket.app/attachments/2026-03-25/qY70FNB651nOz7jRjsZD1JOGkmuXySFUGJTDYPYRCtSbD8OM.PNG"
+                                imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/qY70FNB651nOz7jRjsZD1JOGkmuXySFUGJTDYPYRCtSbD8OM.PNG"
+                                className="absolute top-12 left-70 mx-auto w-71 drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
+                            />
+                            {/* <img
                                 alt="Dashboard mockup showing application interface"
-                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp"
+                                src="https://cdn.feedbucket.app/attachments/2026-03-25/qY70FNB651nOz7jRjsZD1JOGkmuXySFUGJTDYPYRCtSbD8OM.PNG"
                                 className="top-12 left-12 w-full rounded object-contain object-left-top ring-4 ring-screen-mockup-border md:absolute md:h-[120%] md:w-auto md:max-w-5xl md:rounded-[10px] lg:max-w-3xl dark:hidden"
                             />
-                            {/* Dark mode image (hidden in light mode) */}
                             <img
                                 alt="Dashboard mockup showing application interface"
-                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp"
+                                src="https://cdn.feedbucket.app/attachments/2026-03-25/qY70FNB651nOz7jRjsZD1JOGkmuXySFUGJTDYPYRCtSbD8OM.PNG"
                                 className="top-12 left-12 w-full rounded object-contain object-left-top ring-4 ring-screen-mockup-border not-dark:hidden md:absolute md:h-[120%] md:w-auto md:max-w-5xl md:rounded-[10px] lg:max-w-3xl"
-                            />
+                            /> */}
                         </div>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
                     <div className="max-w-xl flex-1 self-center lg:order-last">
-                        <FeaturedIcon icon={ZapFast} className="text-[#FF8D28]" color="brand" size="lg" theme="light" />
+                        {/* <FeaturedIcon icon={ZapFast} className="text-[#FF8D28]" color="brand" size="lg" theme="light" /> */}
 
                         <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Flashcards for everyday phrases</h4>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
-                            An all-in-one customer service platform that helps you balance everything your customers need to be happy.
+                            Flashcards built around real everyday situations so you learn Irish you’ll actually use.
                         </p>
                         <ul className="mt-8 flex flex-col gap-4 pl-2 md:gap-5 md:pl-4">
                             {[
@@ -537,13 +548,13 @@ const FeaturesAlternatingLayout03 = () => {
                         <div className="top-0 right-0 h-full bg-tertiary md:absolute md:w-screen lg:overflow-hidden">
 
                             <IPhoneMockup
-                                image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-                                imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                                image="https://cdn.feedbucket.app/attachments/2026-03-25/TczBC9C948o5Z5jo5pjMXO23Ozgd2T1IXYJkcPwFL1Q0jb9z.PNG"
+                                imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/TczBC9C948o5Z5jo5pjMXO23Ozgd2T1IXYJkcPwFL1Q0jb9z.PNG"
                                 className="absolute top-28 right-1/2 hidden w-full translate-x-[30%] md:block md:w-78.5 md:max-w-none lg:right-62 lg:translate-x-0"
                             />
                             <IPhoneMockup
-                                image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-                                imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                                image="https://cdn.feedbucket.app/attachments/2026-03-25/SaFeM6xXFwTHugguEYfT0wRH0OqDhHKSIN4T2qGabGZv6IsN.PNG"
+                                imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/SaFeM6xXFwTHugguEYfT0wRH0OqDhHKSIN4T2qGabGZv6IsN.PNG"
                                 className="top-12 right-1/2 mx-auto w-71 drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
                             />
                         </div>
@@ -552,7 +563,7 @@ const FeaturesAlternatingLayout03 = () => {
 
                 <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
                     <div className="max-w-xl flex-1 self-center">
-                        <FeaturedIcon icon={ChartBreakoutSquare} color="brand" size="lg" theme="light" />
+                        {/* <FeaturedIcon icon={ChartBreakoutSquare} color="brand" size="lg" theme="light" /> */}
 
                         <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Track your progress </h4>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
@@ -573,24 +584,29 @@ const FeaturesAlternatingLayout03 = () => {
                     <div className="relative -ml-4 h-90 w-screen overflow-hidden bg-tertiary px-4 pt-6 md:ml-0 md:min-h-128 md:w-full md:flex-1 md:overflow-hidden md:p-0 md:px-12 lg:overflow-visible">
                         <div className="top-0 left-0 bg-tertiary md:absolute md:h-full md:w-screen lg:overflow-hidden">
                             {/* Light mode image (hidden in dark mode) */}
-                            <img
+                            {/* <img
                                 alt="Dashboard mockup showing application interface"
-                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp"
+                                src="https://cdn.feedbucket.app/attachments/2026-03-25/LCz6v50xDZyWukdqh3SOJ3bXEWERN46M4zEbiDkJ79s4ubFD.png"
                                 className="absolute top-12 left-50 w-full rounded object-contain object-left-top ring-4 ring-screen-mockup-border max-md:hidden md:h-[120%] md:w-auto md:max-w-3xl md:rounded-[10px] dark:hidden"
-                            />
+                            /> */}
                             {/* Dark mode image (hidden in light mode) */}
-                            <img
+                            {/* <img
                                 alt="Dashboard mockup showing application interface"
-                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp"
+                                src="https://cdn.feedbucket.app/attachments/2026-03-25/LCz6v50xDZyWukdqh3SOJ3bXEWERN46M4zEbiDkJ79s4ubFD.png"
                                 className="absolute top-12 left-50 w-full rounded object-contain object-left-top ring-4 ring-screen-mockup-border not-dark:hidden max-md:hidden md:h-[120%] md:w-auto md:max-w-3xl md:rounded-[10px]"
-                            />
+                            /> */}
 
 
 
                             <IPhoneMockup
-                                image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
+                                image="https://cdn.feedbucket.app/attachments/2026-03-25/SXSkWZ7gpo4EEBbxGijWSwJoFiRA81lNNMuESvJRjOWkHJC2.png"
                                 imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
                                 className="top-28 left-12 mx-auto w-71 object-contain shadow-2xl drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none"
+                            />
+                            <IPhoneMockup
+                                image="https://cdn.feedbucket.app/attachments/2026-03-25/LCz6v50xDZyWukdqh3SOJ3bXEWERN46M4zEbiDkJ79s4ubFD.png"
+                                imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                                className="top-12 left-70 mx-auto w-71 object-contain shadow-2xl drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none"
                             />
                         </div>
                     </div>
@@ -598,7 +614,7 @@ const FeaturesAlternatingLayout03 = () => {
 
                 <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
                     <div className="max-w-xl flex-1 self-center lg:order-last">
-                        <FeaturedIcon icon={ZapFast} color="brand" size="lg" theme="light" />
+                        {/* <FeaturedIcon icon={ZapFast} color="brand" size="lg" theme="light" /> */}
 
                         <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Earn your Gaeilge badges</h4>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
@@ -614,13 +630,13 @@ const FeaturesAlternatingLayout03 = () => {
                         <div className="top-0 right-0 h-full bg-tertiary md:absolute md:w-screen lg:overflow-hidden">
 
                             <IPhoneMockup
-                                image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-                                imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                                image="https://cdn.feedbucket.app/attachments/2026-03-25/JNnxl9fNZe2UtrJecVB95goDSbR6VfIzIbfpSD2ZTRCXbKaA.png"
+                                imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/JNnxl9fNZe2UtrJecVB95goDSbR6VfIzIbfpSD2ZTRCXbKaA.png"
                                 className="absolute top-28 right-1/2 hidden w-full translate-x-[30%] md:block md:w-78.5 md:max-w-none lg:right-62 lg:translate-x-0"
                             />
                             <IPhoneMockup
-                                image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-                                imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                                image="https://cdn.feedbucket.app/attachments/2026-03-25/ruYkcPqJKIKmpvARq52AW6eX9PHdgHsgDiTmprQyCqU3hOcR.png"
+                                imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/ruYkcPqJKIKmpvARq52AW6eX9PHdgHsgDiTmprQyCqU3hOcR.png"
                                 className="top-12 right-1/2 mx-auto w-71 drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
                             />
                         </div>
@@ -629,7 +645,7 @@ const FeaturesAlternatingLayout03 = () => {
 
                 <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
                     <div className="max-w-xl flex-1 self-center">
-                        <FeaturedIcon icon={ChartBreakoutSquare} color="brand" size="lg" theme="light" />
+                        {/* <FeaturedIcon icon={ChartBreakoutSquare} color="brand" size="lg" theme="light" /> */}
 
                         <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Learn With Friends (Leaderboards)</h4>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
@@ -650,22 +666,22 @@ const FeaturesAlternatingLayout03 = () => {
                     <div className="relative -ml-4 h-90 w-screen overflow-hidden bg-tertiary px-4 pt-6 md:ml-0 md:min-h-128 md:w-full md:flex-1 md:overflow-hidden md:p-0 md:px-12 lg:overflow-visible">
                         <div className="top-0 left-0 bg-tertiary md:absolute md:h-full md:w-screen lg:overflow-hidden">
                             {/* Light mode image (hidden in dark mode) */}
-                            <img
+                            {/* <img
                                 alt="Dashboard mockup showing application interface"
-                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp"
+                                src="https://cdn.feedbucket.app/attachments/2026-03-25/t9qbyt2mAhvxYKQY5LEabuJREExvdWWml9CVheHybGA5fBfZ.png"
                                 className="absolute top-12 left-50 w-full rounded object-contain object-left-top ring-4 ring-screen-mockup-border max-md:hidden md:h-[120%] md:w-auto md:max-w-3xl md:rounded-[10px] dark:hidden"
-                            />
+                            /> */}
                             {/* Dark mode image (hidden in light mode) */}
-                            <img
+                            {/* <img
                                 alt="Dashboard mockup showing application interface"
                                 src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp"
                                 className="absolute top-12 left-50 w-full rounded object-contain object-left-top ring-4 ring-screen-mockup-border not-dark:hidden max-md:hidden md:h-[120%] md:w-auto md:max-w-3xl md:rounded-[10px]"
-                            />
+                            /> */}
 
 
                             <IPhoneMockup
-                                image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-                                imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                                image="https://cdn.feedbucket.app/attachments/2026-03-25/t9qbyt2mAhvxYKQY5LEabuJREExvdWWml9CVheHybGA5fBfZ.png"
+                                imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/t9qbyt2mAhvxYKQY5LEabuJREExvdWWml9CVheHybGA5fBfZ.png"
                                 className="top-28 left-12 mx-auto w-71 object-contain shadow-2xl drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none"
                             />
                         </div>
@@ -744,7 +760,7 @@ const FeaturesTabsMockup09 = () => {
 const FeaturesLargeScreenMockup02 = () => {
     return (
         <section className="bg-primary pb-16 md:pb-0">
-            <div className="bg-secondary pt-16 pb-28 md:pt-24 md:pb-40">
+            {/* <div className="bg-secondary pt-16 pb-28 md:pt-24 md:pb-40">
                 <div className="mx-auto w-full max-w-container px-4 md:px-8">
                     <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
                         <span className="text-sm font-semibold text-brand-secondary md:text-md">Features</span>
@@ -755,25 +771,15 @@ const FeaturesLargeScreenMockup02 = () => {
                             startups.
                         </p>
                     </div>
+                    
                 </div>
-            </div>
+            </div> */}
 
             <div className="mx-auto -mt-17 w-full max-w-container px-4 pt-1 md:-mt-26 md:overflow-hidden md:px-8 md:pt-2">
                 <div className="flex flex-col md:items-start">
-                    <div className="flex h-full w-full items-center justify-center md:max-h-105 md:w-full md:items-start lg:max-h-140">
+                    {/* <div className="flex h-full w-full items-center justify-center md:max-h-105 md:w-full md:items-start lg:max-h-140">
                         {/* Light mode image (hidden in dark mode) */}
-                        <img
-                            alt="Dashboard mockup showing application interface"
-                            src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp"
-                            className="size-full rounded object-cover ring-4 ring-screen-mockup-border md:rounded-xl md:ring-8 dark:hidden"
-                        />
-                        {/* Dark mode image (hidden in light mode) */}
-                        <img
-                            alt="Dashboard mockup showing application interface"
-                            src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp"
-                            className="size-full rounded object-cover ring-4 ring-screen-mockup-border not-dark:hidden md:rounded-xl md:ring-8"
-                        />
-                    </div>
+
                 </div>
             </div>
         </section>
@@ -788,14 +794,14 @@ const TestimonialSimpleCentered02 = () => {
                 <figure className="flex w-full shrink-0 snap-start flex-col gap-8 text-center">
 
                     <blockquote className="text-display-sm font-medium text-primary md:text-display-lg">
-                        “This feels completely different to school Irish. It actually makes sense.”
+                        Finally an app that actually got me speaking Irish instead of just tapping buttons
                     </blockquote>
                     <figcaption className="flex justify-center">
                         <div className="flex flex-col items-center gap-4">
-                            <Avatar src="https://www.untitledui.com/images/avatars/amelie-laurent?fm=webp&q=80" alt="Amelie Laurent" size="2xl" />
+                            {/* <Avatar src="https://www.untitledui.com/images/avatars/amelie-laurent?fm=webp&q=80" alt="Amelie Laurent" size="2xl" /> */}
                             <div className="flex flex-col gap-1">
-                                <p className="text-lg font-semibold text-primary">Amélie Laurent</p>
-                                <cite className="text-md text-tertiary not-italic">Finance Manager, Sisyphus</cite>
+                                <p className="text-lg font-semibold text-primary">Jayne M.</p>
+                                {/* <cite className="text-md text-tertiary not-italic">Finance Manager, Sisyphus</cite> */}
                             </div>
                         </div>
                     </figcaption>
@@ -807,12 +813,14 @@ const TestimonialSimpleCentered02 = () => {
 
 
 const faqsExtended = [
-    { question: "Is there a free trial available?", answer: "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible." },
-    { question: "Can I change my plan later?", answer: "" },
-    { question: "What is your cancellation policy?", answer: "" },
-    { question: "Can other info be added to an invoice?", answer: "" },
-    { question: "How does billing work?", answer: "" },
-    { question: "How do I change my account email?", answer: "" },
+    { question: "Is there a free trial available?", answer: "Yes. You can try HeyRua before committing and see if it’s right for you." },
+    { question: "Do I need any Irish to start?", answer: "No. You can start from zero — we guide you through exactly what to say from day one." },
+    { question: "How is this different from other apps?", answer: "Most apps focus on games and memorisation. HeyRua focuses on actually speaking Irish in real-life situations." },
+    { question: "Will this help me with pronunciation?", answer: "Yes. You’ll practise real phrases and get feedback so you can sound natural and confident." },
+    { question: "How much time do I need each day?", answer: "Just 5 minutes a day is enough to build consistency and start seeing progress." },
+    { question: "Do you support all Irish dialects?", answer: "Not yet. We’re currently working on this — it requires hundreds of hours of audio recordings which we’re now gathering." },
+    { question: "What kind of Irish will I learn?", answer: "Practical, everyday Irish — the kind you’d actually use in conversations, not textbook phrases." },
+
 ];
 
 const FAQAccordion01 = () => {
@@ -824,7 +832,7 @@ const FAQAccordion01 = () => {
     };
 
     return (
-        <section className="bg-primary pb-16 md:pb-24">
+        <section className="bg-primary pb-16 md:pb-24 pt-[100px]">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
                     <h4 className="text-display-sm font-semibold text-primary md:text-display-md">Frequently asked questions</h4>
@@ -896,8 +904,10 @@ const CTAIPhoneMockup01 = () => {
             <div className="relative mx-auto grid w-full max-w-container grid-cols-1 gap-16 px-4 md:px-8 lg:grid-cols-2 lg:items-center">
                 <div className="z-20 flex max-w-3xl flex-col items-start">
                     <h4 className="text-display-sm font-semibold text-primary md:text-display-md lg:text-display-lg">
-                        Start Your 7-Day Free Trial
+                        Start Your <br /> 7-Day Free Trial
                     </h4>
+
+
                     <p className="mt-4 text-lg text-tertiary md:mt-6 md:text-xl">Built by Irish teachers. Designed for real progress.</p>
                     <div className="mt-8 flex w-full gap-3 md:mt-12">
                         <AppStoreButton size="lg" />
@@ -917,8 +927,8 @@ const CTAIPhoneMockup01 = () => {
                     </svg>
 
                     <IPhoneMockup
-                        image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-                        imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                        image="https://cdn.feedbucket.app/attachments/2026-03-25/jmeFbBWAajCOdFq4OEQgauQn1Yz74cHfsvt4lPxaPvxoGtW2.PNG"
+                        imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/jmeFbBWAajCOdFq4OEQgauQn1Yz74cHfsvt4lPxaPvxoGtW2.PNG"
                         className="absolute top-0 right-1/2 w-full max-w-71 translate-x-1/2 drop-shadow-iphone-mockup md:max-w-78.5"
                     />
                 </div>

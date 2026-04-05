@@ -35,12 +35,9 @@ const headerNavItems: HeaderNavItem[] = [
 ];
 
 const footerNavItems = [
-    { label: "Overview", href: "/" },
-    { label: "Features", href: "/features" },
-    { label: "Pricing", href: "/pricing" },
-    { label: "Careers", href: "/careers" },
-    { label: "Help", href: "/help" },
-    { label: "Privacy", href: "/privacy" },
+    { label: "Privacy", href: "#" },
+    { label: "Terms of Service", href: "#" },
+    { label: "Cookie Policy", href: "#" },
 
 ];
 
@@ -152,7 +149,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
 
                         {/* Desktop navigation */}
                         <nav className="max-md:hidden">
-                            <ul className="flex items-center gap-0.5">
+                            <ul className="flex items-center gap-5">
                                 {items.map((navItem) => (
                                     <li key={navItem.label}>
                                         {navItem.menu ? (
@@ -212,7 +209,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                         {showCTA && (
                             <>
                                 <SearchLg
-                                    className="size-8 cursor-pointer text-fg-quaternary hover:bg-primary_hover hover:text-fg-quaternary_hover p-2"
+                                    className="size-10 cursor-pointer text-fg-quaternary hover:bg-primary_hover hover:text-fg-quaternary_hover p-2 mr-2"
                                     onClick={() => setSearchOpen(true)}
                                 />
                                 <Button
