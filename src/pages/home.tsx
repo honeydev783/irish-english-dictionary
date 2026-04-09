@@ -361,7 +361,7 @@ const footerSocials = [
 
 export const FooterLarge11Brand = () => {
     return (
-        <footer className="bg-white py-12 md:pt-16 text-black">
+        <footer className="bg-white  text-black">
             <div className="mx-auto max-w-container px-4 md:px-8">
                 {/* <div className="flex flex-col items-center  border-gray-600 pb-8 text-center md:pb-16">
                     <h4 className="text-display-xs font-semibold  md:text-display-sm">No long-term contracts. No catches. Simple.</h4>

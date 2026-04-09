@@ -49,7 +49,7 @@ const BreadcrumbWithShare = () => {
                     <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
 
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
-                        <span>&gt;</span>
+                        {/* <span>&gt;</span> */}
                         <span onClick={() => navigate(`/category`)}
                             className="
                                 px-2 py-1

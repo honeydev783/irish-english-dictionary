@@ -53,7 +53,7 @@ const BreadcrumbWithShare = ({ category }: BreadcrumbWithShareProps) => {
                     {/* Breadcrumbs */}
                     <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
-                        <span>&gt;</span>
+                        {/* <span>&gt;</span> */}
                         <span onClick={() => navigate(`/category`)}
                             className="
                                 px-2 py-1
@@ -64,7 +64,7 @@ const BreadcrumbWithShare = ({ category }: BreadcrumbWithShareProps) => {
                                 hover:text-[#344054]
                             "
                         >Nouns</span>
-                        <span>&gt;</span>
+                        {/* <span>&gt;</span> */}
                         <span onClick={() => navigate(`/list?category=${category}`)}
                             className="
                                 px-2 py-1
@@ -302,7 +302,7 @@ const ListSection = ({ category }: ListSectionProps) => {
                         <div className="mt-8 flex flex-col items-start w-full">
 
                             {/* Paragraph */}
-                            <p className="text-[16px] text-[#0055FF]">
+                            <p className="text-[16px] text-black">
                                 Learn Irish, a little every week
                             </p>
 

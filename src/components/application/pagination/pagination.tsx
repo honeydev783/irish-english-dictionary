@@ -194,7 +194,7 @@ export const PaginationCardDefault = ({ rounded, page = 1, total = 10, ...props 
                     <Button iconLeading={ArrowLeft} color="secondary" size="sm">
                         {isDesktop ? "Previous" : undefined}
                     </Button>
-                </Pagination.PrevTrigger>
+                </Pagination.PrevTrigger>#FF8D28
             </div>
 
             <Pagination.Context>

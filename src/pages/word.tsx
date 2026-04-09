@@ -16,6 +16,7 @@ import ReportModal from "@/components/ReportModal";
 import { Helmet } from "react-helmet";
 import { FooterLarge11Brand } from "./home";
 import { request } from "http";
+import { FloatingSidebar } from "@/components/floating-sidebar";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -81,7 +82,7 @@ const BreadcrumbWithShare = ({ normalized_ga, category, word_ga }: BreadcrumbWit
                     {/* Breadcrumbs */}
                     <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
-                        <span>&gt;</span>
+                        
                         <span onClick={() => navigate(`/category`)}
                             className="
                                 px-2 py-1
@@ -91,7 +92,7 @@ const BreadcrumbWithShare = ({ normalized_ga, category, word_ga }: BreadcrumbWit
                                 hover:bg-[#F2F4F7]
                                 hover:text-[#344054]
                             ">Nouns</span>
-                        <span>&gt;</span>
+                        
                         <span
                             onClick={() => navigate(`/list?category=${category}`)}
                             className="
@@ -105,7 +106,7 @@ const BreadcrumbWithShare = ({ normalized_ga, category, word_ga }: BreadcrumbWit
                         >
                             {category}
                         </span>
-                        <span>&gt;</span>
+                        {/* <span>&gt;</span> */}
                         <span className="rounded-md bg-[#FAFAFA] px-2 py-1 text-[#414651]">
                             {word_ga}
                         </span>
@@ -776,7 +777,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                         </div>
                     </div>
 
-                    <div className="w-full max-w-[320px] mx-auto text-sm text-[#475467] font-inter font-semibold sticky top-50 self-start mt-8">
+                    <FloatingSidebar className="w-full max-w-[320px] mx-auto rounded-[12px] bg-white px-4 py-6 shadow-lg text-sm text-[#475467] font-inter font-semibold self-start mt-8">
 
                         {/* Top Divider */}
                         <SectionDivider className="bg-[#E9EAEB] w-full" />
@@ -785,7 +786,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                         <div className="mt-8 flex flex-col items-start w-full">
 
                             {/* Paragraph */}
-                            <p className="text-[16px] text-[#0055FF]">
+                            <p className="text-[16px] text-black">
                                 Learn Irish, a little every week
                             </p>
 
@@ -853,7 +854,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                                 Related Words
                             </button>
                         </div>
-                    </div>
+                    </FloatingSidebar>
 
                 </div>
             </section>
@@ -863,9 +864,9 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
 
 export const CTAIPhoneMockup01 = () => {
     return (
-        <section className="overflow-hidden bg-primary md:pb-24 mt-8">
-            <div className="relative mx-auto grid w-full max-w-container grid-cols-1 gap-16 px-4 md:px-8 lg:grid-cols-2 lg:items-center">
-                <div className="z-20 flex max-w-3xl flex-col items-start">
+        <section className="relative z-0 overflow-hidden bg-primary py-8 md:py-12">
+            <div className="relative z-0 mx-auto grid w-full max-w-container grid-cols-1 gap-10 px-4 md:px-8 lg:grid-cols-2 lg:items-center">
+                <div className="relative z-10 flex max-w-3xl flex-col items-start">
                     <h4 className="font-inter font-semibold text-5xl leading-[60px] tracking-[-0.02em] text-[#181D27]">
                         Learn Irish, <br />by actually speaking it.
                     </h4>
@@ -878,11 +879,11 @@ export const CTAIPhoneMockup01 = () => {
                     </div>
                 </div>
 
-                <div className="relative min-h-90 md:min-h-100 md:w-full">
-                    <div className="max-lg:hidden lg:h-200">
+                <div className="relative z-0  md:min-h-90 md:w-full">
+                    <div className="relative z-0 max-lg:hidden ">
                             <video
                                 src="/animations/RuaSliotar_MP4.mp4" // path to your video in the public folder
-                                className="size-full"
+                                className="relative z-0 size-full"
                                 alt="Fleur Cook Animation"
                                 autoPlay
                                 loop

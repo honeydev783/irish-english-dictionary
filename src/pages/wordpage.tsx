@@ -15,8 +15,9 @@ import { TableHeader } from "react-aria-components";
 import { Helmet } from "react-helmet";
 import { FooterLarge11Brand } from "./home";
 import ReportModal from "@/components/ReportModal";
-import { removeFadas } from "./word";
+import { removeFadas, CTAIPhoneMockup01 } from "./word";
 import { PaginationPageMinimalCenter } from "@/components/application/pagination/pagination";
+import { FloatingSidebar } from "@/components/floating-sidebar";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -83,7 +84,7 @@ const BreadcrumbWithShare = ({ normalized_ga, category, type, word_ga }: Breadcr
                     {/* Breadcrumbs */}
                     <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
-                        <span>&gt;</span>
+                        {/* <span>&gt;</span> */}
                         {
                             type == "nouns" ? (
                                 <span onClick={() => navigate(`/category`)}
@@ -100,7 +101,7 @@ const BreadcrumbWithShare = ({ normalized_ga, category, type, word_ga }: Breadcr
                             )
                         }
 
-                        <span>&gt;</span>
+                        {/* <span>&gt;</span> */}
                         {category && <span
                             onClick={() => navigate(`/list?category=${category}`)}
                             className="
@@ -114,7 +115,7 @@ const BreadcrumbWithShare = ({ normalized_ga, category, type, word_ga }: Breadcr
                         >
                             {category}
                         </span>}
-                        {category && <span>&gt;</span>}
+                        {/* {category && <span>&gt;</span>} */}
                         <span className="rounded-md bg-[#FAFAFA] px-2 py-1 text-[#414651]">
                             {word_ga}
                         </span>
@@ -977,7 +978,8 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
                         </div>
                     </div>
 
-                    <div className="w-full max-w-[320px] mx-auto text-sm text-[#475467] font-inter font-semibold sticky top-50 self-start">
+                    <FloatingSidebar className="w-full max-w-[320px] mx-auto rounded-[12px] bg-white px-4 py-6 shadow-lg text-sm text-[#475467] font-inter font-semibold self-start mt-8">
+
 
                         {/* Top Divider */}
                         <SectionDivider className="bg-[#E9EAEB] w-full" />
@@ -986,7 +988,7 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
                         <div className="mt-8 flex flex-col items-start w-full">
 
                             {/* Paragraph */}
-                            <p className="text-[16px] text-[#0055FF]">
+                            <p className="text-[16px] text-black">
                                 Learn Irish, a little every week
                             </p>
 
@@ -1054,52 +1056,52 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
                                 Related Words
                             </button>
                         </div>
-                    </div>
+                </FloatingSidebar>
 
-                </div>
-            </section>
         </div>
+            </section >
+        </div >
     );
 };
 
-export const CTAIPhoneMockup01 = () => {
-    return (
-        <section className="overflow-hidden bg-primary md:pb-24 mt-8">
-            <div className="relative mx-auto grid w-full max-w-container grid-cols-1 gap-16 px-4 md:px-8 lg:grid-cols-2 lg:items-center">
-                <div className="z-20 flex max-w-3xl flex-col items-start">
-                    <h2 className="font-inter font-semibold text-5xl leading-[60px] tracking-[-0.02em] text-[#181D27]">
-                        Learn Irish by actually speaking it
-                    </h2>
-                    <p className="mt-4 font-inter font-normal font-700 text-[20px] leading-[30px] tracking-normal text-[#535862]">Learn everyday Irish words through guided <br /> conversation</p>
-                    <p className="mt-4 font-inter font-bold font-700 text-[20px] leading-[30px] tracking-normal text-[#535862]">1-week free trial. Cancel anytime.</p>
+// export const CTAIPhoneMockup01 = () => {
+//     return (
+//         <section className="overflow-hidden bg-primary md:pb-24 mt-8">
+//             <div className="relative mx-auto grid w-full max-w-container grid-cols-1 gap-16 px-4 md:px-8 lg:grid-cols-2 lg:items-center">
+//                 <div className="z-20 flex max-w-3xl flex-col items-start">
+//                     <h2 className="font-inter font-semibold text-5xl leading-[60px] tracking-[-0.02em] text-[#181D27]">
+//                         Learn Irish by actually speaking it
+//                     </h2>
+//                     <p className="mt-4 font-inter font-normal font-700 text-[20px] leading-[30px] tracking-normal text-[#535862]">Learn everyday Irish words through guided <br /> conversation</p>
+//                     <p className="mt-4 font-inter font-bold font-700 text-[20px] leading-[30px] tracking-normal text-[#535862]">1-week free trial. Cancel anytime.</p>
 
-                    <div className="mt-8 flex w-full gap-3 md:mt-12">
-                        <AppStoreButton size="lg" />
-                        <GooglePlayButton size="lg" />
-                    </div>
-                </div>
+//                     <div className="mt-8 flex w-full gap-3 md:mt-12">
+//                         <AppStoreButton size="lg" />
+//                         <GooglePlayButton size="lg" />
+//                     </div>
+//                 </div>
 
-                <div className="relative min-h-90 md:min-h-100 md:w-full">
-                    <svg className="absolute -bottom-24 left-1/2 -translate-x-1/2" width="532" height="416" viewBox="0 0 532 416" fill="none">
-                        <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M182.034 461.691C74.9901 428.768 1.32278 329.846 0.0121784 217.408C-1.15817 117.003 82.1936 43.2414 176.777 10.7273C260.07 -17.9056 346.327 12.9156 406.143 77.7959C484.913 163.236 571.343 274.645 512.702 375.097C449.003 484.212 302.448 498.727 182.034 461.691Z"
-                            fill="currentColor"
-                            className="text-bg-secondary"
-                        />
-                    </svg>
+//                 <div className="relative min-h-90 md:min-h-100 md:w-full">
+//                     <svg className="absolute -bottom-24 left-1/2 -translate-x-1/2" width="532" height="416" viewBox="0 0 532 416" fill="none">
+//                         <path
+//                             fillRule="evenodd"
+//                             clipRule="evenodd"
+//                             d="M182.034 461.691C74.9901 428.768 1.32278 329.846 0.0121784 217.408C-1.15817 117.003 82.1936 43.2414 176.777 10.7273C260.07 -17.9056 346.327 12.9156 406.143 77.7959C484.913 163.236 571.343 274.645 512.702 375.097C449.003 484.212 302.448 498.727 182.034 461.691Z"
+//                             fill="currentColor"
+//                             className="text-bg-secondary"
+//                         />
+//                     </svg>
 
-                    <IPhoneMockup
-                        image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-                        imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
-                        className="absolute top-0 right-1/2 w-full max-w-71 translate-x-1/2 drop-shadow-iphone-mockup md:max-w-78.5"
-                    />
-                </div>
-            </div>
-        </section>
-    );
-};
+//                     <IPhoneMockup
+//                         image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
+//                         imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+//                         className="absolute top-0 right-1/2 w-full max-w-71 translate-x-1/2 drop-shadow-iphone-mockup md:max-w-78.5"
+//                     />
+//                 </div>
+//             </div>
+//         </section>
+//     );
+// };
 
 const WordPageScreen = () => {
 
