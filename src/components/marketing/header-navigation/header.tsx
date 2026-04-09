@@ -225,7 +225,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                         {/* Search icon (desktop + mobile) */}
                         {!showCTA && (
                             <SearchLg
-                                className="size-8 cursor-pointer text-fg-quaternary hover:bg-primary_hover hover:text-fg-quaternary_hover p-1.5"
+                                className="size-10 cursor-pointer text-fg-quaternary hover:bg-primary_hover hover:text-fg-quaternary_hover p-1.5"
                                 onClick={() => setSearchOpen(true)}
                             />
                         )}

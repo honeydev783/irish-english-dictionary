@@ -13,7 +13,7 @@ import countries, { phoneCodeOptions } from "@/utils/countries";
 import { FooterLarge11Brand } from "./home";
 
 const ContactFormAndImage01 = () => {
-    const [selectedCountryPhone, setSelectedCountryPhone] = useState("US");
+    const [selectedCountryPhone, setSelectedCountryPhone] = useState("IE");
 
     return (
         <section className="bg-primary py-16 md:pt-16 md:pb-24">
@@ -84,7 +84,15 @@ const ContactFormAndImage01 = () => {
                     </div>
 
                     <div className="max-lg:hidden lg:h-200">
-                        <img src="https://www.untitledui.com/images/portraits/fleur-cook" className="size-full object-cover" alt="Fleur Cook" />
+                        <video
+                            src="/animations/RuaTayoChips_MP4.mp4" // path to your video in the public folder
+                            className="size-full object-cover"
+                            alt="Fleur Cook Animation"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                        />
                     </div>
                 </div>
             </div>

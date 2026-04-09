@@ -78,15 +78,23 @@ const HeroIPhoneMockup01 = () => {
                     </div>
 
                     <div className="relative flex h-90 w-full items-start justify-center lg:h-160 lg:max-w-lg lg:items-center">
-                        <div className="absolute top-24 w-133 lg:top-auto">
+                        {/* <div className="absolute top-24 w-133 lg:top-auto">
                             <BlobPattern />
                         </div>
 
-                        <IPhoneMockup
-                            image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-                            imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
-                            className="h-[579px] w-71 drop-shadow-iphone-mockup md:h-auto md:w-[313px]"
-                        />
+                        ? */}
+
+                        <div className="max-lg:hidden lg:h-200">
+                            <video
+                                src="/animations/RuaSliotar_MP4.mp4" // path to your video in the public folder
+                                className="size-full"
+                                alt="Fleur Cook Animation"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                            />
+                        </div>                                          <a href="">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </a>
                     </div>
                 </div>
             </section>
@@ -119,7 +127,7 @@ const FeatureTextFeaturedIconTopLeft = ({ icon, title, subtitle, footer }: Featu
 );
 
 
-const CTAIPhoneMockup04 = () => {
+export const CTAIPhoneMockup04 = () => {
     return (
         <section className="bg-primary py-16 md:py-24 font-inter">
             <div className="mx-auto max-w-container px-4 md:px-8">
@@ -355,16 +363,16 @@ export const FooterLarge11Brand = () => {
     return (
         <footer className="bg-white py-12 md:pt-16 text-black">
             <div className="mx-auto max-w-container px-4 md:px-8">
-                <div className="flex flex-col items-center  border-gray-600 pb-8 text-center md:pb-16">
+                {/* <div className="flex flex-col items-center  border-gray-600 pb-8 text-center md:pb-16">
                     <h4 className="text-display-xs font-semibold  md:text-display-sm">No long-term contracts. No catches. Simple.</h4>
-                    {/* <p className="mt-2 text-md  md:mt-4 md:text-xl">Start your 30-day free trial. Cancel anytime.</p> */}
+                    <p className="mt-2 text-md  md:mt-4 md:text-xl">Start your 30-day free trial. Cancel anytime.</p>
                     <div className="mt-8 flex flex-col-reverse gap-3 self-stretch md:mt-12 md:flex-row md:self-center">
                         <Button color="primary" size="xl" iconLeading={PlayCircle} className="shadow-xs! ring-0 bg-black text-white hover:bg-gray-800">
                             View demo
                         </Button>
                         <Button size="xl" className="bg-[#FF8D28]  hover:bg-[#E6761F] text-white  hover:text-white">Get started</Button>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="mt-12 flex flex-col justify-between gap-x-8 gap-y-12 md:mt-16 lg:flex-row">
                     <div className="flex flex-col gap-8 md:items-start">
@@ -426,7 +434,7 @@ export const FooterLarge11Brand = () => {
                         ))}
                     </ul>
                 </div>
-               
+
                 <p className="text-md text-black mt-3">© Beim Digital Limited</p>
             </div>
         </footer>
@@ -687,6 +695,39 @@ const FeaturesAlternatingLayout03 = () => {
                         </div>
                     </div>
                 </div>
+
+                <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
+                    <div className="max-w-xl flex-1 self-center lg:order-last">
+                        {/* <FeaturedIcon icon={ZapFast} color="brand" size="lg" theme="light" /> */}
+
+                        <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Pronunciation Coach </h4>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            Speak with Confidence                       </p>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            Practice real phrases, get instant feedback, and build natural pronunciation as you go.                     </p>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            Real-life phrases <br/>
+                            Instant feedback <br/>
+                            Speak with confidence                       </p>
+
+                    </div>
+
+                    <div className="relative -ml-4 h-90 w-screen overflow-hidden bg-tertiary px-4 pt-6 md:ml-0 md:min-h-128 md:w-full md:flex-1 md:overflow-hidden md:p-0 md:px-12 lg:overflow-visible">
+                        <div className="top-0 right-0 h-full bg-tertiary md:absolute md:w-screen lg:overflow-hidden">
+
+                            {/* <IPhoneMockup
+                                image="https://cdn.feedbucket.app/attachments/2026-03-25/JNnxl9fNZe2UtrJecVB95goDSbR6VfIzIbfpSD2ZTRCXbKaA.png"
+                                imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/JNnxl9fNZe2UtrJecVB95goDSbR6VfIzIbfpSD2ZTRCXbKaA.png"
+                                className="absolute top-28 right-1/2 hidden w-full translate-x-[30%] md:block md:w-78.5 md:max-w-none lg:right-62 lg:translate-x-0"
+                            /> */}
+                            <IPhoneMockup
+                                image="https://cdn.feedbucket.app/attachments/2026-03-25/IWx5L1LVjXbD4OeKchO33t4tawd4M3xLEmW0JU1JUwlpvt22.PNG"
+                                imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/IWx5L1LVjXbD4OeKchO33t4tawd4M3xLEmW0JU1JUwlpvt22.PNG"
+                                className="top-12 right-1/2 mx-auto w-71 drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     );
@@ -794,7 +835,7 @@ const TestimonialSimpleCentered02 = () => {
                 <figure className="flex w-full shrink-0 snap-start flex-col gap-8 text-center">
 
                     <blockquote className="text-display-sm font-medium text-primary md:text-display-lg">
-                        Finally an app that actually got me speaking Irish instead of just tapping buttons
+                        "Finally an app that actually got me speaking Irish instead of just tapping buttons"
                     </blockquote>
                     <figcaption className="flex justify-center">
                         <div className="flex flex-col items-center gap-4">

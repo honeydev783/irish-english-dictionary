@@ -11,8 +11,7 @@ import { cx } from "@/utils/cx";
 import { useState } from "react";
 import { AppStoreButton as AppStoreButtonOutline, GooglePlayButton as GooglePlayButtonOutline } from "@/components/base/buttons/app-store-buttons-outline";
 import { IPhoneMockup } from "@/components/shared-assets/iphone-mockup";
-import { FooterLarge11Brand } from "./home";
-
+import { FooterLarge11Brand, CTAIPhoneMockup04 } from "./home";
 
 const HeaderCenteredButtons = () => {
     return (
@@ -128,7 +127,7 @@ const FeaturesAlternatingLayout04 = () => {
                                 "Always give customers a human to chat to",
                                 "Automate customer support and close leads faster",
                             ].map((feat) => (
-                                <CheckItemText key={feat} size="md" iconStyle="contained" color="primary" text={feat}  />
+                                <CheckItemText key={feat} size="md" iconStyle="contained" color="primary" text={feat} />
                             ))}
                         </ul>
                     </div>
@@ -299,10 +298,11 @@ const TeamSectionImageCollage02 = () => {
         <section className="bg-primary py-16 lg:py-24">
             <div className="mx-auto grid max-w-container grid-cols-1 gap-16 overflow-hidden px-4 md:px-8 lg:grid-cols-2 lg:items-center">
                 <div className="flex max-w-3xl flex-col items-start">
-                    <span className="text-sm font-semibold text-brand-secondary md:text-md">Join our team</span>
-                    <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">We're just getting started</h4>
+                    <span className="text-sm font-semibold text-brand-secondary md:text-md">Built by teachers</span>
+                    <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">We’re just getting started</h4>
                     <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
-                        Our philosophy is simple—hire a team of diverse, passionate people and foster a culture that empowers you to do your best work.
+                        Built by people who’ve spent years teaching Irish and seeing what actually works. <br />
+                        Everything in HeyRua is designed to help you speak with confidence.
                     </p>
 
                     <div className="mt-8 flex w-full flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-start">
@@ -518,7 +518,7 @@ const HeaderSpaceBetween = () => {
                     <h1 className="flex-1 text-display-md font-semibold text-primary md:text-display-lg">Our mission is to help you actually speak Irish</h1>
 
                     <p className="w-ful mt-4 text-lg text-tertiary md:mt-6 md:text-xl lg:mt-3 lg:max-w-120">
-                        We believe the only way to truly learn Irish is by speaking it. <br/>
+                        We believe the only way to truly learn Irish is by speaking it. <br />
                         HeyRua is built to get you talking from day one, no fluff, no games, just real conversations you’ll actually use.
                     </p>
                 </div>
@@ -559,9 +559,10 @@ const FeaturesTabsMockup09 = () => {
                 <div className="flex w-full flex-col lg:max-w-3xl">
                     <span className="text-sm font-semibold text-brand-secondary md:text-md">Features</span>
 
-                    <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Overflowing with useful features</h4>
+                    <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Everything you need to actually speak Irish
+                    </h4>
                     <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
-                        Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups.
+                        No fluff. No pointless games. Just the tools to help you speak Irish with confidence in real life.
                     </p>
                 </div>
 
@@ -569,17 +570,20 @@ const FeaturesTabsMockup09 = () => {
                     <ul className="flex flex-col">
                         {[
                             {
-                                title: "Share team inboxes",
-                                subtitle: "Whether you have a team of 2 or 200, our shared team inboxes keep everyone on the same page and in the loop.",
+                                title: "We show you exactly what to say.",
+                                subtitle: "Step into real-life situations and learn how conversations actually flow.",
+                                button: "Learn by doing",
                             },
                             {
-                                title: "Deliver instant answers",
-                                subtitle: "An all-in-one customer service platform that helps you balance everything your customers need to be happy.",
+                                title: "Get your Irish sounding right.",
+                                subtitle: "Practice real phrases and get feedback so you can speak clearly and naturally.",
+                                button: "Learn by speaking",
                             },
                             {
-                                title: "Manage your team with reports",
+                                title: "Irish you’ll actually use.",
                                 subtitle:
-                                    "Measure what matters with Untitled's easy-to-use reports. You can filter, export, and drilldown on the data in a couple clicks.",
+                                    "Learn phrases based on everyday situations — not textbook nonsense.",
+                                button: "Learn what matters",
                             },
                         ].map((item, index) => (
                             <li key={item.title} onClick={() => setCurrentTab(index)}>
@@ -589,7 +593,7 @@ const FeaturesTabsMockup09 = () => {
                                     isCurrent={index === currentTab}
                                     footer={
                                         <Button color="link-color" size="lg" href="#" iconTrailing={ArrowRight}>
-                                            Learn more
+                                            {item.button}
                                         </Button>
                                     }
                                 />
@@ -599,13 +603,13 @@ const FeaturesTabsMockup09 = () => {
 
                     <div className="relative flex h-104 w-full justify-center md:h-120 lg:-ml-4 lg:h-140 lg:overflow-y-clip">
                         <IPhoneMockup
-                            image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-                            imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                            image="https://cdn.feedbucket.app/attachments/2026-03-25/0wBpPK6qVEdOr9QY81jDOgOG8gUk7JLEpkOnkTjjhm8l4pED.PNG"
+                            imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/0wBpPK6qVEdOr9QY81jDOgOG8gUk7JLEpkOnkTjjhm8l4pED.PNG"
                             className="absolute top-16 left-1/2 hidden w-78.5 -translate-x-3/4 drop-shadow-iphone-mockup md:block lg:left-0 lg:translate-x-0"
                         />
                         <IPhoneMockup
-                            image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-                            imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+                            image="https://cdn.feedbucket.app/attachments/2026-03-25/qY70FNB651nOz7jRjsZD1JOGkmuXySFUGJTDYPYRCtSbD8OM.PNG"
+                            imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/qY70FNB651nOz7jRjsZD1JOGkmuXySFUGJTDYPYRCtSbD8OM.PNG"
                             className="h-[579px] w-71 drop-shadow-iphone-mockup md:absolute md:top-0 md:right-1/2 md:h-160 md:w-78.5 md:translate-x-2/3 lg:right-0 lg:translate-x-0"
                         />
                     </div>
@@ -615,86 +619,86 @@ const FeaturesTabsMockup09 = () => {
     );
 };
 
-const CTAIPhoneMockup04 = () => {
-    return (
-        <section className="bg-primary py-16 md:py-24">
-            <div className="mx-auto max-w-container px-4 md:px-8">
-                <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl bg-brand-section md:rounded-3xl md:shadow-xl lg:min-h-120 lg:grid-cols-2 lg:items-center">
-                    <div className="flex flex-1 flex-col px-6 pt-10 pb-12 sm:p-12 lg:p-16">
-                        <h4 className="text-display-sm font-semibold text-white xl:text-display-md">Start your free trial</h4>
-                        <p className="mt-4 text-lg text-white md:mt-5 lg:text-xl">Personal performance tracking made easy.</p>
-                        <div className="mt-8 flex w-full gap-3 md:mt-12">
-                            <AppStoreButtonOutline size="lg" className="dark-mode" />
-                            <GooglePlayButtonOutline size="lg" className="dark-mode" />
-                        </div>
-                    </div>
- 
-                    <IPhoneMockup
-                        image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-                        imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
-                        className="top-10 right-16 max-h-70 w-full max-w-67 justify-self-center drop-shadow-iphone-mockup lg:absolute lg:max-h-none lg:max-w-78.5"
-                    />
- 
-                    {/*  Notifications List */}
-                    <ul className="absolute bottom-10 left-1/2 hidden -translate-x-2 flex-col gap-3 lg:flex" aria-hidden="true">
-                        <li className="flex w-full max-w-xs gap-3 rounded-lg bg-alpha-white/90 p-4 backdrop-blur-lg">
-                            <img
-                                alt="Olivia Rhye"
-                                src="https://www.untitledui.com/images/avatars/olivia-rhye?fm=webp&q=80"
-                                className="size-10 rounded-full object-cover outline-1 -outline-offset-1 outline-avatar-contrast-border"
-                            />
-                            <div>
-                                <p className="text-sm text-tertiary">
-                                    <span className="font-medium text-brand-secondary">Olivia Rhye</span> followed you!
-                                </p>
-                                <p className="text-sm text-tertiary">@oliviarhye</p>
-                            </div>
-                        </li>
-                        <li className="flex w-full max-w-xs gap-3 rounded-lg bg-alpha-white/90 p-4 backdrop-blur-lg">
-                            <img
-                                alt="Candice Wu"
-                                src="https://www.untitledui.com/images/avatars/candice-wu?fm=webp&q=80"
-                                className="size-10 rounded-full object-cover outline-1 -outline-offset-1 outline-avatar-contrast-border"
-                            />
-                            <div>
-                                <p className="text-sm text-tertiary">
-                                    <span className="font-medium text-brand-secondary">Candice Wu</span> and 2 other gave you kudos on{" "}
-                                    <span className="font-medium text-brand-secondary">Clubhouse 101</span> post
-                                </p>
-                            </div>
-                        </li>
-                        <li className="flex w-full max-w-xs gap-3 rounded-lg bg-alpha-white/90 p-4 opacity-75 backdrop-blur-lg">
-                            <img
-                                alt="Phoenix Baker"
-                                src="https://www.untitledui.com/images/avatars/phoenix-baker?fm=webp&q=80"
-                                className="size-10 rounded-full object-cover outline-1 -outline-offset-1 outline-avatar-contrast-border"
-                            />
-                            <div>
-                                <p className="text-sm text-tertiary">
-                                    <span className="font-medium text-brand-secondary">Phoenix Baker</span> joined your team{" "}
-                                    <span className="font-medium text-brand-secondary">Melbourne Startups Growth</span>
-                                </p>
-                            </div>
-                        </li>
-                        <li className="flex w-full max-w-xs gap-3 rounded-lg bg-alpha-white/90 p-4 opacity-50 backdrop-blur-lg">
-                            <img
-                                alt="Lana Steiner"
-                                src="https://www.untitledui.com/images/avatars/lana-steiner?fm=webp&q=80"
-                                className="size-10 rounded-full object-cover outline-1 -outline-offset-1 outline-avatar-contrast-border"
-                            />
-                            <div>
-                                <p className="text-sm text-tertiary">
-                                    <span className="font-medium text-brand-secondary">Lana Steiner</span> just launched{" "}
-                                    <span className="font-medium text-brand-secondary">The 10k users challenge</span>
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    );
-};
+// const CTAIPhoneMockup04 = () => {
+//     return (
+//         <section className="bg-primary py-16 md:py-24">
+//             <div className="mx-auto max-w-container px-4 md:px-8">
+//                 <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl bg-brand-section md:rounded-3xl md:shadow-xl lg:min-h-120 lg:grid-cols-2 lg:items-center">
+//                     <div className="flex flex-1 flex-col px-6 pt-10 pb-12 sm:p-12 lg:p-16">
+//                         <h4 className="text-display-sm font-semibold text-white xl:text-display-md">Start your free trial</h4>
+//                         <p className="mt-4 text-lg text-white md:mt-5 lg:text-xl">Personal performance tracking made easy.</p>
+//                         <div className="mt-8 flex w-full gap-3 md:mt-12">
+//                             <AppStoreButtonOutline size="lg" className="dark-mode" />
+//                             <GooglePlayButtonOutline size="lg" className="dark-mode" />
+//                         </div>
+//                     </div>
+
+//                     <IPhoneMockup
+//                         image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
+//                         imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
+//                         className="top-10 right-16 max-h-70 w-full max-w-67 justify-self-center drop-shadow-iphone-mockup lg:absolute lg:max-h-none lg:max-w-78.5"
+//                     />
+
+//                     {/*  Notifications List */}
+//                     <ul className="absolute bottom-10 left-1/2 hidden -translate-x-2 flex-col gap-3 lg:flex" aria-hidden="true">
+//                         <li className="flex w-full max-w-xs gap-3 rounded-lg bg-alpha-white/90 p-4 backdrop-blur-lg">
+//                             <img
+//                                 alt="Olivia Rhye"
+//                                 src="https://www.untitledui.com/images/avatars/olivia-rhye?fm=webp&q=80"
+//                                 className="size-10 rounded-full object-cover outline-1 -outline-offset-1 outline-avatar-contrast-border"
+//                             />
+//                             <div>
+//                                 <p className="text-sm text-tertiary">
+//                                     <span className="font-medium text-brand-secondary">Olivia Rhye</span> followed you!
+//                                 </p>
+//                                 <p className="text-sm text-tertiary">@oliviarhye</p>
+//                             </div>
+//                         </li>
+//                         <li className="flex w-full max-w-xs gap-3 rounded-lg bg-alpha-white/90 p-4 backdrop-blur-lg">
+//                             <img
+//                                 alt="Candice Wu"
+//                                 src="https://www.untitledui.com/images/avatars/candice-wu?fm=webp&q=80"
+//                                 className="size-10 rounded-full object-cover outline-1 -outline-offset-1 outline-avatar-contrast-border"
+//                             />
+//                             <div>
+//                                 <p className="text-sm text-tertiary">
+//                                     <span className="font-medium text-brand-secondary">Candice Wu</span> and 2 other gave you kudos on{" "}
+//                                     <span className="font-medium text-brand-secondary">Clubhouse 101</span> post
+//                                 </p>
+//                             </div>
+//                         </li>
+//                         <li className="flex w-full max-w-xs gap-3 rounded-lg bg-alpha-white/90 p-4 opacity-75 backdrop-blur-lg">
+//                             <img
+//                                 alt="Phoenix Baker"
+//                                 src="https://www.untitledui.com/images/avatars/phoenix-baker?fm=webp&q=80"
+//                                 className="size-10 rounded-full object-cover outline-1 -outline-offset-1 outline-avatar-contrast-border"
+//                             />
+//                             <div>
+//                                 <p className="text-sm text-tertiary">
+//                                     <span className="font-medium text-brand-secondary">Phoenix Baker</span> joined your team{" "}
+//                                     <span className="font-medium text-brand-secondary">Melbourne Startups Growth</span>
+//                                 </p>
+//                             </div>
+//                         </li>
+//                         <li className="flex w-full max-w-xs gap-3 rounded-lg bg-alpha-white/90 p-4 opacity-50 backdrop-blur-lg">
+//                             <img
+//                                 alt="Lana Steiner"
+//                                 src="https://www.untitledui.com/images/avatars/lana-steiner?fm=webp&q=80"
+//                                 className="size-10 rounded-full object-cover outline-1 -outline-offset-1 outline-avatar-contrast-border"
+//                             />
+//                             <div>
+//                                 <p className="text-sm text-tertiary">
+//                                     <span className="font-medium text-brand-secondary">Lana Steiner</span> just launched{" "}
+//                                     <span className="font-medium text-brand-secondary">The 10k users challenge</span>
+//                                 </p>
+//                             </div>
+//                         </li>
+//                     </ul>
+//                 </div>
+//             </div>
+//         </section>
+//     );
+// };
 
 const FeaturesLargeScreenMockup02 = () => {
     return (
@@ -703,7 +707,7 @@ const FeaturesLargeScreenMockup02 = () => {
                 <div className="mx-auto w-full max-w-container px-4 md:px-8">
                     <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
                         <span className="text-sm font-semibold text-brand-secondary md:text-md">Features</span>
- 
+
                         <h4 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Cutting-edge features for advanced analytics</h4>
                         <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
                             Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000
@@ -712,7 +716,7 @@ const FeaturesLargeScreenMockup02 = () => {
                     </div>
                 </div>
             </div>
- 
+
             <div className="mx-auto -mt-17 w-full max-w-container px-4 pt-1 md:-mt-26 md:overflow-hidden md:px-8 md:pt-2">
                 <div className="flex flex-col md:items-start">
                     <div className="flex h-full w-full items-center justify-center md:max-h-105 md:w-full md:items-start lg:max-h-140">
@@ -739,26 +743,29 @@ const CTACardHorizontal = () => {
     return (
         <section className="bg-primary pb-16 md:pb-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
-                <div className="flex flex-col gap-x-8 gap-y-8 rounded-2xl bg-secondary px-6 py-10 lg:flex-row lg:p-16">
+                <div className="flex-1  flex-col gap-x-8 gap-y-8 rounded-2xl bg-secondary px-6 py-10 lg:flex-row lg:p-16 mb-6">
                     <div className="flex max-w-3xl flex-1 flex-col">
                         <h4 className="text-display-sm font-semibold text-primary">
-                            <span className="hidden md:inline">Start your 30-day free trial</span>
+                            <span className="hidden md:inline">7 days free. Speak from day one.</span>
                             <span className="md:hidden">Start your free trial</span>
                         </h4>
-                        <p className="mt-4 text-lg text-tertiary lg:text-xl">Join over 4,000+ startups already growing with Untitled.</p>
+                        <p className="mt-4 text-lg text-tertiary lg:text-xl">Your Irish starts here</p>
                     </div>
-                    <div className="flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-start">
+
+                    <Button color="link-color" size="lg" href="#" iconTrailing={ArrowRight}>
+                        Learn more
+                    </Button>
+                    {/* <div className="flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-start">
                         <Button color="secondary" size="xl">
-                            Learn more
                         </Button>
                         <Button size="xl" className="bg-[#FF8D28] hover:bg-[#E6761F]">Get started</Button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>
     );
 };
- 
+
 
 const AboutScreen = () => {
     return (
@@ -769,16 +776,16 @@ const AboutScreen = () => {
 
             <CTAIPhoneMockup04 />
 
-            <FeaturesAlternatingLayout04 />
+            {/* <FeaturesAlternatingLayout04 /> */}
 
             <FeaturesTabsMockup09 />
 
-            <FeaturesLargeScreenMockup02 />
+            {/* <FeaturesLargeScreenMockup02 /> */}
 
             <TeamSectionImageCollage02 />
 
             <CTACardHorizontal />
-            
+
             {/* <SimpleCentered /> */}
 
             {/* <FooterLarge04 /> */}
