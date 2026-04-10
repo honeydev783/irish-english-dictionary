@@ -8,6 +8,7 @@ interface WordItem {
     title: string
     url: string
     english: string
+    word_ga: string
 }
 
 
@@ -151,7 +152,7 @@ export default function SearchModal({ open, setOpen }: Props) {
 
                                     <Command.Item
                                         key={index}
-                                        value={item.title}
+                                        value={item.word_ga}
                                         onSelect={() => {
 
                                             navigate(item.url)
@@ -161,7 +162,7 @@ export default function SearchModal({ open, setOpen }: Props) {
                                         }}
                                         className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg cursor-pointer data-[selected=true]:bg-gray-100"
                                     >
-                                        {item.title}
+                                        {item.word_ga}
                                     </Command.Item>
 
                                 ))}
