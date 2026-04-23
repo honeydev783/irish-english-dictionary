@@ -29,6 +29,22 @@
     transition-timing-function: inherit;
 }
 
+@layer base {
+    [class*="shadow"],
+    [class*="shadow"]::before,
+    [class*="shadow"]::after {
+        box-shadow: none !important;
+    }
+
+    [class*="drop-shadow"] {
+        filter: none !important;
+    }
+
+    svg [filter] {
+        filter: none !important;
+    }
+}
+
 html,
 body {
     font-family: var(--font-body);

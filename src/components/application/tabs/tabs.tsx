@@ -28,14 +28,14 @@ const getTabStyles = ({ isFocusVisible, isSelected, isHovered }: AriaTabRenderPr
     ),
     "button-border": cx(
         "outline-focus-ring",
-        (isSelected || isHovered) && "bg-primary_alt text-secondary shadow-sm",
+        (isSelected || isHovered) && "bg-primary_alt text-secondary ",
         isFocusVisible && "outline-2 -outline-offset-2",
     ),
     "button-minimal": cx(
         "rounded-lg outline-focus-ring",
         isHovered && "text-secondary",
         isFocusVisible && "outline-2 -outline-offset-2",
-        isSelected && "bg-primary_alt text-secondary shadow-xs ring-1 ring-primary ring-inset",
+        isSelected && "bg-primary_alt text-secondary  ring-1 ring-primary ring-inset",
     ),
     underline: cx(
         "rounded-none border-b-2 border-transparent outline-focus-ring",

@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { HeaderNavigationSimpleDemo, CTAIPhoneMockup01 } from "./word";
-import { Share07, HomeLine } from "@untitledui/icons";
-import { HiLightBulb } from "react-icons/hi2";
+import { useState, useEffect } from "react";
+import { CTAIPhoneMockup01 } from "./word";
+import { Share07 } from "@untitledui/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Header } from "@/components/marketing/header-navigation/header";
 import { FooterLarge11Brand } from "./home";
+import { Command } from "cmdk";
+
+interface WordItem {
+    title: string;
+    url: string;
+    english: string;
+    word_ga: string;
+}
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -46,10 +53,9 @@ const BreadcrumbWithShare = () => {
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
                     {/* Breadcrumbs */}
-                    <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
+                    {/* <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
 
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
-                        {/* <span>&gt;</span> */}
                         <span onClick={() => navigate(`/category`)}
                             className="
                                 px-2 py-1
@@ -61,10 +67,10 @@ const BreadcrumbWithShare = () => {
                             "
                         
                         >Nouns</span>
-                    </div>
+                    </div> */}
 
                     {/* Actions */}
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center ml-auto">
 
                         {/* Share */}
                         <button onClick={handleShare} className="flex items-center justify-center gap-2 rounded-md border border-[#D5D7DA] px-4 py-2 text-sm font-semibold cursor-pointer transition hover:bg-gray-50
@@ -82,64 +88,46 @@ const BreadcrumbWithShare = () => {
 
 const CategorySection = () => {
     const navigate = useNavigate();
-    const [categories, setCategories] = useState([]);
+    const [allWords, setAllWords] = useState<WordItem[]>([]);
+    const [results, setResults] = useState<WordItem[]>([]);
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const response = await fetch(`${API_BASE_URL}/categories`); // adjust base URL if needed
-                const data = await response.json();
+    const [query, setQuery] = useState("");
 
-                // If API returns: ["time", "people", "animals"]
-                setCategories(data.categories);
-                console.log("categories===>", data.categories);
-                setLoading(false);
+    useEffect(() => {
+        const fetchWords = async () => {
+            try {
+                const response = await fetch(`${API_BASE_URL}/words/search`);
+                const data = await response.json();
+                setAllWords(data);
+                setResults(data);
             } catch (error) {
-                console.error("Failed to fetch categories:", error);
+                console.error("Failed to fetch words:", error);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchCategories();
+        fetchWords();
     }, []);
 
-    if (loading) {
-        return (
-            <section className="w-full bg-primary border-b border-[#E9EAEB]">
-                <div className="mx-auto max-w-container px-4 md:px-8 py-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {[...Array(12)].map((_, index) => (
-                            <div
-                                key={index}
-                                className="bg-white border border-[#E9EAEB] rounded-[12px] p-4 animate-pulse"
-                            >
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 bg-gray-200 rounded-lg" />
-                                    <div className="h-4 bg-gray-200 rounded w-24" />
-                                </div>
+    useEffect(() => {
+        let filtered = allWords;
 
-                                <div className="h-3 bg-gray-200 rounded w-full mt-4" />
-                                <div className="h-3 bg-gray-200 rounded w-2/3 mt-2" />
+        if (query.trim() !== "") {
+            filtered = allWords.filter((word) =>
+                word.title.toLowerCase().includes(query.toLowerCase()) ||
+                word.english?.toLowerCase().includes(query.toLowerCase()),
+            );
+        }
 
-                                <div className="h-px bg-[#E9EAEB] my-4" />
-
-                                <div className="flex justify-end">
-                                    <div className="h-8 w-24 bg-gray-200 rounded-md" />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-        );
-    }
+        setResults(filtered);
+    }, [query, allWords]);
 
     return (
         <div>
 
             {/* Title */}
-            <section className="w-full bg-primary border-b border-[#E9EAEB]">
+            {/* <section className="w-full bg-primary border-b border-[#E9EAEB]">
                 <div className="mx-auto max-w-container px-4 md:px-8 py-6">
                     <h1 className="font-inter font-semibold text-2xl md:text-3xl lg:text-[36px] text-[#181D27] leading-snug">
                         <span className="text-[#45341A]">Nouns</span>
@@ -154,53 +142,115 @@ const CategorySection = () => {
                     </p>
 
                 </div>
-            </section>
+            </section> */}
 
             {/* Content */}
-            <section className="w-full bg-primary border-b border-[#E9EAEB]">
+            <section className="w-full bg-primary border-b border-[#E9EAEB] mt-[100px]">
                 <div className="mx-auto max-w-container px-4 md:px-8 py-8">
+                    <div className="mx-auto max-w-3xl">
+                        <div className="mb-5">
+                            <h4 className="font-inter font-semibold text-5xl leading-[60px] tracking-[-0.02em] text-[#181D27] text-center">
+                                Type a word in English or Irish
+                            </h4>
+                            <p className="text-[16px] text-[#535862] font-inter font-normal text-base leading-6 tracking-normal mb-3 text-center mt-4">
+                                Teacher-built work bank to help you find the Irish you need fast
+                            </p>
+                        </div>
 
-                    {/* Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                        {categories.map((category) => (
-                            <div
-                                key={category}
-                                className="bg-white border border-[#E9EAEB] rounded-[12px] p-4 flex flex-col justify-between"
-                            >
-                                {/* Upper Part */}
-                                <div>
-                                    <div className="flex items-center gap-4">
-                                        <img
-                                            src="/images/polyMath.png"
-                                            alt={category}
-                                            className="w-12 h-12 object-cover rounded-lg"
-                                        />
-                                        <div>
-                                            <h3 className="text-[16px] font-semibold text-[#181D27]">
-                                                {category}
-                                            </h3>
-
-                                        </div>
+                        <div className="overflow-hidden rounded-[20px] border border-[#E9EAEB] bg-white ">
+                            <Command className="w-full" shouldFilter={false}>
+                                <div className="flex items-center gap-x-2 border-b border-[#E9EAEB] px-4">
+                                    <div className="pointer-events-none absolute">
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            fill="none"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            aria-hidden="true"
+                                            className="size-5 text-[#717680]"
+                                        >
+                                            <path d="m21 21-3.5-3.5m2.5-6a8.5 8.5 0 1 1-17 0 8.5 8.5 0 0 1 17 0Z"></path>
+                                        </svg>
                                     </div>
-                                    <div>
-                                        <p className="text-[14px] text-[#535862] mt-4">
-                                            A list of nouns related to {category}.
-                                        </p>
-                                    </div>
-                                    {/* Divider */}
-                                    <div className="h-px bg-[#E9EAEB] my-4" />
+
+                                    <Command.Input
+                                        value={query}
+                                        onValueChange={setQuery}
+                                        placeholder="Search..."
+                                        className="h-12 flex-1 pl-7 text-sm text-[#181D27] outline-none placeholder:text-[#717680]"
+                                    />
+                                    <div className="min-w-6 rounded-[4px] bg-secondary_alt px-1 py-0.5 text-center text-sm font-medium text-tertiary ring-1 ring-secondary ring-inset">⌘/</div>
                                 </div>
 
-                                {/* Lower Part */}
-                                <div className="flex justify-end">
-                                    <button onClick={() => navigate(`/list?category=${category}`)} className="px-4 py-2 text-sm font-medium bg-white text-[#414651] rounded-[8px] border-[1px] border-[#D5D7DA] transition cursor-pointer hover:bg-gray-100 hover:border-gray-300 hover:text-[#000000]">
-                                        View words
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
+                                {query.trim() !== "" && (
+                                    <Command.List className="max-h-[420px] min-h-[220px] overflow-y-auto p-3">
+                                        {loading ? (
+                                            <div className="space-y-2">
+                                                {[...Array(6)].map((_, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="rounded-xl border border-[#F2F4F7] bg-[#FCFCFD] px-3 py-3"
+                                                    >
+                                                        <div
+                                                            className="h-5 animate-pulse rounded-md bg-[#E9EAEB]"
+                                                            style={{ width: `${32 + (index % 3) * 12}%` }}
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <>
+                                                <Command.Empty className="py-10 text-center text-sm text-[#535862]">
+                                                    {query && results.length === 0 && (
+                                                        <div className="mx-auto flex w-full max-w-lg flex-col items-center justify-center overflow-hidden p-6 pb-10">
+                                                            <header className="relative mb-4">
+                                                                <div data-featured-icon="true" className="relative flex shrink-0 items-center justify-center *:data-icon:size-6 bg-primary ring-1 ring-inset size-12 rounded-[10px] text-fg-secondary ring-primary">
+                                                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" data-icon="true" className="z-1">
+                                                                        <path d="m21 21-3.5-3.5m2.5-6a8.5 8.5 0 1 1-17 0 8.5 8.5 0 0 1 17 0Z"></path>
+                                                                    </svg>
+                                                                </div>
+                                                            </header>
+                                                            <main className="z-10 flex w-full max-w-88 flex-col items-center justify-center gap-1 mb-0">
+                                                                <h1 className="text-md font-semibold text-primary">No results found</h1>
+                                                                <p className="text-center text-sm text-tertiary">We couldn't find anything matching {query}.</p>
+                                                                <button onClick={() => setQuery("")} className="group relative inline-flex h-max cursor-pointer items-center justify-center whitespace-nowrap outline-brand transition duration-100 ease-linear before:absolute focus-visible:outline-2 focus-visible:outline-offset-2 in-data-input-wrapper:focus:!z-50 in-data-input-wrapper:in-data-leading:-mr-px in-data-input-wrapper:in-data-leading:rounded-r-none in-data-input-wrapper:in-data-leading:before:rounded-r-none in-data-input-wrapper:in-data-trailing:-ml-px in-data-input-wrapper:in-data-trailing:rounded-l-none in-data-input-wrapper:in-data-trailing:before:rounded-l-none disabled:cursor-not-allowed disabled:text-fg-disabled disabled:*:data-icon:text-fg-disabled_subtle *:data-icon:pointer-events-none *:data-icon:size-5 *:data-icon:shrink-0 *:data-icon:transition-inherit-all gap-1 rounded-lg px-3.5 py-2.5 text-sm font-semibold before:rounded-[7px] data-icon-only:p-2.5 in-data-input-wrapper:gap-1.5 in-data-input-wrapper:px-4 in-data-input-wrapper:text-md in-data-input-wrapper:data-icon-only:p-3 bg-primary text-secondary ring-1 ring-primary ring-inset hover:bg-primary_hover hover:text-secondary_hover data-loading:bg-primary_hover disabled:ring-disabled_subtle *:data-icon:text-fg-quaternary hover:*:data-icon:text-fg-quaternary_hover mt-5" type="button">
+                                                                    <span data-text="true" className="transition-inherit-all px-0.5">Clear search</span>
+                                                                </button>
+                                                            </main>
+                                                        </div>
+                                                    )}
+                                                </Command.Empty>
 
+                                                {results.length > 0 && (
+                                                    <Command.Group
+                                                        heading="Words"
+                                                        className="px-2 text-xs font-medium text-gray-400"
+                                                    >
+                                                        {results.map((item, index) => (
+                                                            <Command.Item
+                                                                key={`${item.word_ga}-${index}`}
+                                                                value={item.word_ga}
+                                                                onSelect={() => {
+                                                                    navigate(item.url);
+                                                                    setQuery("");
+                                                                }}
+                                                                className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg cursor-pointer data-[selected=true]:bg-gray-100"
+                                                            >
+                                                                {item.word_ga}
+                                                            </Command.Item>
+                                                        ))}
+                                                    </Command.Group>
+                                                )}
+                                            </>
+                                        )}
+                                    </Command.List>
+                                )}
+                            </Command>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -213,7 +263,7 @@ const CategoryScreen = () => {
         <div className="bg-primary">
             <Header />
             <div className="overflow-hidden">
-                <BreadcrumbWithShare />
+                {/* <BreadcrumbWithShare /> */}
                 <CategorySection />
                 <CTAIPhoneMockup01 />
                 <FooterLarge11Brand />

@@ -82,9 +82,8 @@ const BreadcrumbWithShare = ({ normalized_ga, category, type, word_ga }: Breadcr
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
                     {/* Breadcrumbs */}
-                    <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
+                    {/* <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
-                        {/* <span>&gt;</span> */}
                         {
                             type == "nouns" ? (
                                 <span onClick={() => navigate(`/category`)}
@@ -101,7 +100,6 @@ const BreadcrumbWithShare = ({ normalized_ga, category, type, word_ga }: Breadcr
                             )
                         }
 
-                        {/* <span>&gt;</span> */}
                         {category && <span
                             onClick={() => navigate(`/list?category=${category}`)}
                             className="
@@ -115,14 +113,13 @@ const BreadcrumbWithShare = ({ normalized_ga, category, type, word_ga }: Breadcr
                         >
                             {category}
                         </span>}
-                        {/* {category && <span>&gt;</span>} */}
                         <span className="rounded-md bg-[#FAFAFA] px-2 py-1 text-[#414651]">
                             {word_ga}
                         </span>
-                    </div>
+                    </div> */}
 
                     {/* Actions */}
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center ml-auto">
 
                         {/* Copy */}
                         <div className="flex w-full sm:w-auto">
@@ -156,8 +153,7 @@ const BreadcrumbWithShare = ({ normalized_ga, category, type, word_ga }: Breadcr
                         </div>
 
                         {/* Share */}
-                        <button onClick={handleShare} className="flex items-center justify-center gap-2 rounded-md border border-[#D5D7DA] px-4 py-2 text-sm font-semibold cursor-pointer transition hover:bg-gray-50
-        hover:border-gray-300">
+                        <button onClick={handleShare} className="flex items-center justify-center gap-2 rounded-md border border-[#D5D7DA] px-4 py-2 text-sm font-semibold cursor-pointer transition hover:bg-gray-50 hover:border-gray-300">
                             <Share07 className="h-4 w-4 text-[#A4A7AE] transition group-hover:text-[#667085] transition group-hover:text-[#667085]" />
                             Share
                         </button>
@@ -316,7 +312,7 @@ const SentencesTable = ({ sentences, loading }: SentencesTableProps) => {
     return (
         <div className="w-full  py-1">
             <div className="max-w-5xl">
-                <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
+                <div className="overflow-x-auto rounded-[12px]  border border-[#E9EAEB]">
                     <TableCard.Root>
                         <Table className="min-w-full divide-y divide-gray-200">
                             {/* Desktop Header */}
@@ -332,7 +328,7 @@ const SentencesTable = ({ sentences, loading }: SentencesTableProps) => {
                                     sentences.map((item, index) => (
                                         <Table.Row
                                             id={index}
-                                            className=" md:table-row bg-white md:bg-transparent mb-4 md:mb-0 rounded-xl md:rounded-none shadow md:shadow-none p-4 md:p-0"
+                                            className=" md:table-row bg-white md:bg-transparent mb-4 md:mb-0 rounded-xl md:rounded-none   p-4 md:p-0"
                                         >
                                             <Table.Cell className=" py-2">
                                                 <span className="font-bold">{item.ga}</span>
@@ -422,7 +418,7 @@ const RelatedTable = ({ type, scrollRef }: RelatedTableProp) => {
     return (
         <div className="w-full  py-1 mb-[60px]">
             <div className="max-w-5xl">
-                <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
+                <div className="overflow-x-auto rounded-[12px]  border border-[#E9EAEB]">
                     <TableCard.Root>
                         <Table className="min-w-full divide-y divide-gray-200">
                             {/* Desktop Header */}
@@ -438,7 +434,7 @@ const RelatedTable = ({ type, scrollRef }: RelatedTableProp) => {
                                     [...Array(4)].map((_, index) => (
                                         <Table.Row
                                             id={index}
-                                            className="block md:table-row bg-white md:bg-transparent mb-4 md:mb-0 rounded-xl md:rounded-none shadow md:shadow-none p-4 md:p-0 animate-pulse"
+                                            className="block md:table-row bg-white md:bg-transparent mb-4 md:mb-0 rounded-xl md:rounded-none   p-4 md:p-0 animate-pulse"
                                         >
                                             <Table.Cell className="block md:table-cell px-6 py-5">
                                                 <div className="h-4 bg-gray-200 rounded w-24" />
@@ -559,7 +555,7 @@ const RelatedWordsTable = ({ category, scrollRef }: RelatedWordsTableProp) => {
     return (
         <div className="w-full  py-1 mb-[60px]">
             <div className="max-w-5xl">
-                <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
+                <div className="overflow-x-auto rounded-[12px]  border border-[#E9EAEB]">
                     <TableCard.Root>
                         <Table className="min-w-full divide-y divide-gray-200">
                             {/* Desktop Header */}
@@ -574,7 +570,7 @@ const RelatedWordsTable = ({ category, scrollRef }: RelatedWordsTableProp) => {
                                     [...Array(4)].map((_, index) => (
                                         <Table.Row
                                             id={index}
-                                            className="block md:table-row bg-white md:bg-transparent mb-4 md:mb-0 rounded-xl md:rounded-none shadow md:shadow-none p-4 md:p-0 animate-pulse"
+                                            className="block md:table-row bg-white md:bg-transparent mb-4 md:mb-0 rounded-xl md:rounded-none   p-4 md:p-0 animate-pulse"
                                         >
                                             <Table.Cell className="block md:table-cell px-6 py-5">
                                                 <div className="h-4 bg-gray-200 rounded w-24" />
@@ -666,6 +662,7 @@ interface WordDetailType {
 
 }
 const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: StudySectionProps) => {
+    const studySectionRef = useRef<HTMLElement>(null);
     const instantAnswerRef = useRef<HTMLDivElement>(null);
     const sentencesRef = useRef<HTMLDivElement>(null);
     const relatedWordsRef = useRef<HTMLDivElement>(null);
@@ -760,7 +757,7 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
             </section>
 
             {/* Content */}
-            <section className="w-full bg-primary border-b border-[#E9EAEB]">
+            <section ref={studySectionRef} className="w-full bg-primary border-b border-[#E9EAEB]">
                 <div
                     className="
                         mx-auto
@@ -978,7 +975,10 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
                         </div>
                     </div>
 
-                    <FloatingSidebar className="w-full max-w-[320px] mx-auto rounded-[12px] bg-white px-4 py-6 shadow-lg text-sm text-[#475467] font-inter font-semibold self-start mt-8">
+                    <FloatingSidebar
+                        boundaryRef={studySectionRef}
+                        className="w-full max-w-[320px] mx-auto rounded-[12px] bg-white px-4 py-6  text-sm text-[#475467] font-inter font-semibold self-start mt-8"
+                    >
 
 
                         {/* Top Divider */}
@@ -1056,9 +1056,9 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
                                 Related Words
                             </button>
                         </div>
-                </FloatingSidebar>
+                    </FloatingSidebar>
 
-        </div>
+                </div>
             </section >
         </div >
     );
@@ -1095,7 +1095,7 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
 //                     <IPhoneMockup
 //                         image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
 //                         imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
-//                         className="absolute top-0 right-1/2 w-full max-w-71 translate-x-1/2 drop-shadow-iphone-mockup md:max-w-78.5"
+//                         className="absolute top-0 right-1/2 w-full max-w-71 translate-x-1/2  md:max-w-78.5"
 //                     />
 //                 </div>
 //             </div>

@@ -1,4 +1,4 @@
-import { stringify } from "querystring";
+// import { stringify } from "querystring";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
@@ -84,7 +84,7 @@ export default function ReportModal({ onClose, entry }: Props) {
             />
 
             {/* Modal */}
-            <div className="relative bg-white w-[95%] sm:w-[480px] rounded-xl shadow-xl p-6 z-10 animate-in fade-in zoom-in-95">
+            <div className="relative bg-white w-[95%] sm:w-[480px] rounded-xl  p-6 z-10 animate-in fade-in zoom-in-95">
 
                 {/* Title */}
                 <h2 className="text-lg font-semibold text-[#101828]">

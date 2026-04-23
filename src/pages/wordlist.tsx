@@ -7,6 +7,7 @@ import { Header } from "@/components/marketing/header-navigation/header";
 import { Table, TableCard, TableRowActionsDropdown } from "@/components/application/table/table";
 import { FooterLarge11Brand } from "./home";
 import { PaginationPageMinimalCenter } from "@/components/application/pagination/pagination";
+import { FloatingSidebar } from "@/components/floating-sidebar";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -51,9 +52,8 @@ const BreadcrumbWithShare = ({ category }: BreadcrumbWithShareProps) => {
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
                     {/* Breadcrumbs */}
-                    <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
+                    {/* <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
-                        {/* <span>&gt;</span> */}
                         <span onClick={() => navigate(`/category`)}
                             className="
                                 px-2 py-1
@@ -64,7 +64,6 @@ const BreadcrumbWithShare = ({ category }: BreadcrumbWithShareProps) => {
                                 hover:text-[#344054]
                             "
                         >Nouns</span>
-                        {/* <span>&gt;</span> */}
                         <span onClick={() => navigate(`/list?category=${category}`)}
                             className="
                                 px-2 py-1
@@ -74,14 +73,11 @@ const BreadcrumbWithShare = ({ category }: BreadcrumbWithShareProps) => {
                                 hover:bg-[#F2F4F7]
                                 hover:text-[#344054]
                             ">{category}</span>
-                        {/* <span>&gt;</span> */}
-                        {/* <span className="rounded-md bg-[#FAFAFA] px-2 py-1 text-[#414651]">
-                            Teach
-                        </span> */}
-                    </div>
+                        
+                    </div> */}
 
                     {/* Actions */}
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center ml-auto">
 
                         {/* Share */}
                         <button onClick={handleShare} className="flex items-center justify-center gap-2 rounded-md border border-[#D5D7DA] px-4 py-2 text-sm font-semibold  cursor-pointer transition hover:bg-gray-50
@@ -107,7 +103,7 @@ interface RelatedWordsTableProp {
     scrollRef?: React.RefObject<HTMLDivElement | null>;
 }
 
-const RelatedWordsTable = ({scrollRef}: RelatedWordsTableProp) => {
+const RelatedWordsTable = ({ scrollRef }: RelatedWordsTableProp) => {
 
     const [words, setWords] = useState<WordItem[]>([]);
     const [loading, setLoading] = useState(true);
@@ -161,7 +157,7 @@ const RelatedWordsTable = ({scrollRef}: RelatedWordsTableProp) => {
         return (
             <div className="w-full py-1">
                 <div className="max-w-5xl">
-                    <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
+                    <div className="overflow-x-auto rounded-[12px]  border border-[#E9EAEB]">
                         <TableCard.Root>
                             <Table className="min-w-full divide-y divide-gray-200">
                                 <Table.Header className="bg-[#FAFAFA] hidden md:table-header-group">
@@ -203,7 +199,7 @@ const RelatedWordsTable = ({scrollRef}: RelatedWordsTableProp) => {
     return (
         <div className="w-full  py-1">
             <div className="max-w-5xl">
-                <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
+                <div className="overflow-x-auto rounded-[12px]  border border-[#E9EAEB]">
                     <TableCard.Root>
                         <Table className="min-w-full divide-y divide-gray-200">
                             {/* Desktop Header */}
@@ -268,6 +264,7 @@ interface ListSectionProps {
 }
 
 const ListSection = ({ category }: ListSectionProps) => {
+    const listSectionRef = useRef<HTMLElement>(null);
     const relatedRef = useRef<HTMLDivElement | null>(null);
 
     return (
@@ -283,7 +280,7 @@ const ListSection = ({ category }: ListSectionProps) => {
             </section>
 
             {/* Content */}
-            <section className="w-full bg-primary">
+            <section ref={listSectionRef} className="w-full bg-primary">
                 <div className="mx-auto max-w-container px-4 md:px-8 py-8 grid grid-cols-1 lg:grid-cols-[8fr_4fr] gap-8">
                     <div className="flex flex-col gap-5 scroll-mt-24" ref={relatedRef}>
                         <h3 className="font-semibold text-[30px] text-[#181D27]">
@@ -293,7 +290,10 @@ const ListSection = ({ category }: ListSectionProps) => {
                         <RelatedWordsTable scrollRef={relatedRef} />
                     </div>
 
-                    <div className="w-full max-w-[320px] mx-auto text-sm text-[#475467] font-inter font-semibold sticky top-50 self-start">
+                    <FloatingSidebar
+                        boundaryRef={listSectionRef}
+                        className="w-full max-w-[320px] mx-auto rounded-[12px] bg-white px-4 py-6 text-sm text-[#475467] font-inter font-semibold self-start mt-8"
+                    >
 
                         {/* Top Divider */}
                         <SectionDivider className="bg-[#E9EAEB] w-full" />
@@ -347,7 +347,7 @@ const ListSection = ({ category }: ListSectionProps) => {
 
                         {/* Bottom Divider */}
                         <SectionDivider className="bg-[#E9EAEB] mt-8 w-full" />
-                    </div>
+                    </FloatingSidebar>
                 </div>
             </section>
         </div>

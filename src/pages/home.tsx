@@ -15,6 +15,7 @@ import { IPhoneMockup } from "@/components/shared-assets/iphone-mockup";
 import { SectionDivider } from "@/components/shared-assets/section-divider";
 import { cx } from "@/utils/cx";
 import { motion } from "motion/react";
+import DesktopRive from "@/components/RiveAnimation";
 
 const BlobPattern = (props: SVGProps<SVGSVGElement>) => {
     return (
@@ -50,9 +51,9 @@ const HeroIPhoneMockup01 = () => {
 
 
 
-            <section className="relative overflow-hidden pt-16 md:py-24">
-                <div className="mx-auto flex max-w-container flex-col gap-16 px-4 md:px-8 lg:flex-row lg:items-center lg:gap-16">
-                    <div className="flex w-full max-w-3xl flex-1 flex-col items-start">
+            <section className="relative overflow-hidden pt-12 pb-10 md:py-24">
+                <div className="mx-auto flex max-w-container flex-col items-center gap-8 px-4 text-center sm:gap-10 md:px-8 lg:flex-row lg:items-center lg:gap-16 lg:text-left">
+                    <div className="flex w-full max-w-3xl flex-1 flex-col items-center lg:items-start">
                         <a href="#" className="rounded-[10px] outline-focus-ring focus-visible:outline-2 focus-visible:outline-offset-2">
                             <BadgeGroup className="hidden md:flex" size="lg" addonText="App Now Live" iconTrailing={ArrowRight} theme="modern" color="brand">
                                 Start actually speaking today
@@ -62,39 +63,29 @@ const HeroIPhoneMockup01 = () => {
                             </BadgeGroup>
                         </a>
 
-                        <h1 className="mt-4 text-display-md font-semibold text-primary md:text-display-lg lg:text-display-xl">
+                        <h1 className="mt-4 text-display-sm font-semibold text-primary sm:text-display-md md:text-display-lg lg:text-display-xl">
                             Learn Irish, <br />by actually speaking it.
                         </h1>
-                        <p className="mt-6 text-lg text-balance font-semibold text-tertiary md:mt-6 md:text-xl">
+                        <p className="mt-5 max-w-2xl text-md text-balance font-semibold text-tertiary sm:text-lg md:mt-6 md:text-xl">
                             Meet Rua, your new Irish language teacher.
                         </p>
-                        <p className="mt-2 text-lg text-balance text-tertiary md:mt-2 md:text-xl">
+                        <p className="mt-2 max-w-2xl text-md text-balance text-tertiary sm:text-lg md:text-xl">
                             Chat about real-life topics, learn phrases with flashcards, and track your progress as your Gaeilge grows.
                         </p>
-                        <div className="mt-8 flex gap-3 md:mt-12">
+                        <div className="mt-8 flex w-full justify-center gap-3 sm:hidden">
+                            <AppStoreButton size="md" />
+                            <GooglePlayButton size="md" />
+                        </div>
+                        <div className="mt-8 hidden gap-3 sm:flex md:mt-12">
                             <AppStoreButton size="lg" />
                             <GooglePlayButton size="lg" />
                         </div>
                     </div>
 
-                    <div className="relative flex h-90 w-full items-start justify-center lg:h-160 lg:max-w-lg lg:items-center">
-                        {/* <div className="absolute top-24 w-133 lg:top-auto">
-                            <BlobPattern />
-                        </div>
-
-                        ? */}
-
-                        <div className="max-lg:hidden lg:h-200">
-                            <video
-                                src="/animations/RuaSliotar_MP4.mp4" // path to your video in the public folder
-                                className="size-full"
-                                alt="Fleur Cook Animation"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                            />
-                        </div>                                          <a href="">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </a>
+                    <div className="relative flex w-full items-center justify-center lg:max-w-lg">
+                        <DesktopRive src="/animations/ruataytobagcrispcelebration.riv"
+                            stateMachines="State Machine 1"
+                        />
                     </div>
                 </div>
             </section>
@@ -131,7 +122,7 @@ export const CTAIPhoneMockup04 = () => {
     return (
         <section className="bg-primary py-16 md:py-24 font-inter">
             <div className="mx-auto max-w-container px-4 md:px-8">
-                <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl bg-brand-section md:rounded-3xl md:shadow-xl lg:min-h-120 lg:grid-cols-2 lg:items-center">
+                <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl bg-brand-section md:rounded-3xl  lg:min-h-120 lg:grid-cols-2 lg:items-center">
                     <div className="flex flex-1 flex-col px-6 pt-10 pb-12 sm:p-12 lg:p-16">
                         <h4 className="text-display-sm font-semibold text-white xl:text-display-md">Designed by Irish teachers.</h4>
                         <p className="mt-4 text-lg text-white md:mt-5 lg:text-xl">HeyRua isn’t random exercises.</p>
@@ -145,7 +136,7 @@ export const CTAIPhoneMockup04 = () => {
                     <IPhoneMockup
                         image="https://cdn.feedbucket.app/attachments/2026-03-25/fxlGy7MLVcEALKDw9wLrUoXuka5heNMRBXmRMrKXyp1SiR7i.PNG"
                         imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
-                        className="top-10 right-16 max-h-70 w-full max-w-67 justify-self-center drop-shadow-iphone-mockup lg:absolute lg:max-h-none lg:max-w-78.5"
+                        className="top-10 right-16 max-h-70 w-full max-w-67 justify-self-center  lg:absolute lg:max-h-none lg:max-w-78.5"
                     />
 
                     {/*  Notifications List */}
@@ -310,7 +301,7 @@ const PricingTierCardCallout = (props: {
     className?: string;
 }) => {
     return (
-        <div className={cx("relative flex flex-col rounded-2xl bg-primary shadow-lg ring-1 ring-secondary_alt", props.className)}>
+        <div className={cx("relative flex flex-col rounded-2xl bg-primary  ring-1 ring-secondary_alt", props.className)}>
             {props.hasCallout && (
                 <div className="absolute -top-6 right-2 md:-right-16">
                     <div className="flex text-brand-secondary">
@@ -367,7 +358,7 @@ export const FooterLarge11Brand = () => {
                     <h4 className="text-display-xs font-semibold  md:text-display-sm">No long-term contracts. No catches. Simple.</h4>
                     <p className="mt-2 text-md  md:mt-4 md:text-xl">Start your 30-day free trial. Cancel anytime.</p>
                     <div className="mt-8 flex flex-col-reverse gap-3 self-stretch md:mt-12 md:flex-row md:self-center">
-                        <Button color="primary" size="xl" iconLeading={PlayCircle} className="shadow-xs! ring-0 bg-black text-white hover:bg-gray-800">
+                        <Button color="primary" size="xl" iconLeading={PlayCircle} className=" ring-0 bg-black text-white hover:bg-gray-800">
                             View demo
                         </Button>
                         <Button size="xl" className="bg-[#FF8D28]  hover:bg-[#E6761F] text-white  hover:text-white">Get started</Button>
@@ -388,9 +379,9 @@ export const FooterLarge11Brand = () => {
                                     { label: "About", href: "/about" },
                                     { label: "Word Bank", href: "/category" },
                                     { label: "Contact", href: "/contact" },
-                                    { label: "Privacy", href: "#" },
-                                    { label: "Terms of Service", href: "#" },
-                                    { label: "Cookie Policy", href: "#" },
+                                    { label: "Privacy", href: "https://docs.google.com/document/d/13Y27D7UFO9ZcaxpUjvKCRUJIqUFXh-DsagWql2Hdfos/edit?usp=sharing", external: true },
+                                    { label: "Terms of Service", href: "https://docs.google.com/document/d/1xiJj6PIXadh_gat_AlQ1RXopBAjL5BTd_Yd3mgyab68/edit?usp=sharing", external: true },
+                                    { label: "Cookie Policy", href: "https://docs.google.com/document/d/1TJ6fD_yOHlVx36G8pnYuP1IksJyB4E6yJhs5youmzEw/edit?usp=sharing", external: true },
                                 ].map((item) => (
                                     <li key={item.label}>
                                         <Button
@@ -398,6 +389,8 @@ export const FooterLarge11Brand = () => {
                                             color="link-color"
                                             size="lg"
                                             href={item.href}
+                                            target={item.external ? "_blank" : undefined}
+                                            rel={item.external ? "noopener noreferrer" : undefined}
                                         >
                                             {item.label}
                                         </Button>
@@ -517,7 +510,7 @@ const FeaturesAlternatingLayout03 = () => {
                             <IPhoneMockup
                                 image="https://cdn.feedbucket.app/attachments/2026-03-25/qY70FNB651nOz7jRjsZD1JOGkmuXySFUGJTDYPYRCtSbD8OM.PNG"
                                 imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/qY70FNB651nOz7jRjsZD1JOGkmuXySFUGJTDYPYRCtSbD8OM.PNG"
-                                className="absolute top-12 left-70 mx-auto w-71 drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
+                                className="absolute top-12 left-70 mx-auto w-71  md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
                             />
                             {/* <img
                                 alt="Dashboard mockup showing application interface"
@@ -563,7 +556,7 @@ const FeaturesAlternatingLayout03 = () => {
                             <IPhoneMockup
                                 image="https://cdn.feedbucket.app/attachments/2026-03-25/SaFeM6xXFwTHugguEYfT0wRH0OqDhHKSIN4T2qGabGZv6IsN.PNG"
                                 imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/SaFeM6xXFwTHugguEYfT0wRH0OqDhHKSIN4T2qGabGZv6IsN.PNG"
-                                className="top-12 right-1/2 mx-auto w-71 drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
+                                className="top-12 right-1/2 mx-auto w-71  md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
                             />
                         </div>
                     </div>
@@ -609,12 +602,12 @@ const FeaturesAlternatingLayout03 = () => {
                             <IPhoneMockup
                                 image="https://cdn.feedbucket.app/attachments/2026-03-25/SXSkWZ7gpo4EEBbxGijWSwJoFiRA81lNNMuESvJRjOWkHJC2.png"
                                 imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
-                                className="top-28 left-12 mx-auto w-71 object-contain shadow-2xl drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none"
+                                className="top-28 left-12 mx-auto w-71 object-contain   md:absolute md:mx-0 md:w-78.5 md:max-w-none"
                             />
                             <IPhoneMockup
                                 image="https://cdn.feedbucket.app/attachments/2026-03-25/LCz6v50xDZyWukdqh3SOJ3bXEWERN46M4zEbiDkJ79s4ubFD.png"
                                 imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
-                                className="top-12 left-70 mx-auto w-71 object-contain shadow-2xl drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none"
+                                className="top-12 left-70 mx-auto w-71 object-contain   md:absolute md:mx-0 md:w-78.5 md:max-w-none"
                             />
                         </div>
                     </div>
@@ -645,7 +638,7 @@ const FeaturesAlternatingLayout03 = () => {
                             <IPhoneMockup
                                 image="https://cdn.feedbucket.app/attachments/2026-03-25/ruYkcPqJKIKmpvARq52AW6eX9PHdgHsgDiTmprQyCqU3hOcR.png"
                                 imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/ruYkcPqJKIKmpvARq52AW6eX9PHdgHsgDiTmprQyCqU3hOcR.png"
-                                className="top-12 right-1/2 mx-auto w-71 drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
+                                className="top-12 right-1/2 mx-auto w-71  md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
                             />
                         </div>
                     </div>
@@ -690,7 +683,7 @@ const FeaturesAlternatingLayout03 = () => {
                             <IPhoneMockup
                                 image="https://cdn.feedbucket.app/attachments/2026-03-25/t9qbyt2mAhvxYKQY5LEabuJREExvdWWml9CVheHybGA5fBfZ.png"
                                 imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/t9qbyt2mAhvxYKQY5LEabuJREExvdWWml9CVheHybGA5fBfZ.png"
-                                className="top-28 left-12 mx-auto w-71 object-contain shadow-2xl drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none"
+                                className="top-28 left-12 mx-auto w-71 object-contain   md:absolute md:mx-0 md:w-78.5 md:max-w-none"
                             />
                         </div>
                     </div>
@@ -705,10 +698,19 @@ const FeaturesAlternatingLayout03 = () => {
                             Speak with Confidence                       </p>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
                             Practice real phrases, get instant feedback, and build natural pronunciation as you go.                     </p>
-                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
-                            Real-life phrases <br/>
-                            Instant feedback <br/>
-                            Speak with confidence                       </p>
+                        <ul className="mt-8 flex flex-col gap-4 pl-2 md:gap-5 md:pl-4">
+                            {[
+                                "Real-life phrases",
+                                "Instant feedback",
+                                "Speak with confidence",
+                            ].map((feat) => (
+                                <CheckItemText key={feat} size="md" iconStyle="outlined" color="primary" text={feat} />
+                            ))}
+                        </ul>
+                        {/* <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                             <br/>
+                             <br/>
+                                                   </p> */}
 
                     </div>
 
@@ -723,7 +725,7 @@ const FeaturesAlternatingLayout03 = () => {
                             <IPhoneMockup
                                 image="https://cdn.feedbucket.app/attachments/2026-03-25/IWx5L1LVjXbD4OeKchO33t4tawd4M3xLEmW0JU1JUwlpvt22.PNG"
                                 imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/IWx5L1LVjXbD4OeKchO33t4tawd4M3xLEmW0JU1JUwlpvt22.PNG"
-                                className="top-12 right-1/2 mx-auto w-71 drop-shadow-iphone-mockup md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
+                                className="top-12 right-1/2 mx-auto w-71  md:absolute md:mx-0 md:w-78.5 md:max-w-none md:translate-x-[70%] lg:right-12 lg:translate-x-0"
                             />
                         </div>
                     </div>
@@ -784,12 +786,12 @@ const FeaturesTabsMockup09 = () => {
                         <IPhoneMockup
                             image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
                             imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
-                            className="absolute top-16 left-1/2 hidden w-78.5 -translate-x-3/4 drop-shadow-iphone-mockup md:block lg:left-0 lg:translate-x-0"
+                            className="absolute top-16 left-1/2 hidden w-78.5 -translate-x-3/4  md:block lg:left-0 lg:translate-x-0"
                         />
                         <IPhoneMockup
                             image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
                             imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
-                            className="h-[579px] w-71 drop-shadow-iphone-mockup md:absolute md:top-0 md:right-1/2 md:h-160 md:w-78.5 md:translate-x-2/3 lg:right-0 lg:translate-x-0"
+                            className="h-[579px] w-71  md:absolute md:top-0 md:right-1/2 md:h-160 md:w-78.5 md:translate-x-2/3 lg:right-0 lg:translate-x-0"
                         />
                     </div>
                 </div>
@@ -970,7 +972,7 @@ const CTAIPhoneMockup01 = () => {
                     <IPhoneMockup
                         image="https://cdn.feedbucket.app/attachments/2026-03-25/jmeFbBWAajCOdFq4OEQgauQn1Yz74cHfsvt4lPxaPvxoGtW2.PNG"
                         imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/jmeFbBWAajCOdFq4OEQgauQn1Yz74cHfsvt4lPxaPvxoGtW2.PNG"
-                        className="absolute top-0 right-1/2 w-full max-w-71 translate-x-1/2 drop-shadow-iphone-mockup md:max-w-78.5"
+                        className="absolute top-0 right-1/2 w-full max-w-71 translate-x-1/2  md:max-w-78.5"
                     />
                 </div>
             </div>

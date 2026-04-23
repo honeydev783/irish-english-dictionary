@@ -605,12 +605,12 @@ const FeaturesTabsMockup09 = () => {
                         <IPhoneMockup
                             image="https://cdn.feedbucket.app/attachments/2026-03-25/0wBpPK6qVEdOr9QY81jDOgOG8gUk7JLEpkOnkTjjhm8l4pED.PNG"
                             imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/0wBpPK6qVEdOr9QY81jDOgOG8gUk7JLEpkOnkTjjhm8l4pED.PNG"
-                            className="absolute top-16 left-1/2 hidden w-78.5 -translate-x-3/4 drop-shadow-iphone-mockup md:block lg:left-0 lg:translate-x-0"
+                            className="absolute top-16 left-1/2 hidden w-78.5 -translate-x-3/4  md:block lg:left-0 lg:translate-x-0"
                         />
                         <IPhoneMockup
                             image="https://cdn.feedbucket.app/attachments/2026-03-25/qY70FNB651nOz7jRjsZD1JOGkmuXySFUGJTDYPYRCtSbD8OM.PNG"
                             imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/qY70FNB651nOz7jRjsZD1JOGkmuXySFUGJTDYPYRCtSbD8OM.PNG"
-                            className="h-[579px] w-71 drop-shadow-iphone-mockup md:absolute md:top-0 md:right-1/2 md:h-160 md:w-78.5 md:translate-x-2/3 lg:right-0 lg:translate-x-0"
+                            className="h-[579px] w-71  md:absolute md:top-0 md:right-1/2 md:h-160 md:w-78.5 md:translate-x-2/3 lg:right-0 lg:translate-x-0"
                         />
                     </div>
                 </div>
@@ -623,7 +623,7 @@ const FeaturesTabsMockup09 = () => {
 //     return (
 //         <section className="bg-primary py-16 md:py-24">
 //             <div className="mx-auto max-w-container px-4 md:px-8">
-//                 <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl bg-brand-section md:rounded-3xl md:shadow-xl lg:min-h-120 lg:grid-cols-2 lg:items-center">
+//                 <div className="relative grid grid-cols-1 overflow-hidden rounded-2xl bg-brand-section md:rounded-3xl  lg:min-h-120 lg:grid-cols-2 lg:items-center">
 //                     <div className="flex flex-1 flex-col px-6 pt-10 pb-12 sm:p-12 lg:p-16">
 //                         <h4 className="text-display-sm font-semibold text-white xl:text-display-md">Start your free trial</h4>
 //                         <p className="mt-4 text-lg text-white md:mt-5 lg:text-xl">Personal performance tracking made easy.</p>
@@ -636,7 +636,7 @@ const FeaturesTabsMockup09 = () => {
 //                     <IPhoneMockup
 //                         image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
 //                         imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
-//                         className="top-10 right-16 max-h-70 w-full max-w-67 justify-self-center drop-shadow-iphone-mockup lg:absolute lg:max-h-none lg:max-w-78.5"
+//                         className="top-10 right-16 max-h-70 w-full max-w-67 justify-self-center  lg:absolute lg:max-h-none lg:max-w-78.5"
 //                     />
 
 //                     {/*  Notifications List */}
@@ -753,7 +753,7 @@ const CTACardHorizontal = () => {
                     </div>
 
                     <Button color="link-color" size="lg" href="#" iconTrailing={ArrowRight}>
-                        Learn more
+                        Start now
                     </Button>
                     {/* <div className="flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-start">
                         <Button color="secondary" size="xl">

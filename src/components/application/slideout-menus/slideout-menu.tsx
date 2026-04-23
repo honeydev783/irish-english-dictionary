@@ -34,7 +34,7 @@ export const Modal = (props: ModalProps) => (
         {...props}
         className={(state) =>
             cx(
-                "inset-y-0 right-0 h-full w-full max-w-100 shadow-xl transition",
+                "inset-y-0 right-0 h-full w-full max-w-100  transition",
                 state.isEntering && "duration-300 animate-in slide-in-from-right",
                 state.isExiting && "duration-500 animate-out slide-out-to-right",
                 typeof props.className === "function" ? props.className(state) : props.className,
@@ -100,7 +100,7 @@ const Header = ({ className, children, onClose, ...props }: SlideoutHeaderProps)
 Header.displayName = "SlideoutHeader";
 
 const Footer = (props: ComponentPropsWithRef<"footer">) => {
-    return <footer {...props} className={cx("w-full p-4 shadow-[inset_0px_1px_0px_0px] shadow-border-secondary md:px-6", props.className)} />;
+    return <footer {...props} className={cx("w-full p-4   md:px-6", props.className)} />;
 };
 Footer.displayName = "SlideoutFooter";
 

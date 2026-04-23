@@ -264,7 +264,7 @@ export const FileListItemProgressBar = ({ name, size, progress, failed, type, fi
         <motion.li
             layout="position"
             className={cx(
-                "relative flex gap-3 rounded-xl bg-primary p-4 ring-1 ring-secondary transition-shadow duration-100 ease-linear ring-inset",
+                "relative flex gap-3 rounded-xl bg-primary p-4 ring-1 ring-secondary transition duration-100 ease-linear ring-inset",
                 failed && "ring-2 ring-error",
                 className,
             )}

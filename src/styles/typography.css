@@ -240,7 +240,7 @@
         padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.5);
         margin: calc(var(--spacing) * -0.5) 0px;
         background: var(--color-bg-secondary);
-        box-shadow: 0 0 0 1px var(--color-border-secondary);
+        box-shadow: none;
 
         &::before,
         &::after {
@@ -416,7 +416,7 @@
             padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1.5);
             margin: calc(var(--spacing) * -0.5) 0px;
             background: var(--color-bg-secondary);
-            box-shadow: 0 0 0 1px var(--color-border-secondary);
+            box-shadow: none;
         }
     }
 }

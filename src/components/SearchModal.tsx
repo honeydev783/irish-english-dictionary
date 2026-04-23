@@ -91,7 +91,7 @@ export default function SearchModal({ open, setOpen }: Props) {
 
         <div className="fixed inset-0 z-[100] flex items-start justify-center bg-gray-900/40 backdrop-blur-sm pt-24 px-4" onClick={() => setOpen(false)}>
 
-            <div className="w-full max-w-xl rounded-2xl bg-white shadow-2xl border border-gray-200" onClick={(e) => e.stopPropagation()}>
+            <div className="w-full max-w-xl rounded-2xl bg-white  border border-gray-200" onClick={(e) => e.stopPropagation()}>
 
                 <Command className="w-full" shouldFilter={false}>
 
@@ -109,24 +109,26 @@ export default function SearchModal({ open, setOpen }: Props) {
                             className="flex-1 h-12 outline-none text-sm pl-7"
                         />
 
-                        <button
+                        {/* <button
                             onClick={() => setOpen(false)}
                             className="p-1 rounded-md hover:bg-gray-100 cursor-pointer"
                         >
-                            <X className="w-4 h-4 text-gray-500" />
-                        </button>
+                            <X className="w-4 h-4 text-gray-500" /> 
+                        </button> */}
+                        <div className="min-w-6 rounded-[4px] bg-secondary_alt px-1 py-0.5 text-center text-sm font-medium text-tertiary ring-1 ring-secondary ring-inset">⌘/</div>
+
 
                     </div>
 
                     {/* Results */}
 
-                    <Command.List className="max-h-[420px] overflow-y-auto py-2">
+                    {query.trim() !== "" && (<Command.List className="max-h-[420px] overflow-y-auto py-2">
 
                         <Command.Empty className="py-10 text-center text-sm text-gray-500">
                             {query && results.length === 0 && (
                                 <div className="mx-auto flex w-full max-w-lg flex-col items-center justify-center overflow-hidden p-6 pb-10">
                                     <header className="relative mb-4">
-                                        <div data-featured-icon="true" className="relative flex shrink-0 items-center justify-center *:data-icon:size-6 bg-primary shadow-xs-skeumorphic ring-1 ring-inset size-12 rounded-[10px] text-fg-secondary ring-primary">
+                                        <div data-featured-icon="true" className="relative flex shrink-0 items-center justify-center *:data-icon:size-6 bg-primary  ring-1 ring-inset size-12 rounded-[10px] text-fg-secondary ring-primary">
                                             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-icon="true" className="z-1">
                                                 <path d="m21 21-3.5-3.5m2.5-6a8.5 8.5 0 1 1-17 0 8.5 8.5 0 0 1 17 0Z"></path>
                                             </svg>
@@ -135,7 +137,7 @@ export default function SearchModal({ open, setOpen }: Props) {
                                     <main className="z-10 flex w-full max-w-88 flex-col items-center justify-center gap-1 mb-0">
                                         <h1 className="text-md font-semibold text-primary">No results found</h1>
                                         <p className="text-center text-sm text-tertiary">We couldn't find anything matching {query}.</p>
-                                        <button onClick={() => setQuery("")} className="group relative inline-flex h-max cursor-pointer items-center justify-center whitespace-nowrap outline-brand transition duration-100 ease-linear before:absolute focus-visible:outline-2 focus-visible:outline-offset-2 in-data-input-wrapper:shadow-xs in-data-input-wrapper:focus:!z-50 in-data-input-wrapper:in-data-leading:-mr-px in-data-input-wrapper:in-data-leading:rounded-r-none in-data-input-wrapper:in-data-leading:before:rounded-r-none in-data-input-wrapper:in-data-trailing:-ml-px in-data-input-wrapper:in-data-trailing:rounded-l-none in-data-input-wrapper:in-data-trailing:before:rounded-l-none disabled:cursor-not-allowed disabled:text-fg-disabled disabled:*:data-icon:text-fg-disabled_subtle *:data-icon:pointer-events-none *:data-icon:size-5 *:data-icon:shrink-0 *:data-icon:transition-inherit-all gap-1 rounded-lg px-3.5 py-2.5 text-sm font-semibold before:rounded-[7px] data-icon-only:p-2.5 in-data-input-wrapper:gap-1.5 in-data-input-wrapper:px-4 in-data-input-wrapper:text-md in-data-input-wrapper:data-icon-only:p-3 bg-primary text-secondary shadow-xs-skeumorphic ring-1 ring-primary ring-inset hover:bg-primary_hover hover:text-secondary_hover data-loading:bg-primary_hover disabled:shadow-xs disabled:ring-disabled_subtle *:data-icon:text-fg-quaternary hover:*:data-icon:text-fg-quaternary_hover mt-5" data-rac="" type="button" data-react-aria-pressable="true" id="react-aria4663485734-_r_7m8_">
+                                        <button onClick={() => setQuery("")} className="group relative inline-flex h-max cursor-pointer items-center justify-center whitespace-nowrap outline-brand transition duration-100 ease-linear before:absolute focus-visible:outline-2 focus-visible:outline-offset-2  in-data-input-wrapper:focus:!z-50 in-data-input-wrapper:in-data-leading:-mr-px in-data-input-wrapper:in-data-leading:rounded-r-none in-data-input-wrapper:in-data-leading:before:rounded-r-none in-data-input-wrapper:in-data-trailing:-ml-px in-data-input-wrapper:in-data-trailing:rounded-l-none in-data-input-wrapper:in-data-trailing:before:rounded-l-none disabled:cursor-not-allowed disabled:text-fg-disabled disabled:*:data-icon:text-fg-disabled_subtle *:data-icon:pointer-events-none *:data-icon:size-5 *:data-icon:shrink-0 *:data-icon:transition-inherit-all gap-1 rounded-lg px-3.5 py-2.5 text-sm font-semibold before:rounded-[7px] data-icon-only:p-2.5 in-data-input-wrapper:gap-1.5 in-data-input-wrapper:px-4 in-data-input-wrapper:text-md in-data-input-wrapper:data-icon-only:p-3 bg-primary text-secondary  ring-1 ring-primary ring-inset hover:bg-primary_hover hover:text-secondary_hover data-loading:bg-primary_hover  disabled:ring-disabled_subtle *:data-icon:text-fg-quaternary hover:*:data-icon:text-fg-quaternary_hover mt-5" data-rac="" type="button" data-react-aria-pressable="true" id="react-aria4663485734-_r_7m8_">
                                             <span data-text="true" className="transition-inherit-all px-0.5">Clear search</span>
                                         </button>
                                     </main>
@@ -170,7 +172,8 @@ export default function SearchModal({ open, setOpen }: Props) {
                             </Command.Group>
                         )}
 
-                    </Command.List>
+                    </Command.List>)
+                    }
 
                     {/* Footer */}
 

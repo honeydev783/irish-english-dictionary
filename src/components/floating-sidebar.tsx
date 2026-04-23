@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 interface FloatingSidebarProps {
     children: React.ReactNode;
     className?: string;
+    boundaryRef?: React.RefObject<HTMLElement | null>;
     topOffset?: number;
     minWidth?: number;
 }
@@ -10,7 +11,8 @@ interface FloatingSidebarProps {
 export const FloatingSidebar = ({
     children,
     className = "",
-    topOffset = 32,
+    boundaryRef,
+    topOffset = 150,
     minWidth = 1024,
 }: FloatingSidebarProps) => {
     const anchorRef = useRef<HTMLDivElement | null>(null);
@@ -42,7 +44,11 @@ export const FloatingSidebar = ({
             const anchorRect = anchor.getBoundingClientRect();
             const panelRect = panel.getBoundingClientRect();
             const anchorTop = anchorRect.top + window.scrollY;
-            const shouldFloat = window.scrollY + topOffset >= anchorTop;
+            const boundaryBottom = boundaryRef?.current
+                ? boundaryRef.current.getBoundingClientRect().bottom + window.scrollY
+                : Number.POSITIVE_INFINITY;
+            const floatingBottom = window.scrollY + topOffset + panelRect.height;
+            const shouldFloat = window.scrollY + topOffset >= anchorTop && floatingBottom < boundaryBottom;
 
             setMetrics({
                 left: panelRect.left,
@@ -74,7 +80,7 @@ export const FloatingSidebar = ({
             window.removeEventListener("resize", updatePosition);
             resizeObserver.disconnect();
         };
-    }, [minWidth, topOffset]);
+    }, [boundaryRef, minWidth, topOffset]);
 
     return (
         <div ref={anchorRef}>

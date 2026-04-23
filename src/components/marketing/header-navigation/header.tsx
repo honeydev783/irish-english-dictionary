@@ -35,9 +35,9 @@ const headerNavItems: HeaderNavItem[] = [
 ];
 
 const footerNavItems = [
-    { label: "Privacy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Cookie Policy", href: "#" },
+    { label: "Privacy", href: "https://docs.google.com/document/d/13Y27D7UFO9ZcaxpUjvKCRUJIqUFXh-DsagWql2Hdfos/edit?usp=sharing" },
+    { label: "Terms of Service", href: "https://docs.google.com/document/d/1xiJj6PIXadh_gat_AlQ1RXopBAjL5BTd_Yd3mgyab68/edit?usp=sharing" },
+    { label: "Cookie Policy", href: "https://docs.google.com/document/d/1TJ6fD_yOHlVx36G8pnYuP1IksJyB4E6yJhs5youmzEw/edit?usp=sharing" },
 
 ];
 
@@ -133,7 +133,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                 <div
                     className={cx(
                         "flex w-full justify-between gap-4",
-                        isFloating && "ring-secondary_alt md:rounded-2xl md:bg-primary md:py-3 md:pr-3 md:pl-4 md:shadow-xs md:ring-1",
+                        isFloating && "ring-secondary_alt md:rounded-2xl md:bg-primary md:py-3 md:pr-3 md:pl-4  md:ring-1",
                     )}
                 >
                     <div className="flex flex-1 items-center gap-5">
@@ -264,14 +264,14 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                         </AriaButton>
                         <AriaPopover
                             triggerRef={headerRef}
-                            className="h-calc(100%-72px) scrollbar-hide w-full overflow-y-auto shadow-lg md:hidden"
+                            className="h-calc(100%-72px) scrollbar-hide w-full overflow-y-auto  md:hidden"
                             offset={0}
                             crossOffset={20}
                             containerPadding={0}
                             placement="bottom left"
                         >
                             <AriaDialog className="outline-hidden">
-                                <nav className="w-full bg-primary shadow-lg">
+                                <nav className="w-full bg-primary ">
                                     <ul className="flex flex-col gap-0.5 py-5">
                                         {items.map((navItem) =>
                                             navItem.menu ? (

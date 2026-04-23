@@ -17,7 +17,7 @@ import { Helmet } from "react-helmet";
 import { FooterLarge11Brand } from "./home";
 import { request } from "http";
 import { FloatingSidebar } from "@/components/floating-sidebar";
-
+import DesktopRive from "@/components/RiveAnimation";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const HeaderNavigationSimpleDemo = () => (
@@ -80,7 +80,7 @@ const BreadcrumbWithShare = ({ normalized_ga, category, word_ga }: BreadcrumbWit
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
                     {/* Breadcrumbs */}
-                    <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
+                    {/* <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-[#717680]">
                         <span><HomeLine className="h-5 w-5 text-[#A4A7AE] cursor-pointer transition  hover:text-[#667085]" onClick={() => navigate('/')} /></span>
                         
                         <span onClick={() => navigate(`/category`)}
@@ -106,14 +106,13 @@ const BreadcrumbWithShare = ({ normalized_ga, category, word_ga }: BreadcrumbWit
                         >
                             {category}
                         </span>
-                        {/* <span>&gt;</span> */}
                         <span className="rounded-md bg-[#FAFAFA] px-2 py-1 text-[#414651]">
                             {word_ga}
                         </span>
-                    </div>
+                    </div> */}
 
                     {/* Actions */}
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center ml-auto">
 
                         {/* Copy */}
                         <div className="flex w-full sm:w-auto">
@@ -307,7 +306,7 @@ const SentencesTable = ({ sentences, loading }: SentencesTableProps) => {
     return (
         <div className="w-full  py-1">
             <div className="max-w-5xl">
-                <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
+                <div className="overflow-x-auto rounded-[12px]  border border-[#E9EAEB]">
                     <TableCard.Root>
 
                         <Table className="min-w-full divide-y divide-gray-200">
@@ -441,7 +440,7 @@ const RelatedWordsTable = ({ category, scrollRef }: RelatedWordsTableProp) => {
     return (
         <div className="w-full  py-1 mb-[60px] scroll-mt-24">
             <div className="max-w-5xl">
-                <div className="overflow-x-auto rounded-[12px] shadow-lg border border-[#E9EAEB]">
+                <div className="overflow-x-auto rounded-[12px]  border border-[#E9EAEB]">
                     <TableCard.Root>
                         <Table>
                             <Table.Header className="font-inter font-semibold text-[12px] leading-[18px] tracking-normal text-[#717680]">
@@ -544,6 +543,7 @@ interface WordDetailType {
 
 }
 const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectionProps) => {
+    const studySectionRef = useRef<HTMLElement>(null);
     const instantAnswerRef = useRef<HTMLDivElement>(null);
     const sentencesRef = useRef<HTMLDivElement>(null);
     const relatedWordsRef = useRef<HTMLDivElement>(null);
@@ -636,7 +636,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
             </section>
 
             {/* Content */}
-            <section className="w-full bg-primary border-b border-[#E9EAEB]">
+            <section ref={studySectionRef} className="w-full bg-primary border-b border-[#E9EAEB]">
                 <div
                     className="
                         mx-auto
@@ -777,7 +777,10 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                         </div>
                     </div>
 
-                    <FloatingSidebar className="w-full max-w-[320px] mx-auto rounded-[12px] bg-white px-4 py-6 shadow-lg text-sm text-[#475467] font-inter font-semibold self-start mt-8">
+                    <FloatingSidebar
+                        boundaryRef={studySectionRef}
+                        className="w-full max-w-[320px] mx-auto rounded-[12px] bg-white px-4 py-6  text-sm text-[#475467] font-inter font-semibold self-start mt-8"
+                    >
 
                         {/* Top Divider */}
                         <SectionDivider className="bg-[#E9EAEB] w-full" />
@@ -879,18 +882,10 @@ export const CTAIPhoneMockup01 = () => {
                     </div>
                 </div>
 
-                <div className="relative z-0  md:min-h-90 md:w-full">
-                    <div className="relative z-0 max-lg:hidden ">
-                            <video
-                                src="/animations/RuaSliotar_MP4.mp4" // path to your video in the public folder
-                                className="relative z-0 size-full"
-                                alt="Fleur Cook Animation"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                            />
-                        </div>    
+                <div className="relative flex w-full items-center justify-center lg:max-w-lg">
+                    <DesktopRive src="/animations/ruasliotar.riv"
+                        stateMachines="State Machine 1"
+                    />
                 </div>
             </div>
         </section>
