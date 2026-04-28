@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { CTAIPhoneMockup01 } from "./word";
 import { Share07 } from "@untitledui/icons";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -13,7 +13,16 @@ interface WordItem {
     word_ga: string;
 }
 
+interface SearchWordItem extends WordItem {
+    searchTitle: string;
+    searchEnglish: string;
+}
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const MAX_RESULTS = 50;
+
+const capitalizeFirst = (value: string) =>
+    value ? value.charAt(0).toUpperCase() + value.slice(1) : value;
 
 const BreadcrumbWithShare = () => {
     const location = useLocation();
@@ -88,18 +97,23 @@ const BreadcrumbWithShare = () => {
 
 const CategorySection = () => {
     const navigate = useNavigate();
-    const [allWords, setAllWords] = useState<WordItem[]>([]);
-    const [results, setResults] = useState<WordItem[]>([]);
+    const [allWords, setAllWords] = useState<SearchWordItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [query, setQuery] = useState("");
+    const deferredQuery = useDeferredValue(query);
 
     useEffect(() => {
         const fetchWords = async () => {
             try {
                 const response = await fetch(`${API_BASE_URL}/words/search`);
-                const data = await response.json();
-                setAllWords(data);
-                setResults(data);
+                const data: WordItem[] = await response.json();
+                setAllWords(
+                    data.map((word) => ({
+                        ...word,
+                        searchTitle: word.title.toLowerCase(),
+                        searchEnglish: word.english?.toLowerCase() ?? "",
+                    })),
+                );
             } catch (error) {
                 console.error("Failed to fetch words:", error);
             } finally {
@@ -110,18 +124,40 @@ const CategorySection = () => {
         fetchWords();
     }, []);
 
-    useEffect(() => {
-        let filtered = allWords;
+    const normalizedQuery = deferredQuery.trim().toLowerCase();
 
-        if (query.trim() !== "") {
-            filtered = allWords.filter((word) =>
-                word.title.toLowerCase().includes(query.toLowerCase()) ||
-                word.english?.toLowerCase().includes(query.toLowerCase()),
-            );
+    const results = useMemo(() => {
+        if (normalizedQuery === "") {
+            return [];
         }
 
-        setResults(filtered);
-    }, [query, allWords]);
+        const startsWithMatches: SearchWordItem[] = [];
+        const includesMatches: SearchWordItem[] = [];
+
+        for (const word of allWords) {
+            const matchesTitle = word.searchTitle.includes(normalizedQuery);
+            const matchesEnglish = word.searchEnglish.includes(normalizedQuery);
+
+            if (!matchesTitle && !matchesEnglish) {
+                continue;
+            }
+
+            if (
+                word.searchTitle.startsWith(normalizedQuery) ||
+                word.searchEnglish.startsWith(normalizedQuery)
+            ) {
+                startsWithMatches.push(word);
+            } else {
+                includesMatches.push(word);
+            }
+
+            if (startsWithMatches.length + includesMatches.length >= MAX_RESULTS) {
+                break;
+            }
+        }
+
+        return [...startsWithMatches, ...includesMatches].slice(0, MAX_RESULTS);
+    }, [allWords, normalizedQuery]);
 
     return (
         <div>
@@ -145,11 +181,11 @@ const CategorySection = () => {
             </section> */}
 
             {/* Content */}
-            <section className="w-full bg-primary border-b border-[#E9EAEB] mt-[100px]">
-                <div className="mx-auto max-w-container px-4 md:px-8 py-8">
-                    <div className="mx-auto max-w-3xl">
+            <section className="w-full border-b border-[#E9EAEB] bg-primary">
+                <div className="mx-auto flex min-h-[calc(100svh-4.5rem)] w-full max-w-container items-start justify-center px-4 pb-12 pt-[12vh] md:min-h-[calc(100svh-5rem)] md:px-8 md:pb-16 md:pt-[16vh]">
+                    <div className="mx-auto w-full max-w-3xl">
                         <div className="mb-5">
-                            <h4 className="font-inter font-semibold text-5xl leading-[60px] tracking-[-0.02em] text-[#181D27] text-center">
+                            <h4 className="font-inter text-4xl font-semibold leading-[44px] tracking-[-0.02em] text-[#181D27] text-center md:text-5xl md:leading-[60px]">
                                 Type a word in English or Irish
                             </h4>
                             <p className="text-[16px] text-[#535862] font-inter font-normal text-base leading-6 tracking-normal mb-3 text-center mt-4">
@@ -230,20 +266,28 @@ const CategorySection = () => {
                                                         heading="Words"
                                                         className="px-2 text-xs font-medium text-gray-400"
                                                     >
-                                                        {results.map((item, index) => (
+                                                        {results.map((item) => (
                                                             <Command.Item
-                                                                key={`${item.word_ga}-${index}`}
-                                                                value={item.word_ga}
+                                                                key={item.url}
+                                                                value={`${item.word_ga} ${item.english ?? ""}`}
                                                                 onSelect={() => {
                                                                     navigate(item.url);
                                                                     setQuery("");
                                                                 }}
                                                                 className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg cursor-pointer data-[selected=true]:bg-gray-100"
                                                             >
-                                                                {item.word_ga}
+                                                                <span className="font-bold">
+                                                                    {`${item.word_ga} | ${capitalizeFirst(item.english)}`}
+                                                                </span>
                                                             </Command.Item>
                                                         ))}
                                                     </Command.Group>
+                                                )}
+
+                                                {results.length === MAX_RESULTS && (
+                                                    <div className="px-3 pt-2 text-xs text-gray-400">
+                                                        Showing the first {MAX_RESULTS} matches. Keep typing to narrow results.
+                                                    </div>
                                                 )}
                                             </>
                                         )}

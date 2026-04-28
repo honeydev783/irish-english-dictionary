@@ -16,7 +16,6 @@ import ReportModal from "@/components/ReportModal";
 import { Helmet } from "react-helmet";
 import { FooterLarge11Brand } from "./home";
 import { request } from "http";
-import { FloatingSidebar } from "@/components/floating-sidebar";
 import DesktopRive from "@/components/RiveAnimation";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -398,7 +397,11 @@ const RelatedWordsTable = ({ category, scrollRef }: RelatedWordsTableProp) => {
 
     useEffect(() => {
         const fetchWords = async () => {
-            if (!category) return;
+            if (!category) {
+                setWords([]);
+                setLoading(false);
+                return;
+            }
             try {
                 setLoading(true);
                 const response = await fetch(`${API_BASE_URL}/words?category=${category}`);
@@ -771,16 +774,15 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                                 Related Irish words
                             </h3>
                             <p className="text-[16px] text-[#535862] font-inter font-normal text-base leading-6 tracking-normal mb-3">
-                                Here are other Irish nouns with the primary category of {category}
+                                {category
+                                    ? `Here are other Irish nouns with the primary category of ${category}`
+                                    : "Here are other Irish nouns you might also find useful."}
                             </p>
                             <RelatedWordsTable category={category} scrollRef={relatedWordsRef} />
                         </div>
                     </div>
 
-                    <FloatingSidebar
-                        boundaryRef={studySectionRef}
-                        className="w-full max-w-[320px] mx-auto rounded-[12px] bg-white px-4 py-6  text-sm text-[#475467] font-inter font-semibold self-start mt-8"
-                    >
+                    <aside className="w-full max-w-[320px] mx-auto rounded-[12px] bg-white px-4 py-6 text-sm text-[#475467] font-inter font-semibold self-start mt-8 lg:sticky lg:top-24">
 
                         {/* Top Divider */}
                         <SectionDivider className="bg-[#E9EAEB] w-full" />
@@ -857,7 +859,7 @@ const StudySection = ({ normalized_ga, word_en, category, word_ga }: StudySectio
                                 Related Words
                             </button>
                         </div>
-                    </FloatingSidebar>
+                    </aside>
 
                 </div>
             </section>
@@ -882,11 +884,18 @@ export const CTAIPhoneMockup01 = () => {
                     </div>
                 </div>
 
-                <div className="relative flex w-full items-center justify-center lg:max-w-lg">
-                    <DesktopRive src="/animations/ruasliotar.riv"
+                <div className="relative flex w-full items-center justify-center lg:-my-24 lg:-mr-24 lg:flex-[1.4] lg:max-w-none">
+                    <DesktopRive
+                        src="/animations/ruasliotar.riv"
+                        className="h-56 w-full max-w-[360px] sm:h-64 sm:max-w-[420px] lg:h-[800px] lg:w-[1680px]"
                         stateMachines="State Machine 1"
                     />
                 </div>
+                {/* <div className="relative flex w-full items-center justify-center lg:max-w-lg">
+                    <DesktopRive src="/animations/ruasliotar.riv"
+                        stateMachines="State Machine 1"
+                    />
+                </div> */}
             </div>
         </section>
     );

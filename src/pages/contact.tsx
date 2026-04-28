@@ -11,6 +11,7 @@ import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { Header } from "@/components/marketing/header-navigation/header";
 import countries, { phoneCodeOptions } from "@/utils/countries";
 import { FooterLarge11Brand } from "./home";
+import DesktopRive from "@/components/RiveAnimation";
 
 const ContactFormAndImage01 = () => {
     const [selectedCountryPhone, setSelectedCountryPhone] = useState("IE");
@@ -67,7 +68,7 @@ const ContactFormAndImage01 = () => {
                                         <>
                                             You agree to our friendly{" "}
                                             <a
-                                                href="#"
+                                                href="https://docs.google.com/document/d/13Y27D7UFO9ZcaxpUjvKCRUJIqUFXh-DsagWql2Hdfos/edit?usp=sharing"
                                                 className="rounded-xs underline underline-offset-3 outline-focus-ring focus-visible:outline-2 focus-visible:outline-offset-2"
                                             >
                                                 privacy policy.
@@ -83,7 +84,14 @@ const ContactFormAndImage01 = () => {
                         </Form>
                     </div>
 
-                    <div className="max-lg:hidden lg:h-200">
+                    <div className="relative flex w-full items-center justify-center lg:-my-24 lg:-mr-24 lg:flex-[1.4] lg:max-w-none">
+                        <DesktopRive
+                            src="/animations/ruataytobagcrispcelebration.riv"
+                            className="h-56 w-full max-w-[360px] sm:h-64 sm:max-w-[420px] lg:h-[800px] lg:w-[1680px]"
+                            stateMachines="State Machine 1"
+                        />
+                    </div>
+                    {/* <div className="max-lg:hidden lg:h-200">
                         <video
                             src="/animations/RuaTayoChips_MP4.mp4" // path to your video in the public folder
                             className="size-full object-cover"
@@ -93,7 +101,7 @@ const ContactFormAndImage01 = () => {
                             muted
                             playsInline
                         />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>

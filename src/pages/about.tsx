@@ -12,6 +12,7 @@ import { useState } from "react";
 import { AppStoreButton as AppStoreButtonOutline, GooglePlayButton as GooglePlayButtonOutline } from "@/components/base/buttons/app-store-buttons-outline";
 import { IPhoneMockup } from "@/components/shared-assets/iphone-mockup";
 import { FooterLarge11Brand, CTAIPhoneMockup04 } from "./home";
+import { AppStoreButton, GooglePlayButton } from "@/components/base/buttons/app-store-buttons";
 
 const HeaderCenteredButtons = () => {
     return (
@@ -305,11 +306,14 @@ const TeamSectionImageCollage02 = () => {
                         Everything in HeyRua is designed to help you speak with confidence.
                     </p>
 
-                    <div className="mt-8 flex w-full flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-start">
-                        <Button color="secondary" size="xl">
-                            Read our principles
-                        </Button>
-                        <Button size="xl" className="bg-[#FF8D28] hover:bg-[#E6761F]">We're hiring!</Button>
+
+                    <div className="mt-8 flex w-full justify-center gap-3 sm:hidden">
+                        <AppStoreButton size="md" />
+                        <GooglePlayButton size="md" />
+                    </div>
+                    <div className="mt-8 hidden gap-3 sm:flex md:mt-12">
+                        <AppStoreButton size="lg" />
+                        <GooglePlayButtonOutline href="#" className="dark-mode w-[135px] bg-black hover:bg-gray-800" />
                     </div>
                 </div>
 
@@ -743,24 +747,27 @@ const CTACardHorizontal = () => {
     return (
         <section className="bg-primary pb-16 md:pb-24">
             <div className="mx-auto max-w-container px-4 md:px-8">
-                <div className="flex-1  flex-col gap-x-8 gap-y-8 rounded-2xl bg-secondary px-6 py-10 lg:flex-row lg:p-16 mb-6">
+                <div className="flex flex-col justify-between gap-x-8 gap-y-8 rounded-2xl bg-secondary px-6 py-10 lg:flex-row lg:p-16">
                     <div className="flex max-w-3xl flex-1 flex-col">
                         <h4 className="text-display-sm font-semibold text-primary">
                             <span className="hidden md:inline">7 days free. Speak from day one.</span>
                             <span className="md:hidden">Start your free trial</span>
                         </h4>
                         <p className="mt-4 text-lg text-tertiary lg:text-xl">Your Irish starts here</p>
+                        <Button color="link-color" size="lg" href="#" iconTrailing={ArrowRight}>
+                            Start now
+                        </Button>
                     </div>
 
-                    <Button color="link-color" size="lg" href="#" iconTrailing={ArrowRight}>
-                        Start now
-                    </Button>
-                    {/* <div className="flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-start">
-                        <Button color="secondary" size="xl">
-                        </Button>
-                        <Button size="xl" className="bg-[#FF8D28] hover:bg-[#E6761F]">Get started</Button>
-                    </div> */}
+
+                    <div className="flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-start">
+
+                        <Button size="xl" className="bg-[#FF8D28] hover:bg-[#E6761F]"
+                        >Get started</Button>
+                    </div>
+
                 </div>
+
             </div>
         </section>
     );

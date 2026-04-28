@@ -17,7 +17,6 @@ import { FooterLarge11Brand } from "./home";
 import ReportModal from "@/components/ReportModal";
 import { removeFadas, CTAIPhoneMockup01 } from "./word";
 import { PaginationPageMinimalCenter } from "@/components/application/pagination/pagination";
-import { FloatingSidebar } from "@/components/floating-sidebar";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -512,7 +511,11 @@ const RelatedWordsTable = ({ category, scrollRef }: RelatedWordsTableProp) => {
     const itemsPerPage = 15;
     useEffect(() => {
         const fetchWords = async () => {
-            if (!category) return;
+            if (!category) {
+                setWords([]);
+                setLoading(false);
+                return;
+            }
             try {
                 setLoading(true);
                 const response = await fetch(`${API_BASE_URL}/words?category=${category}`);
@@ -965,7 +968,9 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
                                 Other Irish {type}
                             </h3>
                             {type == "nouns" && <p className="text-[16px] text-[#535862] font-inter font-normal text-base leading-6 tracking-normal mb-3">
-                                Here are other Irish nouns with the primary category of {category}
+                                {category
+                                    ? `Here are other Irish nouns with the primary category of ${category}`
+                                    : "Here are other Irish nouns you might also find useful."}
                             </p>}
                             {
                                 type == "nouns" ? <RelatedWordsTable category={category} scrollRef={relatedWordsRef} /> : <RelatedTable type={type} scrollRef={relatedWordsRef} />
@@ -975,10 +980,7 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
                         </div>
                     </div>
 
-                    <FloatingSidebar
-                        boundaryRef={studySectionRef}
-                        className="w-full max-w-[320px] mx-auto rounded-[12px] bg-white px-4 py-6  text-sm text-[#475467] font-inter font-semibold self-start mt-8"
-                    >
+                    <aside className="w-full max-w-[320px] mx-auto rounded-[12px] bg-white px-4 py-6 text-sm text-[#475467] font-inter font-semibold self-start mt-8 lg:sticky lg:top-24">
 
 
                         {/* Top Divider */}
@@ -1056,52 +1058,13 @@ const StudySection = ({ normalized_ga, word_en, category, type, word_ga }: Study
                                 Related Words
                             </button>
                         </div>
-                    </FloatingSidebar>
+                    </aside>
 
                 </div>
             </section >
         </div >
     );
 };
-
-// export const CTAIPhoneMockup01 = () => {
-//     return (
-//         <section className="overflow-hidden bg-primary md:pb-24 mt-8">
-//             <div className="relative mx-auto grid w-full max-w-container grid-cols-1 gap-16 px-4 md:px-8 lg:grid-cols-2 lg:items-center">
-//                 <div className="z-20 flex max-w-3xl flex-col items-start">
-//                     <h2 className="font-inter font-semibold text-5xl leading-[60px] tracking-[-0.02em] text-[#181D27]">
-//                         Learn Irish by actually speaking it
-//                     </h2>
-//                     <p className="mt-4 font-inter font-normal font-700 text-[20px] leading-[30px] tracking-normal text-[#535862]">Learn everyday Irish words through guided <br /> conversation</p>
-//                     <p className="mt-4 font-inter font-bold font-700 text-[20px] leading-[30px] tracking-normal text-[#535862]">1-week free trial. Cancel anytime.</p>
-
-//                     <div className="mt-8 flex w-full gap-3 md:mt-12">
-//                         <AppStoreButton size="lg" />
-//                         <GooglePlayButton size="lg" />
-//                     </div>
-//                 </div>
-
-//                 <div className="relative min-h-90 md:min-h-100 md:w-full">
-//                     <svg className="absolute -bottom-24 left-1/2 -translate-x-1/2" width="532" height="416" viewBox="0 0 532 416" fill="none">
-//                         <path
-//                             fillRule="evenodd"
-//                             clipRule="evenodd"
-//                             d="M182.034 461.691C74.9901 428.768 1.32278 329.846 0.0121784 217.408C-1.15817 117.003 82.1936 43.2414 176.777 10.7273C260.07 -17.9056 346.327 12.9156 406.143 77.7959C484.913 163.236 571.343 274.645 512.702 375.097C449.003 484.212 302.448 498.727 182.034 461.691Z"
-//                             fill="currentColor"
-//                             className="text-bg-secondary"
-//                         />
-//                     </svg>
-
-//                     <IPhoneMockup
-//                         image="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-light-01.webp"
-//                         imageDark="https://www.untitledui.com/marketing/screen-mockups/dashboard-mobile-mockup-dark-01.webp"
-//                         className="absolute top-0 right-1/2 w-full max-w-71 translate-x-1/2  md:max-w-78.5"
-//                     />
-//                 </div>
-//             </div>
-//         </section>
-//     );
-// };
 
 const WordPageScreen = () => {
 

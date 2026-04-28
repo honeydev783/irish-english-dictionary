@@ -51,25 +51,26 @@ const HeroIPhoneMockup01 = () => {
 
 
 
-            <section className="relative overflow-hidden pt-12 pb-10 md:py-24">
-                <div className="mx-auto flex max-w-container flex-col items-center gap-8 px-4 text-center sm:gap-10 md:px-8 lg:flex-row lg:items-center lg:gap-16 lg:text-left">
-                    <div className="flex w-full max-w-3xl flex-1 flex-col items-center lg:items-start">
+            <section className="relative overflow-hidden pt-12 pb-10 md:py-20 lg:py-12">
+                <div className="mx-auto flex max-w-container flex-col items-center gap-8 px-4 text-center sm:gap-10 md:px-8 lg:flex-row lg:items-center lg:gap-4 lg:text-left">
+                    <div className="flex w-full flex-1 flex-col items-center lg:items-start">
                         <a href="#" className="rounded-[10px] outline-focus-ring focus-visible:outline-2 focus-visible:outline-offset-2">
-                            <BadgeGroup className="hidden md:flex" size="lg" addonText="App Now Live" iconTrailing={ArrowRight} theme="modern" color="brand">
+                            <BadgeGroup className="hidden md:flex [&>span>span:first-child]:bg-[#FF8D28]" size="lg" addonText="App Now Live" iconTrailing={ArrowRight} theme="modern" color="brand">
                                 Start actually speaking today
                             </BadgeGroup>
-                            <BadgeGroup className="md:hidden" size="md" addonText="App Now Live" iconTrailing={ArrowRight} theme="modern" color="brand">
+                            <BadgeGroup className="md:hidden [&>span>span:first-child]:bg-[#FF8D28]" size="md" addonText="App Now Live" iconTrailing={ArrowRight} theme="modern" color="brand">
                                 Start actually speaking today
                             </BadgeGroup>
                         </a>
 
                         <h1 className="mt-4 text-display-sm font-semibold text-primary sm:text-display-md md:text-display-lg lg:text-display-xl">
-                            Learn Irish, <br />by actually speaking it.
+                            Learn Irish,
+                            <span className="block whitespace-nowrap">by actually speaking it.</span>
                         </h1>
-                        <p className="mt-5 max-w-2xl text-md text-balance font-semibold text-tertiary sm:text-lg md:mt-6 md:text-xl">
+                        <p className="mt-5 text-md text-balance font-semibold text-tertiary sm:text-lg md:mt-6 md:text-xl">
                             Meet Rua, your new Irish language teacher.
                         </p>
-                        <p className="mt-2 max-w-2xl text-md text-balance text-tertiary sm:text-lg md:text-xl">
+                        <p className="mt-2 text-md text-balance text-tertiary sm:text-lg md:text-xl">
                             Chat about real-life topics, learn phrases with flashcards, and track your progress as your Gaeilge grows.
                         </p>
                         <div className="mt-8 flex w-full justify-center gap-3 sm:hidden">
@@ -78,12 +79,14 @@ const HeroIPhoneMockup01 = () => {
                         </div>
                         <div className="mt-8 hidden gap-3 sm:flex md:mt-12">
                             <AppStoreButton size="lg" />
-                            <GooglePlayButton size="lg" />
+                            <GooglePlayButtonOutline href="#" className="dark-mode w-[135px] bg-black hover:bg-gray-800" />
                         </div>
                     </div>
 
-                    <div className="relative flex w-full items-center justify-center lg:max-w-lg">
-                        <DesktopRive src="/animations/ruataytobagcrispcelebration.riv"
+                    <div className="relative flex w-full items-center justify-center lg:-my-24 lg:-mr-24 lg:flex-[1.4] lg:max-w-none">
+                        <DesktopRive
+                            src="/animations/ruataytobagcrispcelebration.riv"
+                            className="h-56 w-full max-w-[360px] sm:h-64 sm:max-w-[420px] lg:h-[800px] lg:w-[1680px]"
                             stateMachines="State Machine 1"
                         />
                     </div>
@@ -350,7 +353,36 @@ const footerSocials = [
 
 ];
 
+const footerPrimaryLinks = [
+    { label: "Home", href: "/" },
+    { label: "How it works", href: "/#how-it-works" },
+    { label: "About", href: "/about" },
+    { label: "Word Bank", href: "/category" },
+    { label: "Contact", href: "/contact" },
+];
+
+const footerPolicyLinks = [
+    { label: "Privacy", href: "https://docs.google.com/document/d/13Y27D7UFO9ZcaxpUjvKCRUJIqUFXh-DsagWql2Hdfos/edit?usp=sharing", external: true },
+    { label: "Terms of Service", href: "https://docs.google.com/document/d/1xiJj6PIXadh_gat_AlQ1RXopBAjL5BTd_Yd3mgyab68/edit?usp=sharing", external: true },
+    { label: "Cookie Policy", href: "https://docs.google.com/document/d/1TJ6fD_yOHlVx36G8pnYuP1IksJyB4E6yJhs5youmzEw/edit?usp=sharing", external: true },
+];
+
 export const FooterLarge11Brand = () => {
+    const renderFooterLink = (item: (typeof footerPrimaryLinks | typeof footerPolicyLinks)[number]) => (
+        <li key={item.label}>
+            <Button
+                className="w-full justify-start px-0 text-black hover:text-[#7F56D9]"
+                color="link-color"
+                size="lg"
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+            >
+                {item.label}
+            </Button>
+        </li>
+    );
+
     return (
         <footer className="bg-white  text-black">
             <div className="mx-auto max-w-container px-4 md:px-8">
@@ -371,31 +403,12 @@ export const FooterLarge11Brand = () => {
                             <UntitledLogo className="dark-mode" />
                             <p className="text-md text-black">We believe you learn Irish by speaking it, our mission is to help you to learn Irish.</p>
                         </div>
-                        <nav>
-                            <ul className="grid grid-cols-2 gap-x-8 gap-y-3 sm:grid-cols-[repeat(6,max-content)]">
-                                {[
-                                    { label: "Home", href: "/" },
-                                    { label: "How it works", href: "/#how-it-works" },
-                                    { label: "About", href: "/about" },
-                                    { label: "Word Bank", href: "/category" },
-                                    { label: "Contact", href: "/contact" },
-                                    { label: "Privacy", href: "https://docs.google.com/document/d/13Y27D7UFO9ZcaxpUjvKCRUJIqUFXh-DsagWql2Hdfos/edit?usp=sharing", external: true },
-                                    { label: "Terms of Service", href: "https://docs.google.com/document/d/1xiJj6PIXadh_gat_AlQ1RXopBAjL5BTd_Yd3mgyab68/edit?usp=sharing", external: true },
-                                    { label: "Cookie Policy", href: "https://docs.google.com/document/d/1TJ6fD_yOHlVx36G8pnYuP1IksJyB4E6yJhs5youmzEw/edit?usp=sharing", external: true },
-                                ].map((item) => (
-                                    <li key={item.label}>
-                                        <Button
-                                            className="text-black hover:text-[#7F56D9]"
-                                            color="link-color"
-                                            size="lg"
-                                            href={item.href}
-                                            target={item.external ? "_blank" : undefined}
-                                            rel={item.external ? "noopener noreferrer" : undefined}
-                                        >
-                                            {item.label}
-                                        </Button>
-                                    </li>
-                                ))}
+                        <nav className="inline-grid max-w-full gap-3" aria-label="Footer navigation">
+                            <ul className="grid max-w-full grid-cols-2 gap-x-5 gap-y-2 sm:grid-cols-3 md:w-max md:grid-cols-[repeat(5,max-content)]">
+                                {footerPrimaryLinks.map(renderFooterLink)}
+                            </ul>
+                            <ul className="grid max-w-full grid-cols-2 gap-x-5 gap-y-2 sm:grid-cols-[repeat(3,max-content)] sm:justify-between md:w-full">
+                                {footerPolicyLinks.map(renderFooterLink)}
                             </ul>
                         </nav>
                     </div>
@@ -618,12 +631,21 @@ const FeaturesAlternatingLayout03 = () => {
                         {/* <FeaturedIcon icon={ZapFast} color="brand" size="lg" theme="light" /> */}
 
                         <h4 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Earn your Gaeilge badges</h4>
-                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                        <ul className="mt-8 flex flex-col gap-4 pl-2 md:gap-5 md:pl-4">
+                            {[
+                                "Consistency deserves recognition.     ",
+                                "Earn badges for showing up, completing conversations, mastering vocabulary, and hitting new milestones. ",
+                                "Learning should feel rewarding. ",
+                            ].map((feat) => (
+                                <CheckItemText key={feat} size="md" iconStyle="outlined" color="primary" text={feat} />
+                            ))}
+                        </ul>
+                        {/* <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
                             Consistency deserves recognition.                        </p>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
                             Earn badges for showing up, completing conversations, mastering vocabulary, and hitting new milestones.                        </p>
                         <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
-                            Learning should feel rewarding.                       </p>
+                            Learning should feel rewarding.                       </p> */}
 
                     </div>
 
@@ -633,6 +655,7 @@ const FeaturesAlternatingLayout03 = () => {
                             <IPhoneMockup
                                 image="https://cdn.feedbucket.app/attachments/2026-03-25/JNnxl9fNZe2UtrJecVB95goDSbR6VfIzIbfpSD2ZTRCXbKaA.png"
                                 imageDark="https://cdn.feedbucket.app/attachments/2026-03-25/JNnxl9fNZe2UtrJecVB95goDSbR6VfIzIbfpSD2ZTRCXbKaA.png"
+                                showStatusBar={false}
                                 className="absolute top-28 right-1/2 hidden w-full translate-x-[30%] md:block md:w-78.5 md:max-w-none lg:right-62 lg:translate-x-0"
                             />
                             <IPhoneMockup
@@ -843,7 +866,7 @@ const TestimonialSimpleCentered02 = () => {
                         <div className="flex flex-col items-center gap-4">
                             {/* <Avatar src="https://www.untitledui.com/images/avatars/amelie-laurent?fm=webp&q=80" alt="Amelie Laurent" size="2xl" /> */}
                             <div className="flex flex-col gap-1">
-                                <p className="text-lg font-semibold text-primary">Jayne M.</p>
+                                <p className="text-lg font-semibold text-primary">Eoin P.</p>
                                 {/* <cite className="text-md text-tertiary not-italic">Finance Manager, Sisyphus</cite> */}
                             </div>
                         </div>
@@ -952,10 +975,15 @@ const CTAIPhoneMockup01 = () => {
 
 
                     <p className="mt-4 text-lg text-tertiary md:mt-6 md:text-xl">Built by Irish teachers. Designed for real progress.</p>
-                    <div className="mt-8 flex w-full gap-3 md:mt-12">
-                        <AppStoreButton size="lg" />
-                        <GooglePlayButton size="lg" />
+                    <div className="mt-8 flex w-full justify-center gap-3 sm:hidden">
+                        <AppStoreButton size="md" />
+                        <GooglePlayButton size="md" />
                     </div>
+                    <div className="mt-8 hidden gap-3 sm:flex md:mt-12">
+                        <AppStoreButton size="lg" />
+                        <GooglePlayButtonOutline href="#" className="dark-mode w-[135px] bg-black hover:bg-gray-800" />
+                    </div>
+
                 </div>
 
                 <div className="relative min-h-90 md:min-h-100 md:w-full">
